@@ -1,0 +1,22 @@
+.app-header {
+    background-color: var(--pop);
+    width: 72px;
+    height: 100vh;
+
+    .chat-list {
+        margin-top: 10px;
+        margin-bottom: 10px;
+        .direct-messages {
+            background-color: var(--accent);
+            padding: 3px;
+            border-radius: 16px;
+
+            // outline: 0.5px solid var(--outline);
+            .logo-svg {
+                width: 40px;
+                height: 40px;
+            }
+        }
+    }
+
+}
