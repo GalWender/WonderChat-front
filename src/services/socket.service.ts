@@ -1,13 +1,16 @@
 import io,{Socket} from 'socket.io-client'
 import { userService } from './user.service'
 
-export const SOCKET_EMIT_SET_BOARD_ID_CHANNEL = 'board-set-channel'
-export const SOCKET_EMIT_SEND_BOARD_CHANGES = 'board-send-changes'
-export const SOCKET_EVENT_ADD_BOARD_CHANGES = 'board-add-changes'
+// export const SOCKET_EMIT_SET_BOARD_ID_CHANNEL = 'board-set-channel'
+// export const SOCKET_EMIT_SEND_BOARD_CHANGES = 'board-send-changes'
+// export const SOCKET_EVENT_ADD_BOARD_CHANGES = 'board-add-changes'
 
-export const SOCKET_EMIT_SET_TASK_ID_CHANNEL = 'task-set-channel'
-export const SOCKET_EMIT_SEND_TASK_CHANGES = 'task-send-changes'
-export const SOCKET_EVENT_ADD_TASK_CHANGES = 'task-add-changes'
+// export const SOCKET_EMIT_SET_TASK_ID_CHANNEL = 'task-set-channel'
+// export const SOCKET_EMIT_SEND_TASK_CHANGES = 'task-send-changes'
+// export const SOCKET_EVENT_ADD_TASK_CHANGES = 'task-add-changes'
+export const SOCKET_EMIT_SET_TEST_ID_CHANNEL = 'test-set-channel'
+export const SOCKET_EMIT_SEND_TEST_CHANGES = 'test-send-changes'
+export const SOCKET_EVENT_ADD_TEST_CHANGES = 'test-add-changes'
 
 const SOCKET_EMIT_LOGIN = 'set-user-socket'
 const SOCKET_EMIT_LOGOUT = 'unset-user-socket'
