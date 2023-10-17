@@ -1,7 +1,7 @@
 import { useSelector, useDispatch } from 'react-redux';
-import { chatService } from "../services/chat.service"
+// import { chatService } from "../services/chat.service"
 import { AppState } from '../interfaces/store';
-import {useEffect} from "react"
+import { useEffect } from "react"
 
 export const Home = () => {
     const loggedinUser = useSelector((state: AppState) => state.userModule.loggedinUser);
@@ -9,15 +9,20 @@ export const Home = () => {
     //     chatService.test()
     // }
 
-    useEffect(()=>{
-        console.log('hello',loggedinUser);
-        
-    })
+    const handleRegister = () => {
 
+    }
+
+    const handleLogin = () => {
+        
+    }
+    
     return (
         <section className="home">
-            great start
-            {/* <button onClick={handleTestClick}>test</button> */}
+            <div className="btn-container">
+                <button onClick={handleRegister}>Register</button>
+                <button onClick={handleLogin}>Login</button>
+            </div>
         </section>
     )
 }
