@@ -1,0 +1,67 @@
+.home {
+    width: 100%;
+    justify-content: flex-end;
+    align-items: center;
+    margin-top: 4%;
+
+    .header {
+        width: 100%;
+        gap: 10px;
+        justify-content: center;
+
+        svg {
+            width: 80px;
+            height: 80px;
+        }
+    }
+
+    .svg-container {
+        align-items: center;
+        width: 100%;
+        margin-bottom: 80px;
+
+        svg {
+            width: 150px;
+            height: 150px;
+        }
+
+        .svg1 {
+            margin-left: 150px;
+        }
+
+        .svg2 {
+            margin-right: 150px;
+        }
+
+        .svg3 {
+            margin-left: 150px;
+        }
+    }
+
+    .text-content-container {
+        max-width: 400px;
+        align-items: center;
+        margin-bottom: 50px;
+
+        p {
+            text-align: center;
+            filter: opacity(0.5);
+        }
+    }
+
+    .btn-container {
+        padding-left: 15px;
+        padding-right: 15px;
+        gap: 10px;
+        margin-bottom: 20px;
+        width: 100%;
+        max-height: fit-content;
+        align-items: center;
+
+        button {
+            width: 100%;
+            max-width: 385px;
+            height: 40px;
+        }
+    }
+}

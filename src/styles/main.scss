@@ -1,8 +1,12 @@
 //setup
+@import 'setup/typography';
 @import 'setup/variables';
 
 // basic
 @import 'basic/basics';
+@import 'basic/helpers';
+
+@import 'pages/home';
 
 //cmps
 @import 'cmps/app-header';

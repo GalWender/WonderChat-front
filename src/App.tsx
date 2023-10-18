@@ -6,7 +6,7 @@ function App() {
 
   return (
     <div className='app flex'>
-      <AppHeader />
+      {/* <AppHeader /> */}
       <Routes>
         {renderRoutes()}
       </Routes>
