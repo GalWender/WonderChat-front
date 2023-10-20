@@ -74,7 +74,7 @@ h6 {
     padding: 0;
     color: var(--text);
     font-family: 'Poppins';
-    font-weight: 700;
+    font-weight: 800;
 }
 
 ul {
@@ -96,45 +96,24 @@ p {
     margin: 0;
 }
 
-.flex {
-    display: flex;
-
-    >*.full {
-        flex: 1;
-    }
-
-    &.column {
-        flex-direction: column;
-    }
-
-    &.row {
-        flex-direction: row;
-    }
-
-    &.justify-center {
-        justify-content: center;
-    }
-
-    &.align-center {
-        align-items: center;
-    }
-
-    &.space-between {
-        justify-content: space-between;
-    }
-
-    &.space-evenly {
-        justify-content: space-evenly;
-    }
-}
-
-.clean-list {
-    margin: 0;
-    padding: 0;
-    list-style: none;
-}
-
 button {
     border: none;
     cursor: pointer;
+}
+
+input {
+    outline: none;
+    font-family: "Poppins";
+    color: var(--text);
+    background-color: var(--pop);
+    border: none;
+    filter: opacity(0.5);
+}
+
+select {
+    font-family: "Poppins";
+    outline: none;
+    color: var(--text);
+    background-color: var(--pop);
+    border: none;
 }

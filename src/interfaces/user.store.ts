@@ -2,6 +2,7 @@ import { User } from "./user";
 
 export interface UserState {
     loggedinUser: User | null;
+    isMobile: string
     // other user-related properties
 }
 
