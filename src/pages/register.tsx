@@ -2,6 +2,16 @@ import { useEffect, useState, useMemo } from 'react';
 import { getCountryPhoneCodes } from '../services/countryCode.service';
 import { AppState } from '../interfaces/store';
 import { useSelector } from 'react-redux';
+import HeroChat from '../assets/svg/hero-chat.svg?react'
+import HeroHangout from '../assets/svg/hero-hangout.svg?react'
+import HeroListen from '../assets/svg/hero-bird-listen.svg?react'
+
+interface Props {
+    isPhone: boolean;
+    setIsPhone: (val: boolean) => void;
+    phoneCodes: { name: string; code: string }[];
+    handleSubmit: (e: React.FormEvent) => void;
+}
 
 export const Register = () => {
     const device = useSelector((state: AppState) => state.userModule.isMobile);
@@ -9,18 +19,8 @@ export const Register = () => {
     const [phoneCodes, setPhoneCodes] = useState<{ name: string; code: string }[]>([])
 
     type ComponentMap = {
-        Mobile: (props: {
-            isPhone: boolean,
-            setIsPhone: (val: boolean) => void,
-            phoneCodes: { name: string; code: string }[]
-            handleSubmit: (e: React.FormEvent) => void
-        }) => JSX.Element;
-        Browser: (props: {
-            isPhone: boolean,
-            setIsPhone: (val: boolean) => void,
-            phoneCodes: { name: string; code: string }[]
-            handleSubmit: (e: React.FormEvent) => void
-        }) => JSX.Element;
+        Mobile: (props: Props) => JSX.Element;
+        Browser: (props: Props) => JSX.Element;
     };
     // isPhone, setIsPhone, phoneCodes
     const cmp = useMemo<ComponentMap>(() => {
@@ -44,11 +44,11 @@ export const Register = () => {
     }
 
     return <section className="register">
-        {cmp[device as keyof ComponentMap]({ isPhone, setIsPhone, phoneCodes })}
+        {cmp[device as keyof ComponentMap]({ isPhone, setIsPhone, phoneCodes, handleSubmit })}
     </section>
 }
 
-const Mobile = ({ isPhone, setIsPhone, phoneCodes }: { isPhone: boolean, setIsPhone: (val: boolean) => void, phoneCodes: { name: string; code: string }[] }) => {
+const Mobile = ({ isPhone, setIsPhone, phoneCodes, handleSubmit }: Props) => {
     return <section className="mobile">
         <h5>Enter phone or email</h5>
         <div className="isPhone-container">
@@ -56,7 +56,7 @@ const Mobile = ({ isPhone, setIsPhone, phoneCodes }: { isPhone: boolean, setIsPh
             <p className="email" onClick={() => setIsPhone(false)}>Email</p>
             <div className={`selected ${isPhone ? "" : "toggle"}`}></div>
         </div>
-        {/* <form onSubmit={handleSubmit}>
+        <form onSubmit={handleSubmit}>
             {isPhone && <div className="phone-registration">
                 <label htmlFor="code">Code</label>
                 <select name="code">
@@ -72,15 +72,80 @@ const Mobile = ({ isPhone, setIsPhone, phoneCodes }: { isPhone: boolean, setIsPh
             {!isPhone && <div className="email-registration">
 
             </div>}
-        </form> */}
+        </form>
     </section>
 }
 
-const Browser = ({ isPhone, setIsPhone, phoneCodes }: { isPhone: boolean, setIsPhone: (val: boolean) => void, phoneCodes: { name: string; code: string }[] }) => {
-    // console.log(isPhone,setIsPhone,phoneCodes);
+const Browser = ({ isPhone, setIsPhone, phoneCodes, handleSubmit }: Props) => {
+
+    const currentYear = new Date().getFullYear();
+
+    // Generate an array of months in words
+    const months: string[] = useMemo(() => {
+        return [
+            'January', 'February', 'March', 'April', 'May', 'June',
+            'July', 'August', 'September', 'October', 'November', 'December',
+        ];
+    }, []);
+
+    const days: number[] = useMemo(() => {
+        return Array.from({ length: 31 }, (_, i) => i + 1);
+    }, []);
+
+    const years: number[] = useMemo(() => {
+        const minYear = currentYear - 152;
+        const maxYear = currentYear - 3;
+        return Array.from({ length: maxYear - minYear + 1 }, (_, i) => maxYear - i);
+    }, [currentYear]);
+
 
     return <section className="browser">
+        <div className="svg-container">
+            <HeroChat className="svg1" />
+            <HeroHangout className="svg2" />
+            <HeroListen className="svg3" />
+        </div>
         <form onSubmit={handleSubmit}>
+            <h5>Create an account</h5>
+            <div className="field">
+                <label htmlFor='email'>EMAIL<span className="red">*</span></label>
+                <input type="email" id='email' />
+            </div>
+            <div className="field">
+                <label htmlFor='name'>DISPLAY NAME</label>
+                <input type="text" id='name' />
+            </div>
+            <div className="field">
+                <label htmlFor='username'>USERNAME<span className="red">*</span></label>
+                <input type="text" id='username' />
+            </div>
+            <div className="field">
+                <label htmlFor='password'>PASSWORD<span className="red">*</span></label>
+                <input type="password" id='password' />
+            </div>
+            <div className="field">
+                <label htmlFor='password'>DATE OF BIRTH<span className="red">*</span></label>
+                <div className="date-container">
+                    <select name="month" id="month">
+                        <option value="" disabled selected hidden>MONTH</option>
+                        {months.map((month, index) => (
+                            <option key={index} value={month}>{month}</option>
+                        ))}
+                    </select>
+                    <select name="day" id="day">
+                        <option value="" disabled selected hidden>DAY</option>
+                        {days.map((day, index) => (
+                            <option key={index} value={day}>{day}</option>
+                        ))}
+                    </select>
+                    <select name="year" id="year">
+                        <option value="" disabled selected hidden>YEAR</option>
+                        {years.map((year, index) => (
+                            <option key={index} value={year}>{year}</option>
+                        ))}
+                    </select>
+                </div>
+            </div>
         </form>
     </section>
 }
