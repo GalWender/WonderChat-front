@@ -9,10 +9,20 @@ export const Register = () => {
     const [phoneCodes, setPhoneCodes] = useState<{ name: string; code: string }[]>([])
 
     type ComponentMap = {
-        Mobile: () => JSX.Element;
-        Browser: () => JSX.Element;
+        Mobile: (props: {
+            isPhone: boolean,
+            setIsPhone: (val: boolean) => void,
+            phoneCodes: { name: string; code: string }[]
+            handleSubmit: (e: React.FormEvent) => void
+        }) => JSX.Element;
+        Browser: (props: {
+            isPhone: boolean,
+            setIsPhone: (val: boolean) => void,
+            phoneCodes: { name: string; code: string }[]
+            handleSubmit: (e: React.FormEvent) => void
+        }) => JSX.Element;
     };
-
+    // isPhone, setIsPhone, phoneCodes
     const cmp = useMemo<ComponentMap>(() => {
         return {
             Mobile,
@@ -34,7 +44,7 @@ export const Register = () => {
     }
 
     return <section className="register">
-        {cmp[device as keyof ComponentMap](isPhone, setIsPhone, phoneCodes)}
+        {cmp[device as keyof ComponentMap]({ isPhone, setIsPhone, phoneCodes })}
     </section>
 }
 
@@ -67,7 +77,10 @@ const Mobile = ({ isPhone, setIsPhone, phoneCodes }: { isPhone: boolean, setIsPh
 }
 
 const Browser = ({ isPhone, setIsPhone, phoneCodes }: { isPhone: boolean, setIsPhone: (val: boolean) => void, phoneCodes: { name: string; code: string }[] }) => {
-    return <section className="browser">
+    // console.log(isPhone,setIsPhone,phoneCodes);
 
+    return <section className="browser">
+        <form onSubmit={handleSubmit}>
+        </form>
     </section>
 }
