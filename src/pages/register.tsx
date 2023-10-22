@@ -5,6 +5,7 @@ import { useSelector } from 'react-redux';
 import HeroChat from '../assets/svg/hero-chat.svg?react'
 import HeroHangout from '../assets/svg/hero-hangout.svg?react'
 import HeroListen from '../assets/svg/hero-bird-listen.svg?react'
+import { CustomSelect } from '../cmps/custom-select';
 
 interface Props {
     isPhone: boolean;
@@ -77,6 +78,10 @@ const Mobile = ({ isPhone, setIsPhone, phoneCodes, handleSubmit }: Props) => {
 }
 
 const Browser = ({ isPhone, setIsPhone, phoneCodes, handleSubmit }: Props) => {
+    const [selected1, setSelected1] = useState("")
+    const [selected2, setSelected2] = useState("")
+    const [selected3, setSelected3] = useState("")
+    const [date, setDate] = useState({ month: "", day: "", year: "" })
 
     const currentYear = new Date().getFullYear();
 
@@ -98,6 +103,21 @@ const Browser = ({ isPhone, setIsPhone, phoneCodes, handleSubmit }: Props) => {
         return Array.from({ length: maxYear - minYear + 1 }, (_, i) => maxYear - i);
     }, [currentYear]);
 
+
+    const handleSelected = (option: string) => {
+
+        if (months.includes(option)) {
+            setSelected1(option)
+            setDate({ ...date, month: option })
+        } else if (days.includes(parseInt(option))) {
+            setSelected2(option)
+            setDate({ ...date, day: option })
+        } else if (years.includes(parseInt(option))) {
+            setSelected3(option)
+            setDate({ ...date, year: option })
+        }
+
+    }
 
     return <section className="browser">
         <div className="svg-container">
@@ -126,13 +146,31 @@ const Browser = ({ isPhone, setIsPhone, phoneCodes, handleSubmit }: Props) => {
             <div className="field">
                 <label htmlFor='password'>DATE OF BIRTH<span className="red">*</span></label>
                 <div className="date-container">
-                    <select name="month" id="month">
+                    <CustomSelect
+                        placeholder="Month"
+                        options={months}
+                        handleSelected={handleSelected}
+                        selected={selected1}
+                    />
+                    <CustomSelect
+                        placeholder="Day"
+                        options={days}
+                        handleSelected={handleSelected}
+                        selected={selected2}
+                    />
+                    <CustomSelect
+                        placeholder="Year"
+                        options={years}
+                        handleSelected={handleSelected}
+                        selected={selected3}
+                    />
+                    {/* <select name="month" id="month">
                         <option value="" disabled selected hidden>MONTH</option>
                         {months.map((month, index) => (
                             <option key={index} value={month}>{month}</option>
                         ))}
-                    </select>
-                    <select name="day" id="day">
+                    </select> */}
+                    {/* <select name="day" id="day">
                         <option value="" disabled selected hidden>DAY</option>
                         {days.map((day, index) => (
                             <option key={index} value={day}>{day}</option>
@@ -143,7 +181,7 @@ const Browser = ({ isPhone, setIsPhone, phoneCodes, handleSubmit }: Props) => {
                         {years.map((year, index) => (
                             <option key={index} value={year}>{year}</option>
                         ))}
-                    </select>
+                    </select> */}
                 </div>
             </div>
         </form>

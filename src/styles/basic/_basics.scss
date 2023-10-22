@@ -1,21 +1,23 @@
 * {
     box-sizing: border-box;
     scrollbar-width: thin;
-    scrollbar-color: #878787 #d9d9d9;
+    scrollbar-color: #1a1919;
+
 
     /* Chrome, Edge, and Safari */
     &::-webkit-scrollbar {
-        width: 8px;
+        width: 6px;
         cursor: pointer;
     }
 
     &::-webkit-scrollbar-track {
-        background: #d9d9d9;
+        // background: #d9d9d9;
+
     }
 
     &::-webkit-scrollbar-thumb {
         border-radius: 25px;
-        background-color: #a6a5a5;
+        background-color: #1a1919;
         cursor: pointer;
     }
 }
@@ -87,6 +89,7 @@ ul {
     li {
         padding: 0;
         margin: 0;
+        list-style-type: none;
     }
 }
 
@@ -95,8 +98,11 @@ section {
 }
 
 p {
+    font-family: "Poppins";
     color: var(--text);
     margin: 0;
+    font-size: 1rem;
+    font-weight: 500;
 }
 
 button {
@@ -121,4 +127,51 @@ select {
     color: var(--text);
     background-color: var(--pop);
     border: none;
+    font-size: 0.850rem;
+    font-weight: 500;
+    
+    option {
+        font-family: "Poppins";
+        font-size: 0.850rem;
+        font-weight: 500;
+    }
+}
+
+.custom-select {
+    position: relative;
+    height: 40px;
+    background-color: var(--accent);
+    border-radius: 4px;
+    display: flex;
+    align-items: center;
+
+    p {
+        margin-left: 10px;
+        width: 100%;
+    }
+
+    .options-container {
+        position: absolute;
+        bottom: calc(0px + 39px);
+        z-index: 100;
+        background-color: var(--secondary);
+        width: inherit;
+        max-width: inherit;
+        max-height: 200px;
+        overflow-y: auto;
+        border-top-right-radius: 4px;
+        border-top-left-radius: 4px;
+        
+        .option {
+            display: flex;
+            align-items: center;
+            padding: 10px;
+            // margin: 1px;
+
+            &:hover {
+                cursor: pointer;
+                background-color: #562c34;
+            }
+        }
+    }
 }
