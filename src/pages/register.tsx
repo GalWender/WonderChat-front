@@ -144,7 +144,7 @@ const Browser = ({ isPhone, setIsPhone, phoneCodes, handleSubmit }: Props) => {
                 <input type="password" id='password' />
             </div>
             <div className="field">
-                <label htmlFor='password'>DATE OF BIRTH<span className="red">*</span></label>
+                <label>DATE OF BIRTH<span className="red">*</span></label>
                 <div className="date-container">
                     <CustomSelect
                         placeholder="Month"
@@ -164,25 +164,12 @@ const Browser = ({ isPhone, setIsPhone, phoneCodes, handleSubmit }: Props) => {
                         handleSelected={handleSelected}
                         selected={selected3}
                     />
-                    {/* <select name="month" id="month">
-                        <option value="" disabled selected hidden>MONTH</option>
-                        {months.map((month, index) => (
-                            <option key={index} value={month}>{month}</option>
-                        ))}
-                    </select> */}
-                    {/* <select name="day" id="day">
-                        <option value="" disabled selected hidden>DAY</option>
-                        {days.map((day, index) => (
-                            <option key={index} value={day}>{day}</option>
-                        ))}
-                    </select>
-                    <select name="year" id="year">
-                        <option value="" disabled selected hidden>YEAR</option>
-                        {years.map((year, index) => (
-                            <option key={index} value={year}>{year}</option>
-                        ))}
-                    </select> */}
                 </div>
+                <div className="btn-container">
+                    <button className="btn2">Continue</button>
+                </div>
+
+                <a className="" href="">Aready have an account? </a>
             </div>
         </form>
     </section>

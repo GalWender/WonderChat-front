@@ -37,17 +37,21 @@
 }
 
 .btn1 {
-    color: var(--text);
+    color: var(--background);
     background-color: var(--primary);
     font-family: 'Poppins';
+    font-size: 1rem;
     border-radius: 4px;
+    font-weight: 500;
 }
 
 .btn2 {
     color: var(--text);
     background-color: var(--secondary);
     font-family: 'Poppins';
+    font-size: 1rem;
     border-radius: 4px;
+    font-weight: 500;
 }
 
 .red {

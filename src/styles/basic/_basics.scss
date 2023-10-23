@@ -137,10 +137,14 @@ select {
     }
 }
 
+a {
+    text-decoration: none;
+}
+
 .custom-select {
     position: relative;
     height: 40px;
-    background-color: var(--accent);
+    background-color: #b06371;
     border-radius: 4px;
     display: flex;
     align-items: center;
@@ -148,6 +152,22 @@ select {
     p {
         margin-left: 10px;
         width: 100%;
+    }
+    .arrow-down {
+        margin-right: 10px;
+        fill: var(--text);
+        width: 25px;
+        height: 25px;
+        &:hover {
+            transition: 0.2s ease-in-out;
+         filter: opacity(0.5);   
+         cursor: pointer;
+        }
+    }
+
+    .text-container {
+        width: 100%;
+        
     }
 
     .options-container {
