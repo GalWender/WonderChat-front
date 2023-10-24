@@ -42,30 +42,36 @@ body,
 h1 {
     font-size: 4.210rem;
     /* 67.36px */
+    font-weight: 800;
 }
 
 h2 {
     font-size: 3.158rem;
+    font-weight: 800;
     /* 50.56px */
 }
 
 h3 {
     font-size: 2.369rem;
+    font-weight: 800;
     /* 37.92px */
 }
 
 h4 {
     font-size: 1.777rem;
+    font-weight: 800;
     /* 28.48px */
 }
 
 h5 {
     font-size: 1.333rem;
+    font-weight: 800;
     /* 21.28px */
 }
 
 small {
     font-size: 0.750rem;
+    font-weight: 400;
     /* 12px */
 }
 
@@ -79,7 +85,6 @@ h6 {
     padding: 0;
     color: var(--text);
     font-family: 'Poppins';
-    font-weight: 800;
 }
 
 ul {
@@ -121,21 +126,21 @@ input {
     padding: 10px;
 }
 
-select {
-    font-family: "Poppins";
-    outline: none;
-    color: var(--text);
-    background-color: var(--pop);
-    border: none;
-    font-size: 0.850rem;
-    font-weight: 500;
-    
-    option {
-        font-family: "Poppins";
-        font-size: 0.850rem;
-        font-weight: 500;
-    }
-}
+// select {
+//     font-family: "Poppins";
+//     outline: none;
+//     color: var(--text);
+//     background-color: var(--pop);
+//     border: none;
+//     font-size: 0.850rem;
+//     font-weight: 500;
+
+//     option {
+//         font-family: "Poppins";
+//         font-size: 0.850rem;
+//         font-weight: 500;
+//     }
+// }
 
 a {
     text-decoration: none;
@@ -153,21 +158,23 @@ a {
         margin-left: 10px;
         width: 100%;
     }
+
     .arrow-down {
         margin-right: 10px;
         fill: var(--text);
         width: 25px;
         height: 25px;
+
         &:hover {
             transition: 0.2s ease-in-out;
-         filter: opacity(0.5);   
-         cursor: pointer;
+            filter: opacity(0.5);
+            cursor: pointer;
         }
     }
 
     .text-container {
         width: 100%;
-        
+
     }
 
     .options-container {
@@ -181,7 +188,7 @@ a {
         overflow-y: auto;
         border-top-right-radius: 4px;
         border-top-left-radius: 4px;
-        
+
         .option {
             display: flex;
             align-items: center;

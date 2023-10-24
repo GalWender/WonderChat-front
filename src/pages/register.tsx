@@ -2,10 +2,8 @@ import { useEffect, useState, useMemo } from 'react';
 import { getCountryPhoneCodes } from '../services/countryCode.service';
 import { AppState } from '../interfaces/store';
 import { useSelector } from 'react-redux';
-import HeroChat from '../assets/svg/hero-chat.svg?react'
-import HeroHangout from '../assets/svg/hero-hangout.svg?react'
-import HeroListen from '../assets/svg/hero-bird-listen.svg?react'
 import { CustomSelect } from '../cmps/custom-select';
+import { BackgroundSvgs } from '../cmps/background-svgs';
 
 interface Props {
     isPhone: boolean;
@@ -120,11 +118,7 @@ const Browser = ({ isPhone, setIsPhone, phoneCodes, handleSubmit }: Props) => {
     }
 
     return <section className="browser">
-        <div className="svg-container">
-            <HeroChat className="svg1" />
-            <HeroHangout className="svg2" />
-            <HeroListen className="svg3" />
-        </div>
+        <BackgroundSvgs/>
         <form onSubmit={handleSubmit}>
             <h5>Create an account</h5>
             <div className="field">
