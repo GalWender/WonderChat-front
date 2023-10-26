@@ -31,8 +31,32 @@ export const Login = () => {
 }
 
 const Mobile = () => {
-    return <section className="mobile">
+  
+    const handleSubmit = () => {
 
+    }
+
+    return <section className="mobile">
+        {/* <BackgroundSvgs/> */}
+        <form onSubmit={handleSubmit}>
+            <div className="header">
+                <h5>Welcome back!</h5>
+                <p>We're so excited to see you again!</p>
+            </div>
+            <div className="field">
+                <label htmlFor='email-phone'>EMAIL OR PHONE NUMBER<span className="red">*</span></label>
+                <input type="text" id='email-phone' />
+            </div>
+            <div className="field">
+                <label htmlFor='password'>PASSWORD<span className="red">*</span></label>
+                <input type="password" id='password' />
+                <a href="">Forgot your password?</a>
+            </div>
+            <div className="btn-container">
+                <button className="btn2">Log In</button>
+            </div>
+            <p>Need an account? <a href="/register">Register</a></p>
+        </form>
     </section>
 }
 

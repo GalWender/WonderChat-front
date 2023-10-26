@@ -2,6 +2,7 @@
     box-sizing: border-box;
     scrollbar-width: thin;
     scrollbar-color: #1a1919;
+    -webkit-tap-highlight-color: transparent;
 
 
     /* Chrome, Edge, and Safari */
@@ -31,7 +32,7 @@ body,
     // height: 100vh;
     margin: 0;
     padding: 0;
-    user-select: none;
+    // user-select: none;
     // scroll-behavior: none;
     background-color: var(--background);
     font-family: 'Poppins';
@@ -164,7 +165,7 @@ a {
         fill: var(--text);
         width: 25px;
         height: 25px;
-
+        
         &:hover {
             transition: 0.2s ease-in-out;
             filter: opacity(0.5);

@@ -1,7 +1,3 @@
-// import { useSelector, useDispatch } from 'react-redux';
-// import { chatService } from "../services/chat.service"
-// import { AppState } from '../interfaces/store';
-// import { useEffect } from "react"
 import HeroChat from '../assets/svg/hero-chat.svg?react'
 import HeroHangout from '../assets/svg/hero-hangout.svg?react'
 import HeroListen from '../assets/svg/hero-bird-listen.svg?react'
