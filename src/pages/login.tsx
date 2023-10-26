@@ -2,6 +2,7 @@ import { useSelector } from "react-redux";
 import { AppState } from "../interfaces/store";
 import { useMemo } from "react"
 import { BackgroundSvgs } from "../cmps/background-svgs";
+import { NavLink } from "react-router-dom";
 
 interface Props {
     // isPhone: boolean;
@@ -55,7 +56,7 @@ const Mobile = () => {
             <div className="btn-container">
                 <button className="btn2">Log In</button>
             </div>
-            <p>Need an account? <a href="/register">Register</a></p>
+            <p>Need an account? <NavLink to={"/register"}>Register</NavLink></p>
         </form>
     </section>
 }
@@ -85,7 +86,7 @@ const Browser = () => {
             <div className="btn-container">
                 <button className="btn2">Log In</button>
             </div>
-            <p>Need an account? <a href="/register">Register</a></p>
+            <p>Need an account? <NavLink to={"/register"}>Register</NavLink></p>
         </form>
     </section>
 } 

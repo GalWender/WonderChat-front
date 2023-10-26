@@ -4,6 +4,7 @@ import { AppState } from '../interfaces/store';
 import { useSelector } from 'react-redux';
 import { CustomSelect } from '../cmps/custom-select';
 import { BackgroundSvgs } from '../cmps/background-svgs';
+import { NavLink } from 'react-router-dom';
 
 interface Props {
     isPhone: boolean;
@@ -138,7 +139,7 @@ const Mobile = ({ isPhone, setIsPhone, phoneCodes, handleSubmit }: Props) => {
                     <button className="btn2">Continue</button>
                 </div>
 
-                <a className="" href="">Aready have an account? </a>
+                <NavLink to={"/login"}>Aready have an account? </NavLink>
             </div>
         </form>
     </section>
@@ -232,7 +233,7 @@ const Browser = ({ isPhone, setIsPhone, phoneCodes, handleSubmit }: Props) => {
                     <button className="btn2">Continue</button>
                 </div>
 
-                <a className="" href="">Aready have an account? </a>
+                <NavLink to={"/login"}>Aready have an account? </NavLink>
             </div>
         </form>
     </section>
