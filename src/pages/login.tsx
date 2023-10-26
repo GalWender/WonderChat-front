@@ -1,6 +1,7 @@
 import { useSelector } from "react-redux";
 import { AppState } from "../interfaces/store";
 import { useMemo } from "react"
+import { BackgroundSvgs } from "../cmps/background-svgs";
 
 interface Props {
     // isPhone: boolean;
@@ -42,6 +43,7 @@ const Browser = () => {
     }
 
     return <section className="browser">
+        <BackgroundSvgs/>
         <form onSubmit={handleSubmit}>
             <div className="header">
                 <h5>Welcome back!</h5>
