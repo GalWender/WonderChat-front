@@ -1,7 +1,4 @@
 import { useEffect, useState, useMemo } from 'react';
-import { getCountryPhoneCodes } from '../services/countryCode.service';
-import { AppState } from '../interfaces/store';
-import { useSelector } from 'react-redux';
 import { CustomSelect } from '../cmps/custom-select';
 import { BackgroundSvgs } from '../cmps/background-svgs';
 import { NavLink } from 'react-router-dom';
