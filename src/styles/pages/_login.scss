@@ -1,199 +1,97 @@
 .login {
+    display: flex;
+    // flex-direction: column;
     width: 100%;
+    align-items: center;
+    // margin-top: 4%;
+    justify-content: center;
 
-    .mobile {
+    .svg-container {
+        position: absolute;
+        z-index: 1;
+        // top: 50vh;
+        // left: 0;
+        // max-width: 1400px;
+        // width: 1400px;
         display: flex;
-        // flex-direction: column;
-        width: 100%;
-        height: 100%;
+        flex-direction: column;
         align-items: center;
-        // margin-top: 4%;
-        justify-content: center;
-        .svg-container {
-            position: absolute;
-            z-index: 1;
-            // top: 50vh;
-            // left: 0;
-            // max-width: 1400px;
-            // width: 1400px;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
 
-            svg {
-                width: 250px;
-                height: 250px;
-            }
-
-            .svg1 {
-                margin-left: 850px;
-            }
-
-            .svg2 {
-                margin-right: 850px;
-            }
-
-            .svg3 {
-                margin-left: 850px;
-            }
+        svg {
+            width: 250px;
+            height: 250px;
         }
 
-        form {
-            z-index: 3;
-            padding: 30px;
-            background-color: var(--pop);
-            border-radius: 4px;
-            min-height: 408px;
+        .svg1 {
+            margin-left: 850px;
+        }
 
-            a {
-                font-size: 0.9rem;
-                color: rgb(38, 101, 238);
-                margin-top: 5px;
-                cursor: pointer;
-                width: fit-content;
-            }
+        .svg2 {
+            margin-right: 850px;
+        }
 
-            p {
-                margin-top: 10px;
-                font-size: 12px;
-            }
-            
-
-            .header {
-                text-align: center;
-            }
-
-            .field {
-                display: flex;
-                flex-direction: column;
-                // gap: 10px;
-                margin-bottom: 20px;
-                margin-top: 20px;
-                width: 310px;
-                height: 64px;
-
-                input {
-                    background-color: var(--accent);
-                }
-
-                label {
-                    margin-bottom: 8px;
-                    font-weight: bold;
-                    font-size: 12px;
-                }
-
-            }
-
-            .btn-container {
-                margin-top: 50px;
-                width: 100%;
-                
-                .btn2 {
-                    width: 100%;
-                    height: 44px;
-                    transition: 0.1s ease-in-out;
-                    &:hover {
-                        background-color: #62373f;
-                    }
-                }
-            }
+        .svg3 {
+            margin-left: 850px;
         }
     }
 
-    .browser {
-        display: flex;
-        // flex-direction: column;
-        width: 100%;
-        height: 100%;
-        align-items: center;
-        // margin-top: 4%;
-        justify-content: center;
-        .svg-container {
-            position: absolute;
-            z-index: 1;
-            // top: 50vh;
-            // left: 0;
-            // max-width: 1400px;
-            // width: 1400px;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
+    form {
+        z-index: 3;
+        padding: 30px;
+        background-color: var(--pop);
+        border-radius: 4px;
+        min-height: 408px;
 
-            svg {
-                width: 250px;
-                height: 250px;
-            }
-
-            .svg1 {
-                margin-left: 850px;
-            }
-
-            .svg2 {
-                margin-right: 850px;
-            }
-
-            .svg3 {
-                margin-left: 850px;
-            }
+        a {
+            font-size: 0.9rem;
+            color: rgb(38, 101, 238);
+            margin-top: 5px;
+            cursor: pointer;
+            width: fit-content;
         }
 
-        form {
-            z-index: 3;
-            padding: 30px;
-            background-color: var(--pop);
-            border-radius: 4px;
-            min-height: 408px;
+        p {
+            margin-top: 10px;
+            font-size: 12px;
+        }
 
-            a {
-                font-size: 0.9rem;
-                color: rgb(38, 101, 238);
-                margin-top: 5px;
-                cursor: pointer;
-                width: fit-content;
+
+        .header {
+            text-align: center;
+        }
+
+        .field {
+            display: flex;
+            flex-direction: column;
+            // gap: 10px;
+            margin-bottom: 20px;
+            margin-top: 20px;
+            width: 416px;
+            height: 64px;
+
+            input {
+                background-color: var(--accent);
             }
 
-            p {
-                margin-top: 10px;
+            label {
+                margin-bottom: 8px;
+                font-weight: bold;
                 font-size: 12px;
             }
-            
 
-            .header {
-                text-align: center;
-            }
+        }
 
-            .field {
-                display: flex;
-                flex-direction: column;
-                // gap: 10px;
-                margin-bottom: 20px;
-                margin-top: 20px;
-                width: 416px;
-                height: 64px;
+        .btn-container {
+            margin-top: 50px;
+            width: 100%;
 
-                input {
-                    background-color: var(--accent);
-                }
-
-                label {
-                    margin-bottom: 8px;
-                    font-weight: bold;
-                    font-size: 12px;
-                }
-
-            }
-
-            .btn-container {
-                margin-top: 50px;
+            .btn2 {
                 width: 100%;
-                
-                .btn2 {
-                    width: 100%;
-                    height: 44px;
-                    transition: 0.1s ease-in-out;
-                    &:hover {
-                        background-color: #62373f;
-                    }
+                height: 44px;
+                transition: 0.1s ease-in-out;
+
+                &:hover {
+                    background-color: #62373f;
                 }
             }
         }
