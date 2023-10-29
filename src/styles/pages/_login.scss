@@ -40,7 +40,21 @@
         padding: 30px;
         background-color: var(--pop);
         border-radius: 4px;
-        min-height: 408px;
+        height: fit-content;
+        display: flex;
+        flex-direction: column;
+        transition: 1 ease-in-out;
+
+        .error {
+            height: 0;
+
+            width: 100%;
+
+            &.open {
+                transition: 1 ease-in-out;
+                height: 30px;
+            }
+        }
 
         a {
             font-size: 0.9rem;

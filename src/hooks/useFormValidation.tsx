@@ -1,38 +1,84 @@
-import { useState } from "react";
+import { useState, useEffect } from 'react';
 
-export interface ValidationErrors {
-  email: string | null;
-  password: string | null;
+interface FieldValidation {
+    required: boolean;
+    minLength?: number;
+    maxLength?: number;
+    pattern?: RegExp;
 }
 
-export const useValidation = () => {
-  const [errors, setErrors] = useState<ValidationErrors>({
-    email: null,
-    password: null,
-  });
+interface FormValidation {
+    [key: string]: FieldValidation;
+}
 
-  const validateEmail = (email: string): boolean => {
-    const emailRegex = /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4}$/;
-    return emailRegex.test(email);
-  };
+interface ValidationErrors {
+    [key: string]: string;
+}
 
-  const validatePassword = (password: string): boolean => {
-    // You can add more password validation logic here (e.g., minimum length, special characters).
-    return password.length >= 8;
-  };
+export const useFormValidation = (initialState: Record<string, string>, validationRules: FormValidation) => {
+    const [formState, setFormState] = useState(initialState);
+    const [errors, setErrors] = useState<ValidationErrors>({});
+    const [currFieldName,setCurrFieldName] = useState<string>("")
 
-  const validateForm = (formData: { email: string; password: string }): boolean => {
-    const { email, password } = formData;
-    const emailValid = validateEmail(email);
-    const passwordValid = validatePassword(password);
+    const validateField = (fieldName: string, value: string) => {
+        const fieldRules = validationRules[fieldName];
+        const fieldErrors: string[] = [];
 
-    setErrors({
-      email: emailValid ? null : "Invalid email address",
-      password: passwordValid ? null : "Password must be at least 8 characters long",
-    });
+        if (fieldRules.required && value.trim() === '') {
+            fieldErrors.push('This field is required.');
+        }
 
-    return emailValid && passwordValid;
-  };
+        if (fieldRules.minLength && value.length < fieldRules.minLength) {
+            fieldErrors.push(`Minimum length is ${fieldRules.minLength} characters.`);
+        }
 
-  return { errors, validateForm };
-};
+        if (fieldRules.maxLength && value.length > fieldRules.maxLength) {
+            fieldErrors.push(`Maximum length is ${fieldRules.maxLength} characters.`);
+        }
+
+        if (fieldRules.pattern && !fieldRules.pattern.test(value)) {
+            fieldErrors.push(`Invalid ${fieldName}`);
+        }
+        // console.log('fielderrors',fieldErrors);
+        // console.log(fieldName, fieldErrors);
+
+
+        setErrors({ ...errors, [fieldName]: fieldErrors[0] })
+        // console.log(errors);
+
+    }
+
+    useEffect(() => {
+        if(currFieldName) {
+            validateField(currFieldName, formState[currFieldName])
+        }
+    }, [formState]);
+
+    const handleChange = (fieldName: string, value: string) => {
+        console.log("data", fieldName, value)
+        setFormState({ ...formState, [fieldName]: value })
+        setCurrFieldName(fieldName)
+    }
+
+    const isFormValid = () => {
+        for (const fieldName in errors) {
+            if (errors[fieldName].length > 0) {
+                return false;
+            }
+        }
+        return true;
+    };
+
+    const resetForm = () => {
+        setFormState(initialState);
+        setErrors({});
+    };
+
+    return {
+        formState,
+        errors,
+        handleChange,
+        isFormValid,
+        resetForm,
+    };
+}

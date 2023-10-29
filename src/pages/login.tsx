@@ -1,7 +1,6 @@
 import { BackgroundSvgs } from "../cmps/background-svgs"
 import { NavLink } from "react-router-dom"
-import { useValidation } from "../hooks/useFormValidation"
-import { useState } from "react";
+import { useFormValidation } from "../hooks/useFormValidation"
 
 interface Props {
     // isPhone: boolean
@@ -11,27 +10,41 @@ interface Props {
 }
 
 export const Login = () => {
-    const [formData, setFormData] = useState({ email: "", password: "" });
-    const { errors, validateForm } = useValidation();
+    const initialFormState = {
+        email: '',
+        password: '',
+    };
 
-    const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-        const { name, value } = e.target;
-        console.log(name,value);
-        
-        setFormData({ ...formData, [name]: value });
-        console.log(formData);
-        
-      };
-    
-      const handleSubmit = (e: React.FormEvent) => {
+    const validationRules = {
+        email: {
+            required: true,
+            pattern: /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4}$/,
+        },
+        password: {
+            required: true,
+            minLength: 6,
+        },
+    };
+
+    const {
+        formState,
+        errors,
+        handleChange,
+        isFormValid,
+        resetForm,
+    } = useFormValidation(initialFormState, validationRules);
+    // console.log(errors);
+
+
+    const handleSubmit = (e: React.FormEvent) => {
         e.preventDefault();
-        if (validateForm(formData)) {
-          // Form is valid, proceed with your logic (e.g., submit the form).
-          console.log("Form data is valid:", formData);
+        if (isFormValid()) {
+            // Submit the form or perform other actions
+            console.log('Form is valid. Submitting...');
         } else {
-          console.log("Form data is invalid.");
+            console.log('Form is invalid. Please check the fields.');
         }
-      };
+    };
 
     return <section className="login">
         <BackgroundSvgs />
@@ -46,10 +59,10 @@ export const Login = () => {
                     type="text"
                     id='email'
                     name="email"
-                    value={formData.email}
-                    onChange={handleInputChange}
+                    value={formState.email}
+                    onChange={(e) => handleChange('email', e.target.value)}
                 />
-               {errors.email && <span className="error">{errors.email}</span>}
+                <span className={`error red ${errors.email ? "open" : ""}`}>{errors.email}</span>
             </div>
             <div className="field">
                 <label htmlFor='password'>PASSWORD<span className="red">*</span></label>
@@ -57,10 +70,10 @@ export const Login = () => {
                     type="password"
                     id='password'
                     name="password"
-                    value={formData.password}
-                    onChange={handleInputChange}
+                    value={formState.password}
+                    onChange={(e) => handleChange('password', e.target.value)}
                 />
-                {errors.password && <span className="error">{errors.password}</span>}
+                <span className={`error red ${errors.password ? "open" : ""}`}>{errors.password}</span>
                 <a href="">Forgot your password?</a>
             </div>
             <div className="btn-container">

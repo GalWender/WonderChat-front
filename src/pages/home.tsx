@@ -4,7 +4,7 @@ import HeroListen from '../assets/svg/hero-bird-listen.svg?react'
 import Logo from '../assets/svg/whiteLogo.svg?react'
 import { useNavigate } from 'react-router-dom';
 
-type Props = {
+interface Props {
     // isPhone: boolean;
     // setIsPhone: (val: boolean) => void;
     // phoneCodes: { name: string; code: string }[];
