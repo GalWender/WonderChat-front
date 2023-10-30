@@ -46,6 +46,16 @@
         // flex-direction: column;
         // height: fit-content;
 
+        .error {
+            height: 0;
+            width: 100%;
+            transition: height 0.3s;
+
+            &.open {
+                height: 30px;
+            }
+        }
+
         a {
             font-size: 0.9rem;
             color: rgb(38, 101, 238);

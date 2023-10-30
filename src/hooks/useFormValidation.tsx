@@ -18,7 +18,7 @@ interface ValidationErrors {
 export const useFormValidation = (initialState: Record<string, string>, validationRules: FormValidation) => {
     const [formState, setFormState] = useState(initialState);
     const [errors, setErrors] = useState<ValidationErrors>({});
-    const [currFieldName,setCurrFieldName] = useState<string>("")
+    const [currFieldName, setCurrFieldName] = useState<string>("")
 
     const validateField = (fieldName: string, value: string) => {
         const fieldRules = validationRules[fieldName];
@@ -49,7 +49,7 @@ export const useFormValidation = (initialState: Record<string, string>, validati
     }
 
     useEffect(() => {
-        if(currFieldName) {
+        if (currFieldName) {
             validateField(currFieldName, formState[currFieldName])
         }
     }, [formState]);
@@ -61,8 +61,15 @@ export const useFormValidation = (initialState: Record<string, string>, validati
     }
 
     const isFormValid = () => {
+        console.log(errors);
+        //need to fix useformValidation starter submit doesn't show errors
+        // if (Object.keys(errors).length !== Object.keys(initialState).length) {
+        //         validateField(fieldKeys[i], "")
+        //     return false
+        // }
+
         for (const fieldName in errors) {
-            if (errors[fieldName].length > 0) {
+            if (errors[fieldName] !== undefined) {
                 return false;
             }
         }

@@ -3,10 +3,6 @@ import { NavLink } from "react-router-dom"
 import { useFormValidation } from "../hooks/useFormValidation"
 
 interface Props {
-    // isPhone: boolean
-    // setIsPhone: (val: boolean) => void
-    // phoneCodes: { name: string code: string }[]
-    // handleSubmit: (e: React.FormEvent) => void
 }
 
 export const Login = () => {
@@ -33,13 +29,11 @@ export const Login = () => {
         isFormValid,
         resetForm,
     } = useFormValidation(initialFormState, validationRules);
-    // console.log(errors);
 
 
     const handleSubmit = (e: React.FormEvent) => {
         e.preventDefault();
         if (isFormValid()) {
-            // Submit the form or perform other actions
             console.log('Form is valid. Submitting...');
         } else {
             console.log('Form is invalid. Please check the fields.');
