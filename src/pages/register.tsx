@@ -94,6 +94,11 @@ export const Register = () => {
             // Submit the form or perform other actions
             console.log('Form is valid. Submitting...');
         } else {
+            // if (Object.keys(errors).length !== Object.keys(initialFormState).length) {
+            //     for (const field in errors) {
+            //         errors[field] = 'This field is required.'
+            //     }
+            // }
             console.log('Form is invalid. Please check the fields.');
         }
     }

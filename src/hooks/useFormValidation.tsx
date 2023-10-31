@@ -63,13 +63,14 @@ export const useFormValidation = (initialState: Record<string, string>, validati
     const isFormValid = () => {
         console.log(errors);
         //need to fix useformValidation starter submit doesn't show errors
-        // if (Object.keys(errors).length !== Object.keys(initialState).length) {
-        //         validateField(fieldKeys[i], "")
-        //     return false
-        // }
+        if (Object.keys(errors).length !== Object.keys(initialState).length) {
+            for (const fieldName in initialState) {
+                errors[fieldName] = 'This field is required.'
+            }
+        }
 
-        for (const fieldName in errors) {
-            if (errors[fieldName] !== undefined) {
+        for (const fieldName in initialState) {
+            if (!errors[fieldName] || errors[fieldName] !== undefined || errors[fieldName] !== "") {
                 return false;
             }
         }
