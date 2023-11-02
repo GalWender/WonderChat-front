@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useRef } from 'react';
 
 interface FieldValidation {
     required: boolean;
@@ -9,12 +9,13 @@ interface FieldValidation {
 
 const useInputValidation = (
     initialInputValue: string,
-    fieldName:string,
+    fieldName: string,
     validationRules: FieldValidation,
     debounceTime: number = 1000
 ) => {
     const [inputValue, setInputValue] = useState(initialInputValue)
     const [error, setError] = useState<string>("")
+    const firstTimeLengthRef = useRef(0)
 
     useEffect(() => {
         let debounceTimer: NodeJS.Timeout | null = null;
@@ -28,11 +29,11 @@ const useInputValidation = (
             if (validationRules.minLength && value.length < validationRules.minLength) {
                 fieldErrors.push(`Minimum length is ${validationRules.minLength} characters.`);
             }
-    
+
             if (validationRules.maxLength && value.length > validationRules.maxLength) {
                 fieldErrors.push(`Maximum length is ${validationRules.maxLength} characters.`);
             }
-    
+
             if (validationRules.pattern && !validationRules.pattern.test(value)) {
                 fieldErrors.push(`Invalid ${fieldName}`);
             }
@@ -45,7 +46,10 @@ const useInputValidation = (
         }
 
         debounceTimer = setTimeout(() => {
-            validate(inputValue);
+            if (inputValue.length > firstTimeLengthRef.current) {
+                firstTimeLengthRef.current = -1
+                validate(inputValue);
+            }
         }, debounceTime);
 
         return () => {

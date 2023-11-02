@@ -82,7 +82,7 @@ export const Register = () => {
         inputValue: inputValueEmail,
         error: errorEmail,
         handleChange: handleChangeEmail
-      } = useInputValidation('','email',validationRules.email);
+    } = useInputValidation('', 'email', validationRules.email);
 
     const handleSelected = (option: string) => {
 
@@ -103,17 +103,17 @@ export const Register = () => {
     const handleSubmit = (e: React.FormEvent) => {
         e.preventDefault();
         // handleChange('birthday', `${date.month} ${date.day} ${date.year}`)
-        if (isFormValid()) {
-            // Submit the form or perform other actions
-            console.log('Form is valid. Submitting...');
-        } else {
-            // if (Object.keys(errors).length !== Object.keys(initialFormState).length) {
-            //     for (const field in errors) {
-            //         errors[field] = 'This field is required.'
-            //     }
-            // }
-            console.log('Form is invalid. Please check the fields.');
-        }
+        // if (isFormValid()) {
+        //     // Submit the form or perform other actions
+        //     console.log('Form is valid. Submitting...');
+        // } else {
+        //     // if (Object.keys(errors).length !== Object.keys(initialFormState).length) {
+        //     //     for (const field in errors) {
+        //     //         errors[field] = 'This field is required.'
+        //     //     }
+        //     // }
+        //     console.log('Form is invalid. Please check the fields.');
+        // }
     }
 
     return <section className="register">
@@ -126,12 +126,19 @@ export const Register = () => {
                     type="text"
                     id='email'
                     name='email'
-                    value={formState.email}
-                    onChange={(e) => handleChange('email', e.target.value)}
+                    value={inputValueEmail}
+                    onChange={(e) => handleChangeEmail(e.target.value)}
                 />
-                <span className={`error red ${errors.email ? "open" : ""}`}>{errors.email}</span>
+                {/* {inputValueEmail.length > 0 && */}
+                    <span
+                        className={`error red ${errorEmail ? "open" : ""}`}
+                    >
+                        {errorEmail}
+                    </span>
+                {/* } */}
+
             </div>
-            <div className="field">
+            {/* <div className="field">
                 <label htmlFor='name'>DISPLAY NAME</label>
                 <input
                     type="text"
@@ -192,7 +199,7 @@ export const Register = () => {
                 </div>
 
                 <NavLink to={"/login"}>Aready have an account? </NavLink>
-            </div>
+            </div> */}
         </form>
     </section>
 }
