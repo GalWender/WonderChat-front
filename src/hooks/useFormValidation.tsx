@@ -48,11 +48,11 @@ export const useFormValidation = (initialState: Record<string, string>, validati
 
     }
 
-    useEffect(() => {
-        if (currFieldName) {
-            validateField(currFieldName, formState[currFieldName])
-        }
-    }, [formState]);
+    // useEffect(() => {
+    //     if (currFieldName) {
+    //         validateField(currFieldName, formState[currFieldName])
+    //     }
+    // }, [formState]);
 
     const handleChange = (fieldName: string, value: string) => {
         console.log("data", fieldName, value)
@@ -70,7 +70,7 @@ export const useFormValidation = (initialState: Record<string, string>, validati
         }
 
         for (const fieldName in initialState) {
-            if (!errors[fieldName] || errors[fieldName] !== undefined || errors[fieldName] !== "") {
+            if (!errors[fieldName] || errors[fieldName] !== undefined) {
                 return false;
             }
         }

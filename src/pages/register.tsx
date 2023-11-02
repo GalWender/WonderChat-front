@@ -3,6 +3,7 @@ import { CustomSelect } from '../cmps/custom-select';
 import { BackgroundSvgs } from '../cmps/background-svgs';
 import { NavLink } from 'react-router-dom';
 import { useFormValidation } from '../hooks/useFormValidation';
+import useInputValidation from '../hooks/useInputValidation';
 
 interface Props {
 }
@@ -13,38 +14,44 @@ export const Register = () => {
     const [selected3, setSelected3] = useState("")
     const [date, setDate] = useState({ month: "", day: "", year: "" })
 
-    const initialFormState = {
-        email: '',
-        name: '',
-        username: '',
-        password: '',
-        birthday: '',
-    };
-
-    const validationRules = {
-        email: {
-            required: true,
-            pattern: /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4}$/,
-        },
-        name: {
-            required: false,
-            minLength: 2,
-        },
-        username: {
-            required: true,
-            minLength: 2,
-        },
-        password: {
-            required: true,
-            minLength: 6,
-        },
-        birthday: {
-            required: true,
-            pattern: /^(?:(?!\bundefined\b).)*$/,
+    const initialFormState = useMemo(() => {
+        return {
+            email: '',
+            name: '',
+            username: '',
+            password: '',
+            birthday: '',
         }
-    };
+    }, [])
 
-    const currentYear = new Date().getFullYear();
+    const validationRules = useMemo(() => {
+        return {
+            email: {
+                required: true,
+                pattern: /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4}$/,
+            },
+            name: {
+                required: false,
+                minLength: 2,
+            },
+            username: {
+                required: true,
+                minLength: 2,
+            },
+            password: {
+                required: true,
+                minLength: 6,
+            },
+            birthday: {
+                required: true,
+                pattern: /^(?:(?!\bundefined\b).)*$/,
+            }
+        }
+    }, [])
+
+    const currentYear = useMemo(() => {
+        return new Date().getFullYear()
+    }, [])
 
     const months: string[] = useMemo(() => {
         return [
@@ -63,13 +70,19 @@ export const Register = () => {
         return Array.from({ length: maxYear - minYear + 1 }, (_, i) => maxYear - i);
     }, [currentYear]);
 
+    // const {
+    //     formState,
+    //     errors,
+    //     handleChange,
+    //     isFormValid,
+    //     resetForm,
+    // } = useFormValidation(initialFormState, validationRules);
+
     const {
-        formState,
-        errors,
-        handleChange,
-        isFormValid,
-        resetForm,
-    } = useFormValidation(initialFormState, validationRules);
+        inputValue: inputValueEmail,
+        error: errorEmail,
+        handleChange: handleChangeEmail
+      } = useInputValidation('','email',validationRules.email);
 
     const handleSelected = (option: string) => {
 
@@ -89,7 +102,7 @@ export const Register = () => {
 
     const handleSubmit = (e: React.FormEvent) => {
         e.preventDefault();
-        handleChange('birthday', `${date.month} ${date.day} ${date.year}`)
+        // handleChange('birthday', `${date.month} ${date.day} ${date.year}`)
         if (isFormValid()) {
             // Submit the form or perform other actions
             console.log('Form is valid. Submitting...');
