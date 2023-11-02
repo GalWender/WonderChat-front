@@ -83,6 +83,11 @@ export const Register = () => {
         error: errorEmail,
         handleChange: handleChangeEmail
     } = useInputValidation('', 'email', validationRules.email);
+    const {
+        inputValue: inputValueName,
+        error: errorName,
+        handleChange: handleChangeName
+    } = useInputValidation('', 'name', validationRules.name);
 
     const handleSelected = (option: string) => {
 
@@ -138,17 +143,18 @@ export const Register = () => {
                 {/* } */}
 
             </div>
-            {/* <div className="field">
+            <div className="field">
                 <label htmlFor='name'>DISPLAY NAME</label>
                 <input
                     type="text"
                     id='name'
                     name='name'
-                    value={formState.name}
-                    onChange={(e) => handleChange('name', e.target.value)}
+                    value={inputValueName}
+                    onChange={(e) => handleChangeName(e.target.value)}
                 />
-                <span className={`error red ${errors.name ? "open" : ""}`}>{errors.name}</span>
+                <span className={`error red ${errorName ? "open" : ""}`}>{errorName}</span>
             </div>
+            {/* continue to change the rest and sort out handle submit */}
             <div className="field">
                 <label htmlFor='username'>USERNAME<span className="red">*</span></label>
                 <input
@@ -199,7 +205,7 @@ export const Register = () => {
                 </div>
 
                 <NavLink to={"/login"}>Aready have an account? </NavLink>
-            </div> */}
+            </div>
         </form>
     </section>
 }
