@@ -2,7 +2,6 @@ import { useEffect, useState, useMemo } from 'react';
 import { CustomSelect } from '../cmps/custom-select';
 import { BackgroundSvgs } from '../cmps/background-svgs';
 import { NavLink } from 'react-router-dom';
-import { useFormValidation } from '../hooks/useFormValidation';
 import useInputValidation from '../hooks/useInputValidation';
 
 interface Props {
@@ -70,27 +69,41 @@ export const Register = () => {
         return Array.from({ length: maxYear - minYear + 1 }, (_, i) => maxYear - i);
     }, [currentYear]);
 
-    // const {
-    //     formState,
-    //     errors,
-    //     handleChange,
-    //     isFormValid,
-    //     resetForm,
-    // } = useFormValidation(initialFormState, validationRules);
-
+    // input validation hook
     const {
         inputValue: inputValueEmail,
         error: errorEmail,
-        handleChange: handleChangeEmail
-    } = useInputValidation('', 'email', validationRules.email);
+        handleChange: handleChangeEmail,
+        isInputValid: isEmailValid
+    } = useInputValidation('', 'email', validationRules.email)
     const {
         inputValue: inputValueName,
         error: errorName,
-        handleChange: handleChangeName
-    } = useInputValidation('', 'name', validationRules.name);
+        handleChange: handleChangeName,
+        isInputValid: isNameValid
+    } = useInputValidation('', 'name', validationRules.name)
+    const {
+        inputValue: inputValueUsername,
+        error: errorUsername,
+        handleChange: handleChangeUsername,
+        isInputValid: isUsernameValid
+    } = useInputValidation('', 'username', validationRules.username)
+    const {
+        inputValue: inputValuePassword,
+        error: errorPassword,
+        handleChange: handleChangePassword,
+        isInputValid: isPasswordValid
+    } = useInputValidation('', 'password', validationRules.password)
+    const {
+        inputValue: inputValueBirthday,
+        error: errorBirthday,
+        handleChange: handleChangeBirthday,
+        // isInputValid: isBirthdayValid
+    } = useInputValidation('', 'birthday', validationRules.birthday)
 
+
+    //date selection handling
     const handleSelected = (option: string) => {
-
         if (months.includes(option)) {
             setSelected1(option)
             setDate({ ...date, month: option })
@@ -104,21 +117,32 @@ export const Register = () => {
 
     }
 
+    // i think i could have made a custom hook for my custom select but this seems fine for now
+    const isBirthdayValid = () => {
+        if(date.day && date.month && date.year) {
+            return true
+        }
+        return false
+    }
 
-    const handleSubmit = (e: React.FormEvent) => {
-        e.preventDefault();
-        // handleChange('birthday', `${date.month} ${date.day} ${date.year}`)
-        // if (isFormValid()) {
-        //     // Submit the form or perform other actions
-        //     console.log('Form is valid. Submitting...');
-        // } else {
-        //     // if (Object.keys(errors).length !== Object.keys(initialFormState).length) {
-        //     //     for (const field in errors) {
-        //     //         errors[field] = 'This field is required.'
-        //     //     }
-        //     // }
-        //     console.log('Form is invalid. Please check the fields.');
-        // }
+    //form submittion handling 
+    const handleSubmit = (e: any) => { //blame typescript for not having this prebuilt in the FormEvent
+        e.preventDefault()
+        // a bit hardcoded but how many fields would you really ever have in one form...
+        const isEmailValid1 = isEmailValid()
+        const isNameValid1 = isNameValid()
+        const isUsernameValid1 = isUsernameValid()
+        const isPasswordValid1 = isPasswordValid()
+        const isBirthdayValid1 = isBirthdayValid()
+        
+
+        if (isEmailValid1 && isNameValid1 && isUsernameValid1 && isPasswordValid1 && isBirthdayValid1) {
+
+            console.log('Form is valid. Submitting...')
+        } else {
+
+            console.log('Form is invalid. Please check the fields.');
+        }
     }
 
     return <section className="register">
@@ -134,14 +158,9 @@ export const Register = () => {
                     value={inputValueEmail}
                     onChange={(e) => handleChangeEmail(e.target.value)}
                 />
-                {/* {inputValueEmail.length > 0 && */}
-                    <span
-                        className={`error red ${errorEmail ? "open" : ""}`}
-                    >
-                        {errorEmail}
-                    </span>
-                {/* } */}
-
+                <span className={`error red ${errorEmail ? "open" : ""}`}>
+                    {errorEmail}
+                </span>
             </div>
             <div className="field">
                 <label htmlFor='name'>DISPLAY NAME</label>
@@ -152,19 +171,22 @@ export const Register = () => {
                     value={inputValueName}
                     onChange={(e) => handleChangeName(e.target.value)}
                 />
-                <span className={`error red ${errorName ? "open" : ""}`}>{errorName}</span>
+                <span className={`error red ${errorName ? "open" : ""}`}>
+                    {errorName}
+                </span>
             </div>
-            {/* continue to change the rest and sort out handle submit */}
             <div className="field">
                 <label htmlFor='username'>USERNAME<span className="red">*</span></label>
                 <input
                     type="text"
                     id='username'
                     name='username'
-                    value={formState.username}
-                    onChange={(e) => handleChange('username', e.target.value)}
+                    value={inputValueUsername}
+                    onChange={(e) => handleChangeUsername(e.target.value)}
                 />
-                <span className={`error red ${errors.username ? "open" : ""}`}>{errors.username}</span>
+                <span className={`error red ${errorUsername ? "open" : ""}`}>
+                    {errorUsername}
+                </span>
             </div>
             <div className="field">
                 <label htmlFor='password'>PASSWORD<span className="red">*</span></label>
@@ -172,10 +194,12 @@ export const Register = () => {
                     type="password"
                     id='password'
                     name="password"
-                    value={formState.password}
-                    onChange={(e) => handleChange('password', e.target.value)}
+                    value={inputValuePassword}
+                    onChange={(e) => handleChangePassword(e.target.value)}
                 />
-                <span className={`error red ${errors.password ? "open" : ""}`}>{errors.password}</span>
+                <span className={`error red ${errorPassword ? "open" : ""}`}>
+                    {errorPassword}
+                </span>
             </div>
             <div className="field">
                 <label>DATE OF BIRTH<span className="red">*</span></label>
@@ -199,7 +223,7 @@ export const Register = () => {
                         selected={selected3}
                     />
                 </div>
-                <span className={`error red ${errors.birthday ? "open" : ""}`}>{errors.birthday}</span>
+                <span className={`error red ${errorBirthday ? "open" : ""}`}>{errorBirthday}</span>
                 <div className="btn-container">
                     <button className="btn2">Continue</button>
                 </div>
