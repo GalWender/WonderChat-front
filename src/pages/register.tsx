@@ -110,7 +110,7 @@ export const Register = () => {
 
     // i think i could have made a custom hook for my custom select but this seems fine for now
     const isBirthdayValid = () => {
-        if(date.day && date.month && date.year) {
+        if (date.day && date.month && date.year) {
             return true
         }
         return false
@@ -119,7 +119,7 @@ export const Register = () => {
     //form submittion handling 
     const handleSubmit = (e: any) => { //blame typescript for not having this prebuilt in the FormEvent
         e.preventDefault()
-        
+
         handleChangeBirthday(`${date.month},${date.day},${date.year}`)
 
         // a bit hardcoded but how many fields would you really ever have in one form...
@@ -128,7 +128,7 @@ export const Register = () => {
         const isUsernameValid1 = isUsernameValid()
         const isPasswordValid1 = isPasswordValid()
         const isBirthdayValid1 = isBirthdayValid()
-        
+
 
         if (isEmailValid1 && isNameValid1 && isUsernameValid1 && isPasswordValid1 && isBirthdayValid1) {
 
@@ -218,12 +218,12 @@ export const Register = () => {
                     />
                 </div>
                 <span className={`error red ${errorBirthday ? "open" : ""}`}>{errorBirthday}</span>
-                <div className="btn-container">
-                    <button className="btn2">Continue</button>
-                </div>
-
-                <NavLink to={"/login"}>Aready have an account? </NavLink>
             </div>
+            <div className="btn-container">
+                <button className="btn2">Continue</button>
+            </div>
+
+            <NavLink to={"/login"}>Aready have an account? </NavLink>
         </form>
     </section>
 }

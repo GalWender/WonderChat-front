@@ -1,18 +1,12 @@
 .login {
     display: flex;
-    // flex-direction: column;
     width: 100%;
     align-items: center;
-    // margin-top: 4%;
     justify-content: center;
 
     .svg-container {
         position: absolute;
         z-index: 1;
-        // top: 50vh;
-        // left: 0;
-        // max-width: 1400px;
-        // width: 1400px;
         display: flex;
         flex-direction: column;
         align-items: center;
@@ -40,18 +34,29 @@
         padding: 30px;
         background-color: var(--pop);
         border-radius: 4px;
-        height: fit-content;
+        min-height: 408px;
+        transition: height 0.3s ease-in-out;
         display: flex;
         flex-direction: column;
 
-        .error {
-            height: 0;
+        h5 {
             width: 100%;
-            transition: height 0.3s;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .error {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.3s;
+            padding-top: 5px;
 
             &.open {
-                height: 30px;
+                max-height: 30px;
             }
+
+            font-size: 12px;
         }
 
         a {
@@ -67,21 +72,23 @@
             font-size: 12px;
         }
 
-
         .header {
             text-align: center;
+            margin-bottom: 10px;
         }
 
         .field {
             display: flex;
             flex-direction: column;
-            margin-bottom: 20px;
-            margin-top: 20px;
-            width: 416px;
-            height: 64px;
+            margin-bottom: 10px;
+            margin-top: 10px;
+            width: 416px; /* Changed to 100% for responsiveness */
+            max-width: 416px; /* Added max-width for responsive design */
+            height: auto; /* Changed height to auto for dynamic content */
 
             input {
                 background-color: var(--accent);
+                height: 32px;
             }
 
             label {
@@ -89,11 +96,9 @@
                 font-weight: bold;
                 font-size: 12px;
             }
-
         }
 
         .btn-container {
-            margin-top: 50px;
             width: 100%;
 
             .btn2 {

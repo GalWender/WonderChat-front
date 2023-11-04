@@ -1,15 +1,11 @@
 import { BackgroundSvgs } from "../cmps/background-svgs"
 import { NavLink } from "react-router-dom"
-import { useFormValidation } from "../hooks/useFormValidation"
+import useInputValidation from "../hooks/useInputValidation"
 
 interface Props {
 }
 
 export const Login = () => {
-    const initialFormState = {
-        email: '',
-        password: '',
-    };
 
     const validationRules = {
         email: {
@@ -18,27 +14,36 @@ export const Login = () => {
         },
         password: {
             required: true,
-            minLength: 6,
         },
-    };
+    }
 
     const {
-        formState,
-        errors,
-        handleChange,
-        isFormValid,
-        resetForm,
-    } = useFormValidation(initialFormState, validationRules);
+        inputValue: inputValueEmail,
+        error: errorEmail,
+        handleChange: handleChangeEmail,
+        isInputValid: isEmailValid
+    } = useInputValidation('', 'email', validationRules.email)
+    const {
+        inputValue: inputValuePassword,
+        error: errorPassword,
+        handleChange: handleChangePassword,
+        isInputValid: isPasswordValid
+    } = useInputValidation('', 'password', validationRules.password)
 
+    const handleSubmit = (e: any) => { //blame typescript for not having this prebuilt in the FormEvent
+        e.preventDefault()
 
-    const handleSubmit = (e: React.FormEvent) => {
-        e.preventDefault();
-        if (isFormValid()) {
-            console.log('Form is valid. Submitting...');
+        const isEmailValid1 = isEmailValid()
+        const isPasswordValid1 = isPasswordValid()
+
+        if (isEmailValid1 && isPasswordValid1) {
+
+            console.log('Form is valid. Submitting...')
         } else {
+
             console.log('Form is invalid. Please check the fields.');
         }
-    };
+    }
 
     return <section className="login">
         <BackgroundSvgs />
@@ -53,10 +58,10 @@ export const Login = () => {
                     type="text"
                     id='email'
                     name="email"
-                    value={formState.email}
-                    onChange={(e) => handleChange('email', e.target.value)}
+                    value={inputValueEmail}
+                    onChange={(e) => handleChangeEmail(e.target.value)}
                 />
-                <span className={`error red ${errors.email ? "open" : ""}`}>{errors.email}</span>
+                <span className={`error red ${errorEmail ? "open" : ""}`}>{errorEmail}</span>
             </div>
             <div className="field">
                 <label htmlFor='password'>PASSWORD<span className="red">*</span></label>
@@ -64,10 +69,10 @@ export const Login = () => {
                     type="password"
                     id='password'
                     name="password"
-                    value={formState.password}
-                    onChange={(e) => handleChange('password', e.target.value)}
+                    value={inputValuePassword}
+                    onChange={(e) => handleChangePassword(e.target.value)}
                 />
-                <span className={`error red ${errors.password ? "open" : ""}`}>{errors.password}</span>
+                <span className={`error red ${errorPassword ? "open" : ""}`}>{errorPassword}</span>
                 <a href="">Forgot your password?</a>
             </div>
             <div className="btn-container">
