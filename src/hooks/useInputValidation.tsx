@@ -53,7 +53,7 @@ const useInputValidation = (
         }
 
         if ((validationRules.required || value.length > 0) && validationRules.pattern && !validationRules.pattern.test(value)) {
-            fieldErrors.push(`Invalid ${fieldName}`);
+            fieldErrors.push(`Invalid ${fieldName}.`);
         }
 
         setError(fieldErrors[0])
