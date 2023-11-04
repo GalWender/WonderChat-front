@@ -41,20 +41,18 @@ const useInputValidation = (
     const validate = (value: string) => {
         const fieldErrors: string[] = []
 
-        console.log('insidevalue', value);
-
         if (validationRules.required && value.trim() === '') {
             fieldErrors.push('This field is required.');
         }
-        if (validationRules.minLength && value.length < validationRules.minLength) {
+        if ((validationRules.required || value.length > 0) && validationRules.minLength && value.length < validationRules.minLength) {
             fieldErrors.push(`Minimum length is ${validationRules.minLength} characters.`);
         }
 
-        if (validationRules.maxLength && value.length > validationRules.maxLength) {
+        if ((validationRules.required || value.length > 0) && validationRules.maxLength && value.length > validationRules.maxLength) {
             fieldErrors.push(`Maximum length is ${validationRules.maxLength} characters.`);
         }
 
-        if (validationRules.pattern && !validationRules.pattern.test(value)) {
+        if ((validationRules.required || value.length > 0) && validationRules.pattern && !validationRules.pattern.test(value)) {
             fieldErrors.push(`Invalid ${fieldName}`);
         }
 
@@ -62,7 +60,6 @@ const useInputValidation = (
     }
 
     const isInputValid = () => {
-        console.log(error);
 
         if (error === undefined || error === '') {
             validate(inputValue)

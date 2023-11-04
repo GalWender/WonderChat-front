@@ -1,19 +1,15 @@
-.register {
 
+
+
+.register {
     display: flex;
-    // flex-direction: column;
     width: 100%;
     align-items: center;
-    // margin-top: 4%;
     justify-content: center;
 
     .svg-container {
         position: absolute;
         z-index: 1;
-        // top: 50vh;
-        // left: 0;
-        // max-width: 1400px;
-        // width: 1400px;
         display: flex;
         flex-direction: column;
         align-items: center;
@@ -41,20 +37,59 @@
         padding: 30px;
         background-color: var(--pop);
         border-radius: 4px;
-        min-height: 615px;
-        // display: flex;
-        // flex-direction: column;
-        // height: fit-content;
+        min-height: 640px;
+        transition: height 0.3s ease-in-out;
+        display: flex;
+        flex-direction: column;
 
-        //fix css of errors too
-        .error {
-            height: 0;
+        h5 {
             width: 100%;
-            transition: height 0.3s;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 20px;
+        }
+
+        .field {
+            display: flex;
+            flex-direction: column;
+            margin-bottom: 10px;
+            width: 416px;
+
+            input {
+                background-color: var(--accent);
+                height: 32px;
+            }
+
+            label {
+                margin-bottom: 8px;
+                font-weight: bold;
+                font-size: 12px;
+            }
+
+            .date-container {
+                width: 100%;
+                display: flex;
+                gap: 10px;
+                flex-grow: 1;
+
+                .custom-select {
+                    width: 100%;
+                }
+            }
+        }
+
+        .error {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.3s;
+            padding-top: 5px;
 
             &.open {
-                height: 30px;
+                max-height: 30px;
             }
+
+            font-size: 12px;
         }
 
         a {
@@ -77,44 +112,5 @@
                 }
             }
         }
-
-        h5 {
-            width: 100%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            margin-bottom: 20px;
-        }
-
-        .field {
-            display: flex;
-            flex-direction: column;
-            // gap: 10px;
-            margin-bottom: 20px;
-            width: 416px;
-            height: 64px;
-
-            input {
-                background-color: var(--accent);
-            }
-
-            label {
-                margin-bottom: 8px;
-                font-weight: bold;
-                font-size: 12px;
-            }
-
-            .date-container {
-                width: 100%;
-                display: flex;
-                gap: 10px;
-                flex-grow: 1;
-
-                .custom-select {
-                    width: 100%;
-                }
-            }
-        }
-
     }
 }

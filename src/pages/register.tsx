@@ -11,17 +11,7 @@ export const Register = () => {
     const [selected1, setSelected1] = useState("")
     const [selected2, setSelected2] = useState("")
     const [selected3, setSelected3] = useState("")
-    const [date, setDate] = useState({ month: "", day: "", year: "" })
-
-    const initialFormState = useMemo(() => {
-        return {
-            email: '',
-            name: '',
-            username: '',
-            password: '',
-            birthday: '',
-        }
-    }, [])
+    const [date, setDate] = useState({ month: "null", day: "null", year: "null" })
 
     const validationRules = useMemo(() => {
         return {
@@ -43,7 +33,7 @@ export const Register = () => {
             },
             birthday: {
                 required: true,
-                pattern: /^(?:(?!\bundefined\b).)*$/,
+                pattern: /^(?:(?!\bnull\b).)*$/,
             }
         }
     }, [])
@@ -61,13 +51,13 @@ export const Register = () => {
 
     const days: number[] = useMemo(() => {
         return Array.from({ length: 31 }, (_, i) => i + 1);
-    }, []);
+    }, [])
 
     const years: number[] = useMemo(() => {
         const minYear = currentYear - 152;
         const maxYear = currentYear - 3;
         return Array.from({ length: maxYear - minYear + 1 }, (_, i) => maxYear - i);
-    }, [currentYear]);
+    }, [currentYear])
 
     // input validation hook
     const {
@@ -94,6 +84,7 @@ export const Register = () => {
         handleChange: handleChangePassword,
         isInputValid: isPasswordValid
     } = useInputValidation('', 'password', validationRules.password)
+    //created a custom one for the birthday section which is not an input
     const {
         inputValue: inputValueBirthday,
         error: errorBirthday,
@@ -128,6 +119,9 @@ export const Register = () => {
     //form submittion handling 
     const handleSubmit = (e: any) => { //blame typescript for not having this prebuilt in the FormEvent
         e.preventDefault()
+        
+        handleChangeBirthday(`${date.month},${date.day},${date.year}`)
+
         // a bit hardcoded but how many fields would you really ever have in one form...
         const isEmailValid1 = isEmailValid()
         const isNameValid1 = isNameValid()
