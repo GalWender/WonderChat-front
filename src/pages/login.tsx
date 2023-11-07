@@ -1,11 +1,14 @@
 import { BackgroundSvgs } from "../cmps/background-svgs"
 import { NavLink } from "react-router-dom"
 import useInputValidation from "../hooks/useInputValidation"
+import { useDispatch } from "react-redux"
+import { login } from "../store/user/user.action"
 
 interface Props {
 }
 
 export const Login = () => {
+    const dispatch = useDispatch()
 
     const validationRules = {
         email: {
@@ -37,8 +40,8 @@ export const Login = () => {
         const isPasswordValid1 = isPasswordValid()
 
         if (isEmailValid1 && isPasswordValid1) {
-
-            console.log('Form is valid. Submitting...')
+            // console.log('Form is valid. Submitting...')
+            dispatch(login({ email: inputValueEmail, password: inputValuePassword }))
         } else {
 
             console.log('Form is invalid. Please check the fields.');

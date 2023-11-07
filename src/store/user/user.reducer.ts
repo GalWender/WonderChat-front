@@ -1,20 +1,17 @@
-import { UserActionType, UserActions, UserState } from '../../interfaces/user.store';
+import { UserActions,UserActionType } from "../../interfaces/user.store";
+import { ReducerInitialState } from "../../interfaces/user.store";
 import { userService } from '../../services/user.service';
-
-// Define the action type for setting the user
-
-// Define the initial state
-const initialState: UserState = {
+const initialState: ReducerInitialState = {
   loggedinUser: userService.getLoggedinUser(),
-};
+}
 
-// Define the user reducer
-export function userReducer(state: UserState = initialState, action: UserActions): UserState {
+const reducer = (state: ReducerInitialState = initialState, action: UserActions) => {
   switch (action.type) {
     case UserActionType.SET_USER:
-      return { ...state, loggedinUser: action.loggedinUser };
+      return { ...state, loggedinUser: action.payload };
 
     default:
-      return state;
+      return state
   }
 }
+export default reducer

@@ -18,22 +18,22 @@ const useInputValidation = (
     const firstTimeLengthRef = useRef(0)
 
     useEffect(() => {
-        let debounceTimer: NodeJS.Timeout | null = null;
+        let debounceTimer: NodeJS.Timeout | null = null
 
         if (debounceTimer) {
-            clearTimeout(debounceTimer);
+            clearTimeout(debounceTimer)
         }
 
         debounceTimer = setTimeout(() => {
             if (inputValue.length > firstTimeLengthRef.current) {
                 firstTimeLengthRef.current = -1
-                validate(inputValue);
+                validate(inputValue)
             }
         }, debounceTime);
 
         return () => {
             if (debounceTimer) {
-                clearTimeout(debounceTimer);
+                clearTimeout(debounceTimer)
             }
         };
     }, [inputValue])
@@ -42,18 +42,18 @@ const useInputValidation = (
         const fieldErrors: string[] = []
 
         if (validationRules.required && value.trim() === '') {
-            fieldErrors.push('This field is required.');
+            fieldErrors.push('This field is required.')
         }
         if ((validationRules.required || value.length > 0) && validationRules.minLength && value.length < validationRules.minLength) {
-            fieldErrors.push(`Minimum length is ${validationRules.minLength} characters.`);
+            fieldErrors.push(`Minimum length is ${validationRules.minLength} characters.`)
         }
 
         if ((validationRules.required || value.length > 0) && validationRules.maxLength && value.length > validationRules.maxLength) {
-            fieldErrors.push(`Maximum length is ${validationRules.maxLength} characters.`);
+            fieldErrors.push(`Maximum length is ${validationRules.maxLength} characters.`)
         }
 
         if ((validationRules.required || value.length > 0) && validationRules.pattern && !validationRules.pattern.test(value)) {
-            fieldErrors.push(`Invalid ${fieldName}.`);
+            fieldErrors.push(`Invalid ${fieldName}.`)
         }
 
         setError(fieldErrors[0])
@@ -69,10 +69,10 @@ const useInputValidation = (
     }
 
     const handleChange = (newValue: string) => {
-        setInputValue(newValue);
+        setInputValue(newValue)
     };
 
-    return { inputValue, error, handleChange, isInputValid };
+    return { inputValue, error, handleChange, isInputValid }
 };
 
-export default useInputValidation;
+export default useInputValidation

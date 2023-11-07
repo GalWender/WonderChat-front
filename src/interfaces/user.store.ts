@@ -1,13 +1,12 @@
 import { User } from "./user";
 
-export interface UserState {
+export interface ReducerInitialState {
     loggedinUser: User | null;
-    // other user-related properties
 }
 
 interface SetUserAction {
-    type: UserActionType.SET_USER;
-    loggedinUser: User; // Replace 'any' with the actual type of loggedinUser
+    type: UserActionType.SET_USER,
+    payload: User | null
 }
 
 export enum UserActionType {

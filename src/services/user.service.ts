@@ -21,7 +21,7 @@ export const userService = {
   update,
 };
 
-async function login(creds: { username: string; password: string }) {
+async function login(creds: { email: string; password: string }) {
   const user = await httpService.post(URL_AUTH + 'login', creds);
   if (user) {
     socketService.login(user._id);
