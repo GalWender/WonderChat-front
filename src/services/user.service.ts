@@ -37,12 +37,13 @@ async function logout(): Promise<void> {
   await httpService.post(URL_AUTH + 'logout');
 }
 
-async function signup(creds: { username: string; password: string }): Promise<User> {
+// async function signup(creds: { username: string; password: string }): Promise<User> {
+async function signup(creds: { username: string; password: string }) {
   const user = await httpService.post(URL_AUTH + 'signup', creds);
   console.log(user);
   
   // socketService.login(user._id);
-  return saveLocalUser(user);
+  // return saveLocalUser(user);
 }
 
 async function getUsers(): Promise<User[]> {

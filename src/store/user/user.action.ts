@@ -12,6 +12,8 @@ export const signup = (creds: User) => {
             return true
         }
         catch (err) {
+          console.log('failed signup');
+          
             return false
         }
     }

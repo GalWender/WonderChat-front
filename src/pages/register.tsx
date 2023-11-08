@@ -18,7 +18,7 @@ export const Register = () => {
     const [selected1, setSelected1] = useState("")
     const [selected2, setSelected2] = useState("")
     const [selected3, setSelected3] = useState("")
-    const [date, setDate] = useState({ month: "null", day: "null", year: "null" })
+    const [date, setDate] = useState<any>({ month: null, day: null, year: null })
 
     const validationRules = useMemo(() => {
         return {
@@ -115,19 +115,26 @@ export const Register = () => {
 
     }
 
+    useEffect(() => {
+        if (date.month && date.day && date.year) {
+            handleChangeBirthday(`${date.month},${date.day},${date.year}`)
+        }
+    }, [date])
+
     // i think i could have made a custom hook for my custom select but this seems fine for now
     const isBirthdayValid = () => {
+        console.log('date for check', date);
+
         if (date.day && date.month && date.year) {
             return true
         }
+        handleChangeBirthday(`${date.month},${date.day},${date.year}`)
         return false
     }
 
     //form submittion handling 
     const handleSubmit = (e: any) => { //blame typescript for not having this prebuilt in the FormEvent
         e.preventDefault()
-
-        handleChangeBirthday(`${date.month},${date.day},${date.year}`)
 
         // a bit hardcoded but how many fields would you really ever have in one form...
         const isEmailValid1 = isEmailValid()
@@ -146,6 +153,8 @@ export const Register = () => {
                 password: inputValuePassword,
                 birthday: inputValueBirthday,
             }
+            console.log('user to reg', toRegisterUser);
+
             signup(toRegisterUser)
             console.log('Form is valid. Submitting...')
         } else {
