@@ -3,11 +3,18 @@ import { CustomSelect } from '../cmps/custom-select';
 import { BackgroundSvgs } from '../cmps/background-svgs';
 import { NavLink } from 'react-router-dom';
 import useInputValidation from '../hooks/useInputValidation';
+import { User } from '../interfaces/user';
+import { utilService } from '../services/util.service';
+import { useDispatch } from 'react-redux';
+import { bindActionCreators } from 'redux';
+import * as userActions from "../store/user/user.action"
 
 interface Props {
 }
 
 export const Register = () => {
+    const dispatch = useDispatch()
+    const { signup } = bindActionCreators(userActions, dispatch)
     const [selected1, setSelected1] = useState("")
     const [selected2, setSelected2] = useState("")
     const [selected3, setSelected3] = useState("")
@@ -131,7 +138,15 @@ export const Register = () => {
 
 
         if (isEmailValid1 && isNameValid1 && isUsernameValid1 && isPasswordValid1 && isBirthdayValid1) {
-
+            const toRegisterUser: User = {
+                _id: utilService.makeId(),
+                email: inputValueEmail,
+                name: inputValueName?.trim() ? inputValueName : inputValueUsername,
+                username: inputValueUsername,
+                password: inputValuePassword,
+                birthday: inputValueBirthday,
+            }
+            signup(toRegisterUser)
             console.log('Form is valid. Submitting...')
         } else {
 

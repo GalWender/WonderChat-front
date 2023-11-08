@@ -5,17 +5,17 @@ import { userService } from '../../services/user.service';
 // import {toast} from "react-toastify"
 // import { errorMsg, successMsg } from "../../interfaces/react-toastify";
 
-// export const signup = (creds: User, group: string) => {
-//     return async (dispatch: Dispatch<UserActions>) => {
-//         try {
-//             await userService.signup(creds, group)
-//             return true
-//         }
-//         catch (err) {
-//             return false
-//         }
-//     }
-// }
+export const signup = (creds: User) => {
+    return async (dispatch: Dispatch<UserActions>) => {
+        try {
+            await userService.signup(creds)
+            return true
+        }
+        catch (err) {
+            return false
+        }
+    }
+}
 
 // export function logout() {
 //     return async (dispatch: Dispatch<UserActions>) => {
@@ -32,7 +32,7 @@ export const login = (creds: { email: string, password: string }) => {
     return async (dispatch: Dispatch<UserActions>) => {
         try {
             const loggedinUser: any = await userService.login(creds)
-            return dispatch({ type: UserActionType.SET_USER, payload: loggedinUser })
+            dispatch({ type: UserActionType.SET_USER, payload: loggedinUser })
         }
         catch (err) {
             throw new Error()

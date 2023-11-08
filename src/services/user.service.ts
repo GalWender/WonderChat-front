@@ -23,8 +23,10 @@ export const userService = {
 
 async function login(creds: { email: string; password: string }) {
   const user = await httpService.post(URL_AUTH + 'login', creds);
+  console.log(user);
+  
   if (user) {
-    socketService.login(user._id);
+    // socketService.login(user._id);
     return saveLocalUser(user);
   }
 }
@@ -37,7 +39,9 @@ async function logout(): Promise<void> {
 
 async function signup(creds: { username: string; password: string }): Promise<User> {
   const user = await httpService.post(URL_AUTH + 'signup', creds);
-  socketService.login(user._id);
+  console.log(user);
+  
+  // socketService.login(user._id);
   return saveLocalUser(user);
 }
 
