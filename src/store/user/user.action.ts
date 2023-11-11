@@ -35,9 +35,10 @@ export const login = (creds: { email: string, password: string }) => {
         try {
             const loggedinUser: any = await userService.login(creds)
             dispatch({ type: UserActionType.SET_USER, payload: loggedinUser })
+            return true
         }
         catch (err) {
-            throw new Error()
+          return false
         }
     }
 }

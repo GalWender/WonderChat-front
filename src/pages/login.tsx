@@ -1,5 +1,5 @@
 import { BackgroundSvgs } from "../cmps/background-svgs"
-import { NavLink } from "react-router-dom"
+import { NavLink, useNavigate } from "react-router-dom"
 import useInputValidation from "../hooks/useInputValidation"
 import { useDispatch } from "react-redux"
 import { bindActionCreators } from 'redux';
@@ -11,6 +11,7 @@ interface Props {
 
 export const Login = () => {
     const dispatch = useDispatch()
+    const naviate = useNavigate()
     const { login } = bindActionCreators(userActions, dispatch)
 
     const validationRules = {
@@ -36,7 +37,7 @@ export const Login = () => {
         isInputValid: isPasswordValid
     } = useInputValidation('', 'password', validationRules.password)
 
-    const handleSubmit = (e: any) => { //blame typescript for not having this prebuilt in the FormEvent
+    const handleSubmit = async (e: any) => { //blame typescript for not having this prebuilt in the FormEvent
         e.preventDefault()
 
         const isEmailValid1 = isEmailValid()
@@ -44,7 +45,13 @@ export const Login = () => {
 
         if (isEmailValid1 && isPasswordValid1) {
             // console.log('Form is valid. Submitting...')
-            login({ email: inputValueEmail, password: inputValuePassword })
+            const isLoggedIn: any = await login({ email: inputValueEmail, password: inputValuePassword })
+            if(isLoggedIn) {
+                naviate('/channels')
+            }
+            else {
+
+            }
         } else {
 
             console.log('Form is invalid. Please check the fields.');
