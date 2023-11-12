@@ -3,4 +3,11 @@
     height: 100%;
     padding-top: 12px;
     background-color: var(--pop);
+
+    .nav-list {
+        .nav-preview {
+           width: 48px; 
+           height: 48px;
+        }
+    }
 }
