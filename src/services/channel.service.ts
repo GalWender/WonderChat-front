@@ -3,8 +3,9 @@
 import { SOCKET_EVENT_ADD_TEST_CHANGES, socketService } from "./socket.service";
 // import { userService } from "./user.service";
 // import { utilService } from "./util.service";
-import { SOCKET_EMIT_SET_TEST_ID_CHANNEL,SOCKET_EMIT_SEND_TEST_CHANGES } from "./socket.service";
+import { SOCKET_EMIT_SET_TEST_ID_CHANNEL, SOCKET_EMIT_SEND_TEST_CHANGES } from "./socket.service";
 import store from "../store/store";
+import { httpService } from "./http.service";
 // import { getActionUpdateTask } from "../store/board/board.action";
 
 /* ?- WebSocket */;
@@ -20,9 +21,9 @@ import store from "../store/store";
 })()
 
 
-export const chatService = {
-    test
-    //   query,
+export const channelService = {
+    test,
+    query,
     //   getById,
     //   save,
     //   update,
@@ -32,17 +33,18 @@ export const chatService = {
 //?- Dev:
 // const STORAGE_KEY = 'taskDB'
 //?- Prod:
-const BASE_URL = 'chat/'
+const BASE_URL = 'channel/'
 
 async function test() {
     socketService.emit(SOCKET_EMIT_SET_TEST_ID_CHANNEL, 123)
     socketService.emit(SOCKET_EMIT_SEND_TEST_CHANGES, 'hello')
 }
 
-// async function query(filterBy) {
-//   if (filterBy) return httpService.get(BASE_URL, filterBy)
-//   else return httpService.get(BASE_URL)
-// }
+async function query() {
+    //   if (filterBy) return httpService.get(BASE_URL, filterBy)
+    //   else return httpService.get(BASE_URL)
+    return httpService.get(BASE_URL)
+}
 
 // async function getById(taskId) {
 //   socketService.emit(SOCKET_EMIT_SET_TASK_ID_CHANNEL, taskId)

@@ -3,7 +3,6 @@ import { NavLink, useNavigate } from "react-router-dom"
 import useInputValidation from "../hooks/useInputValidation"
 import { useDispatch } from "react-redux"
 import { bindActionCreators } from 'redux';
-// import { login } from "../store/user/user.action"
 import * as userActions from "../store/user/user.action"
 
 interface Props {
