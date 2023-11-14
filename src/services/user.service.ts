@@ -38,7 +38,7 @@ async function logout(): Promise<void> {
 }
 
 // async function signup(creds: { username: string; password: string }): Promise<User> {
-async function signup(creds: { username: string; password: string }) {
+async function signup(creds: User) {
   const user = await httpService.post(URL_AUTH + 'signup', creds);
   console.log(user);
   
@@ -67,7 +67,6 @@ async function remove(userId: string): Promise<void> {
 
 async function update(user: User): Promise<User> {
   user = await httpService.put(`user/${user._id}`, user);
-  // Handle case in which admin updates other user's details
   const loggedInUser = getLoggedinUser();
   if (loggedInUser && loggedInUser._id === user._id) {
     saveLocalUser(user);

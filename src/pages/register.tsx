@@ -146,7 +146,7 @@ export const Register = () => {
 
         if (isEmailValid1 && isNameValid1 && isUsernameValid1 && isPasswordValid1 && isBirthdayValid1) {
             const toRegisterUser: User = {
-                _id: utilService.makeId(),
+                // _id: utilService.makeId(),
                 email: inputValueEmail,
                 name: inputValueName?.trim() ? inputValueName : inputValueUsername,
                 username: inputValueUsername,

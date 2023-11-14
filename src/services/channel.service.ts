@@ -6,6 +6,7 @@ import { SOCKET_EVENT_ADD_TEST_CHANGES, socketService } from "./socket.service";
 import { SOCKET_EMIT_SET_TEST_ID_CHANNEL, SOCKET_EMIT_SEND_TEST_CHANGES } from "./socket.service";
 import store from "../store/store";
 import { httpService } from "./http.service";
+import { Channel } from "../interfaces/channel";
 // import { getActionUpdateTask } from "../store/board/board.action";
 
 /* ?- WebSocket */;
@@ -24,6 +25,7 @@ import { httpService } from "./http.service";
 export const channelService = {
     test,
     query,
+    add,
     //   getById,
     //   save,
     //   update,
@@ -66,12 +68,10 @@ async function query() {
 //   return groupService.update({ group, boardId })
 // }
 
-// async function save({ title, groupId, boardId }) {
-//   const group = await groupService.getById({ groupId, boardId })
-//   const task = { id: utilService.makeId(), title }
-//   group.tasks.push(task)
-//   return groupService.update({ group, boardId })
-// }
+async function add(channel: Channel) {
+    const postedChannel = await httpService.post(BASE_URL, channel)
+    console.log(postedChannel);
+}
 
 // function addActivity(task, activity) {
 //   const user = userService.getLoggedinUser()
