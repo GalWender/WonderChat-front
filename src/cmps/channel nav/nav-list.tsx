@@ -6,9 +6,10 @@ import PlusIcon from '../../assets/svg/plus-icon.svg?react'
 
 interface Props {
     channels: Channel[];
+    setIsAddChannelModalOpen: (value: boolean) => void;
 }
 
-export const NavList = ({ channels }: Props) => {
+export const NavList = ({ channels, setIsAddChannelModalOpen }: Props) => {
     const navigate = useNavigate()
     const [selected, setSelected] = useState("@me")
 
@@ -19,17 +20,19 @@ export const NavList = ({ channels }: Props) => {
     const handleAddChannelBtn = () => {
 
     }
-
+    // need to work on adding channel first right now u need to create the menu to create it with custom hook click outside
     return <section className="nav-list">
         {/* <section className={`nav-preview ${"@me" === selected ? "selected" : ""}`} onClick={() => handleChannelSelect("@me")}>
 
         </section> */}
-        {channels?.length > 0 && channels.map((channel) =>
-            <NavPreview key={channel._id} channel={channel} handleChannelSelect={handleChannelSelect} selected={selected} />
-        )}
+        <section className="channels-container">
+            {channels?.length > 0 && channels.map((channel) =>
+                <NavPreview key={channel._id} channel={channel} handleChannelSelect={handleChannelSelect} selected={selected} />
+            )}
+        </section>
 
-        <button className="add-channel-btn" onClick={handleAddChannelBtn}>
-            <PlusIcon/>
+        <button className="add-channel-btn" onClick={()=>setIsAddChannelModalOpen(true)}>
+            <PlusIcon />
         </button>
 
     </section>

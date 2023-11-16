@@ -112,9 +112,14 @@ p {
 }
 
 button {
-    border: none;
     cursor: pointer;
-}
+    background-color: transparent;
+    border: none;
+    padding: 0;
+    border: none;
+    outline: none;
+    font-family: "Poppins";
+  }
 
 input {
     outline: none;

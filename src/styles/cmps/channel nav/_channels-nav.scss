@@ -5,13 +5,48 @@
     background-color: var(--pop);
 
     .nav-list {
-        .nav-preview {
-           width: 48px; 
-           height: 48px;
+        width: 100%;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        .channels-container {
+            width: 100%;
+            .nav-preview {
+                width: 100%;
+                display: flex;
+                justify-self: center;
+                // width: 48px;
+                // height: 48px;
+            }
+
+            .selected {}
         }
 
-        .selected {
+        .add-channel-btn {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 50%;
+            width: 48px;
+            height: 48px;
+            background-color: var(--secondary);
+            transition: 0.15s ease-in;
+            user-select: none;
             
+            svg {
+                transition: 0.15s ease-in;
+                width: 30px;
+                height: 30px;
+                fill: var(--accent);
+            }
+
+            &:hover {
+                background-color: var(--accent);
+                border-radius: 16px;
+                svg {
+                    fill: var(--text);
+                }
+            }
         }
     }
 }
