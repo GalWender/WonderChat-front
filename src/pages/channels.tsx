@@ -8,7 +8,7 @@ import { AddChannelModal } from "../cmps/add-channel-modal"
 
 export const Channels = () => {
     const dispatch = useDispatch()
-    const { loadChannels } = bindActionCreators(channelActions, dispatch)
+    const { loadChannels, addChannel } = bindActionCreators(channelActions, dispatch)
     const channels = useSelector((state: State) => state.channel.channels)
     const [isAddChannelModalOpen, setIsAddChannelModalOpen] = useState(false)
 
@@ -18,6 +18,6 @@ export const Channels = () => {
 
     return <section className="channels">
         <ChannelsNav channels={channels} setIsAddChannelModalOpen={setIsAddChannelModalOpen} />
-        {isAddChannelModalOpen && <AddChannelModal setIsAddChannelModalOpen={setIsAddChannelModalOpen} />}
+        {isAddChannelModalOpen && <AddChannelModal setIsAddChannelModalOpen={setIsAddChannelModalOpen} addChannel={addChannel}/>}
     </section>
 }

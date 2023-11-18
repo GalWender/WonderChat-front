@@ -137,6 +137,7 @@ export const Register = () => {
         e.preventDefault()
 
         // a bit hardcoded but how many fields would you really ever have in one form...
+        //check to see if there is simplification for this
         const isEmailValid1 = isEmailValid()
         const isNameValid1 = isNameValid()
         const isUsernameValid1 = isUsernameValid()
@@ -152,7 +153,7 @@ export const Register = () => {
                 username: inputValueUsername,
                 password: inputValuePassword,
                 birthday: inputValueBirthday,
-            }
+            } as User
             console.log('user to reg', toRegisterUser);
 
             signup(toRegisterUser)

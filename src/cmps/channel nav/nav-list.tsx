@@ -20,7 +20,6 @@ export const NavList = ({ channels, setIsAddChannelModalOpen }: Props) => {
     const handleAddChannelBtn = () => {
 
     }
-    // need to work on adding channel first right now u need to create the menu to create it with custom hook click outside
     return <section className="nav-list">
         {/* <section className={`nav-preview ${"@me" === selected ? "selected" : ""}`} onClick={() => handleChannelSelect("@me")}>
 
