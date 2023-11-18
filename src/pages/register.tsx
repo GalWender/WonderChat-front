@@ -1,7 +1,7 @@
 import { useEffect, useState, useMemo } from 'react';
 import { CustomSelect } from '../cmps/custom-select';
 import { BackgroundSvgs } from '../cmps/background-svgs';
-import { NavLink } from 'react-router-dom';
+import { NavLink, useNavigate } from 'react-router-dom';
 import useInputValidation from '../hooks/useInputValidation';
 import { User } from '../interfaces/user';
 import { utilService } from '../services/util.service';
@@ -15,6 +15,7 @@ interface Props {
 export const Register = () => {
     const dispatch = useDispatch()
     const { signup } = bindActionCreators(userActions, dispatch)
+    const navigate = useNavigate()
     const [selected1, setSelected1] = useState("")
     const [selected2, setSelected2] = useState("")
     const [selected3, setSelected3] = useState("")
@@ -133,7 +134,7 @@ export const Register = () => {
     }
 
     //form submittion handling 
-    const handleSubmit = (e: any) => { //blame typescript for not having this prebuilt in the FormEvent
+    const handleSubmit = async (e: any) => { //blame typescript for not having this prebuilt in the FormEvent
         e.preventDefault()
 
         // a bit hardcoded but how many fields would you really ever have in one form...
@@ -144,7 +145,7 @@ export const Register = () => {
         const isPasswordValid1 = isPasswordValid()
         const isBirthdayValid1 = isBirthdayValid()
 
-
+// show the list of channels with css
         if (isEmailValid1 && isNameValid1 && isUsernameValid1 && isPasswordValid1 && isBirthdayValid1) {
             const toRegisterUser: User = {
                 // _id: utilService.makeId(),
@@ -156,7 +157,13 @@ export const Register = () => {
             } as User
             console.log('user to reg', toRegisterUser);
 
-            signup(toRegisterUser)
+            const isSignedup:any = await signup(toRegisterUser)
+            if(isSignedup) {
+                navigate('/channels')
+            }
+            else {
+
+            }
             console.log('Form is valid. Submitting...')
         } else {
 

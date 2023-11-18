@@ -13,8 +13,8 @@ export const NavList = ({ channels, setIsAddChannelModalOpen }: Props) => {
     const navigate = useNavigate()
     const [selected, setSelected] = useState("@me")
 
-    const handleChannelSelect = (name: string, channelId: string) => {
-        setSelected(name)
+    const handleChannelSelect = (channelId: string) => {
+        setSelected(channelId)
         navigate(`/channels/${channelId}`)
     }
     const handleAddChannelBtn = () => {

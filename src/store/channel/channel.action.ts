@@ -3,11 +3,11 @@ import { Dispatch } from "redux"
 import { ChannelActions, ChannelActionType } from "../../interfaces/channel.store"
 import { channelService } from '../../services/channel.service';
 
-export const loadChannels = () => {
+export const loadChannels = (filterBy:Object) => {
     return async (dispatch: Dispatch<ChannelActions>) => {
         try {
             // const loggedinUser: any = await userService.login(creds)
-            const channels: any = await channelService.query()
+            const channels: any = await channelService.query(filterBy)
             console.log('channels', channels);
 
             dispatch({ type: ChannelActionType.SET_CHANNELS, payload: { ...channels } })

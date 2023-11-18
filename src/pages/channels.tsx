@@ -9,11 +9,12 @@ import { AddChannelModal } from "../cmps/add-channel-modal"
 export const Channels = () => {
     const dispatch = useDispatch()
     const { loadChannels, addChannel } = bindActionCreators(channelActions, dispatch)
+    const loggedinUser = useSelector((state: State) => state.user.loggedinUser)
     const channels = useSelector((state: State) => state.channel.channels)
     const [isAddChannelModalOpen, setIsAddChannelModalOpen] = useState(false)
 
     useEffect(() => {
-        loadChannels()
+        loadChannels({userId:loggedinUser?._id})
     }, [])
 
     return <section className="channels">

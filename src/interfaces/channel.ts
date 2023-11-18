@@ -3,4 +3,5 @@ export interface Channel {
     logoSrc: string;
     participantsIds: string[];
     name:string;
+    isDirectMessages?:boolean;
 }

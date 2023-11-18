@@ -2,7 +2,7 @@ import { Channel } from "../../interfaces/channel"
 
 interface Props {
     channel: Channel;
-    handleChannelSelect: (name: string) => void;
+    handleChannelSelect: (channelId: string) => void;
     selected: string;
 }
 

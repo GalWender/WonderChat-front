@@ -13,11 +13,11 @@ export const signup = (creds: User) => {
         }
         catch (err) {
           console.log('failed signup');
-          
             return false
         }
     }
 }
+//check why register doesn't put user in session storage
 
 // export function logout() {
 //     return async (dispatch: Dispatch<UserActions>) => {

@@ -42,8 +42,8 @@ async function test() {
     socketService.emit(SOCKET_EMIT_SEND_TEST_CHANGES, 'hello')
 }
 
-async function query() {
-    //   if (filterBy) return httpService.get(BASE_URL, filterBy)
+async function query(filterBy:Object) {
+      if (filterBy) return httpService.get(BASE_URL, filterBy)
     //   else return httpService.get(BASE_URL)
     return httpService.get(BASE_URL)
 }
