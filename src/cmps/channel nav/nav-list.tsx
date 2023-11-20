@@ -20,6 +20,8 @@ export const NavList = ({ channels, setIsAddChannelModalOpen }: Props) => {
     const handleAddChannelBtn = () => {
 
     }
+    console.log(channels);
+    
     return <section className="nav-list">
         {/* <section className={`nav-preview ${"@me" === selected ? "selected" : ""}`} onClick={() => handleChannelSelect("@me")}>
 
@@ -30,9 +32,11 @@ export const NavList = ({ channels, setIsAddChannelModalOpen }: Props) => {
             )}
         </section>
 
-        <button className="add-channel-btn" onClick={()=>setIsAddChannelModalOpen(true)}>
-            <PlusIcon />
-        </button>
+        <section className="add-channel-container">
+            <button className="add-channel-btn nav-btn-hover" onClick={() => setIsAddChannelModalOpen(true)}>
+                <PlusIcon />
+            </button>
+        </section>
 
     </section>
 }

@@ -12,7 +12,7 @@ import { State } from "../store/store"
 
 interface Props {
     setIsAddChannelModalOpen: (value: boolean) => void
-    addChannel: (channel: Channel) => (dispatch: Dispatch<ChannelActions>) => Promise<void>
+    addChannel:(channel: Channel) => (dispatch: Dispatch<ChannelActions>) => Promise<boolean>;
 }
 export const AddChannelModal = ({ setIsAddChannelModalOpen,addChannel }: Props) => {
     const modalRef = useRef(null)
@@ -37,14 +37,20 @@ export const AddChannelModal = ({ setIsAddChannelModalOpen,addChannel }: Props) 
         isInputValid: isNameValid
     } = useInputValidation('', 'name', validationRules.name)
 
-    const handleSubmit = (e: FormEvent) => {
+    const handleSubmit = async (e: FormEvent) => {
         e.preventDefault()
         const isNameValid1 = isNameValid()
         if (isNameValid1 && loggedinUser) {
-            addChannel({logoSrc:"idk right now",name:inputValueName,participantsIds:[loggedinUser._id]} as Channel)
-            setIsAddChannelModalOpen(false)
-        }
+            const isChannelAdded:any = await addChannel({logoSrc:"idk right now",name:inputValueName,participantsIds:[loggedinUser._id]} as Channel)
+            console.log(isChannelAdded);
+            
+            if(isChannelAdded) {
+                setIsAddChannelModalOpen(false)
+            }
+            else {
 
+            }
+        }
     }
     //make the ccreating channel work 
     return <section className="add-channel-modal">
