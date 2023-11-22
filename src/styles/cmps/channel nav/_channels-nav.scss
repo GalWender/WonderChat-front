@@ -25,7 +25,16 @@
             }
 
             .selected {
-                
+                background-color: var(--accent);
+                border-radius: 16px;
+
+                svg {
+                    fill: var(--text);
+                }
+            }
+
+            .hovered {
+
             }
         }
 

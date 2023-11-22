@@ -2,13 +2,14 @@ import { Route } from "react-router-dom";
 import { Home } from "./pages/home";
 import { Register } from "./pages/register";
 import { Login } from "./pages/login";
-import { Channels} from "./pages/channels";
+import { Channels } from "./pages/channels";
 import { ChannelContent } from "./cmps/channel-content";
 
 type Route = {
     path: string;
     component: () => JSX.Element;
-    exact:boolean;
+    children?: Route[];
+    exact: boolean;
 }
 
 const routes: Route[] = [
@@ -30,22 +31,29 @@ const routes: Route[] = [
     {
         path: '/channels',
         component: Channels,
-        exact: true,
+        exact: false,
+        children: [
+            {
+                path: ':channelId',
+                component: ChannelContent,
+                exact: false,
+            },
+        ],
     },
-    {
-        path: '/channels/:channelId',
-        component: ChannelContent,
-        exact: true,
-      },
-]
 
+]
+//i think route.children && goes false and doesn't render the route
 const renderRoutes = () => routes.map((route) => {
     return (
         <Route
             key={route.path}
             path={route.path}
             element={<route.component />}
-        />
+        >
+            {route.children && route.children.map((child) =>
+                <Route key={child.path} path={route.path + child.path} element={<child.component />} />
+            )}
+        </Route>
     )
 })
 
