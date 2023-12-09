@@ -1,5 +1,7 @@
+import { Route, Routes } from "react-router-dom";
 import { Channel } from "../../interfaces/channel"
 import { NavList } from "./nav-list"
+import { ChannelContent } from "../channel-content";
 
 interface Props {
     channels: Channel[];

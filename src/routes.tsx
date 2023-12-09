@@ -4,46 +4,56 @@ import { Register } from "./pages/register";
 import { Login } from "./pages/login";
 import { Channels } from "./pages/channels";
 import { ChannelContent } from "./cmps/channel-content";
+import { BackgroundSvgs } from "./cmps/background-svgs";
 
 type Route = {
     path: string;
     component: () => JSX.Element;
     children?: Route[];
-    exact: boolean;
+    // exact: boolean;
 }
 
 const routes: Route[] = [
     {
         path: '',
         component: Home,
-        exact: true,
     },
     {
         path: '/register',
         component: Register,
-        exact: true,
     },
     {
         path: '/login',
         component: Login,
-        exact: true,
     },
     {
         path: '/channels',
         component: Channels,
-        exact: false,
         children: [
             {
-                path: ':channelId',
+                path: '/channels/:channelId',
                 component: ChannelContent,
-                exact: false,
             },
         ],
     },
+    // {
+    //     path: '/channels/:channelId',
+    //     component: ChannelContent,
+    //     // exact: false,
+    //     // children: [
+    //     //     {
+    //     //         path: '/:channelId/*',
+    //     //         component: ChannelContent,
+    //     //         // children: []
+    //     //         // exact: false,
+    //     //     },
+    //     // ],
+    // },
 
 ]
 //i think route.children && goes false and doesn't render the route
 const renderRoutes = () => routes.map((route) => {
+    console.log('route', route);
     return (
         <Route
             key={route.path}
@@ -51,7 +61,7 @@ const renderRoutes = () => routes.map((route) => {
             element={<route.component />}
         >
             {route.children && route.children.map((child) =>
-                <Route key={child.path} path={route.path + child.path} element={<child.component />} />
+                <Route key={child.path} path={child.path} element={<child.component />} />
             )}
         </Route>
     )

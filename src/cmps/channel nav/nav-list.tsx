@@ -1,8 +1,9 @@
 import { useState } from "react";
 import { Channel } from "../../interfaces/channel"
 import { NavPreview } from "./nav-preview"
-import { useNavigate } from "react-router-dom";
+import { Link, NavLink, Route, Routes, useNavigate } from "react-router-dom";
 import PlusIcon from '../../assets/svg/plus-icon.svg?react'
+import { ChannelContent } from "../channel-content";
 
 interface Props {
     channels: Channel[];
@@ -50,6 +51,7 @@ export const NavList = ({ channels, setIsAddChannelModalOpen }: Props) => {
                 <PlusIcon />
             </button>
         </section>
+        
 
     </section>
 }

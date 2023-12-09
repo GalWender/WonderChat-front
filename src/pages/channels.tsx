@@ -5,6 +5,7 @@ import { useDispatch, useSelector } from "react-redux"
 import { bindActionCreators } from "redux"
 import { State } from "../store/store"
 import { AddChannelModal } from "../cmps/add-channel-modal"
+import { Outlet } from "react-router-dom"
 
 export const Channels = () => {
     const dispatch = useDispatch()
@@ -14,11 +15,12 @@ export const Channels = () => {
     const [isAddChannelModalOpen, setIsAddChannelModalOpen] = useState(false)
 
     useEffect(() => {
-        loadChannels({userId:loggedinUser?._id})
+        loadChannels({ userId: loggedinUser?._id })
     }, [])
 
     return <section className="channels">
         <ChannelsNav channels={channels} setIsAddChannelModalOpen={setIsAddChannelModalOpen} />
-        {isAddChannelModalOpen && <AddChannelModal setIsAddChannelModalOpen={setIsAddChannelModalOpen} addChannel={addChannel}/>}
+        {isAddChannelModalOpen && <AddChannelModal setIsAddChannelModalOpen={setIsAddChannelModalOpen} addChannel={addChannel} />}
+        <Outlet/>
     </section>
 }

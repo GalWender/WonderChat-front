@@ -91,6 +91,7 @@
             display: flex;
             justify-content: center;
             align-items: center;
+            margin-top: 10px;
 
             .add-channel-btn {
                 display: flex;
@@ -98,8 +99,6 @@
                 justify-content: center;
                 background-color: var(--secondary);
             }
-
-
 
         }
 
