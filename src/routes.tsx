@@ -53,7 +53,6 @@ const routes: Route[] = [
 ]
 //i think route.children && goes false and doesn't render the route
 const renderRoutes = () => routes.map((route) => {
-    console.log('route', route);
     return (
         <Route
             key={route.path}

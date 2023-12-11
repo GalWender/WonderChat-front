@@ -1,9 +1,8 @@
 import { useState } from "react";
 import { Channel } from "../../interfaces/channel"
 import { NavPreview } from "./nav-preview"
-import { Link, NavLink, Route, Routes, useNavigate } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import PlusIcon from '../../assets/svg/plus-icon.svg?react'
-import { ChannelContent } from "../channel-content";
 
 interface Props {
     channels: Channel[];
@@ -12,36 +11,42 @@ interface Props {
 
 export const NavList = ({ channels, setIsAddChannelModalOpen }: Props) => {
     const navigate = useNavigate()
-    const [selected, setSelected] = useState(channels[0]?._id)
+    const params = useParams()
+    
+    const [selected, setSelected] = useState(params.channelId)
     const [hovered, setHovered] = useState("")
 
     const handleChannelSelect = (channelId: string) => {
         setSelected(channelId)
         navigate(`/channels/${channelId}`)
+        
     }
     const handleChannelHover = (channelId: string) => {
         setHovered(channelId)
+        // console.log('hovered', hovered);
+
     }
     const handleChannelLeave = () => {
         setHovered("")
+        // console.log('left');
+        
     }
 
     const handleAddChannelBtn = () => {
 
     }
-    console.log(channels);
-    
+
     return <section className="nav-list">
         <section className="channels-container">
             {channels?.length > 0 && channels.map((channel) =>
-                <NavPreview 
-                key={channel._id} 
-                channel={channel} 
-                handleChannelSelect={handleChannelSelect} 
-                selected={selected}
-                handleChannelHover={handleChannelHover}
-                handleChannelLeave={handleChannelLeave}
-                hovered={hovered}
+                <NavPreview
+                    key={channel._id}
+                    channel={channel}
+                    handleChannelSelect={handleChannelSelect}
+                    selected={selected}
+                    handleChannelHover={handleChannelHover}
+                    handleChannelLeave={handleChannelLeave}
+                    hovered={hovered}
                 />
             )}
         </section>
@@ -51,7 +56,7 @@ export const NavList = ({ channels, setIsAddChannelModalOpen }: Props) => {
                 <PlusIcon />
             </button>
         </section>
-        
+
 
     </section>
 }

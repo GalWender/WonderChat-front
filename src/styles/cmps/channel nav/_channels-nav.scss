@@ -24,7 +24,7 @@
                 justify-content: center;
             }
 
-            .selected {
+            .nav-btn-hover.selected {
                 background-color: var(--accent);
                 border-radius: 16px;
 
@@ -67,20 +67,23 @@
         }
 
         .select-indicator {
-            width: 8px;
+            width: 0px;
             position: absolute;
             left: 0;
-            height: 10px;
+            height: 0px;
             background-color: var(--text);
             border-top-right-radius: 8px;
             border-bottom-right-radius: 8px;
+            transition: 0.15s ease-in;
 
-            .hovered {
-                height: 20px;
+            &.hovered {
+                height: 23.5px;
+                width: 4px;
             }
 
-            .selected {
-                height: 100%;
+            &.selected {
+                height: 44px;
+                width: 4px;
             }
         }
 

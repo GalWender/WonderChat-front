@@ -1,13 +1,14 @@
 import { Channel } from "../../interfaces/channel"
 import WhiteLogo from '../../assets/svg/whiteLogo.svg?react'
+import { useEffect, useRef } from "react";
 
 interface Props {
     channel: Channel;
     handleChannelSelect: (channelId: string) => void;
-    selected: string;
+    selected: string | undefined;
     handleChannelHover: (channelId: string) => void;
-    handleChannelLeave: () => void
-    hovered: string
+    handleChannelLeave: () => void;
+    hovered: string;
 }
 
 export const NavPreview = ({
@@ -18,11 +19,9 @@ export const NavPreview = ({
     handleChannelLeave,
     hovered
 }: Props) => {
-
-    console.log(channel);
-
+    
     return <section className={`nav-preview`}>
-        <div className={`select-indicator ${hovered === channel._id ? "hovered" : ""}`} />
+        <div className={`select-indicator ${hovered === channel._id ? "hovered" : ""} ${selected === channel._id ? "selected" : ""}`} />
         <button
             className={`channel-btn nav-btn-hover ${channel._id === selected ? "selected" : ""}`}
             onMouseEnter={() => handleChannelHover(channel._id)}

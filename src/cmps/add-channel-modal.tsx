@@ -42,8 +42,6 @@ export const AddChannelModal = ({ setIsAddChannelModalOpen,addChannel }: Props) 
         const isNameValid1 = isNameValid()
         if (isNameValid1 && loggedinUser) {
             const isChannelAdded:any = await addChannel({logoSrc:"idk right now",name:inputValueName,participantsIds:[loggedinUser._id]} as Channel)
-            console.log(isChannelAdded);
-            
             if(isChannelAdded) {
                 setIsAddChannelModalOpen(false)
             }

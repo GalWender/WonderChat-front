@@ -124,7 +124,6 @@ export const Register = () => {
 
     // i think i could have made a custom hook for my custom select but this seems fine for now
     const isBirthdayValid = () => {
-        console.log('date for check', date);
 
         if (date.day && date.month && date.year) {
             return true
@@ -155,7 +154,6 @@ export const Register = () => {
                 password: inputValuePassword,
                 birthday: inputValueBirthday,
             } as User
-            console.log('user to reg', toRegisterUser);
 
             const isSignedup:any = await signup(toRegisterUser)
             if(isSignedup) {
