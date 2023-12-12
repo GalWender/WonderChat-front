@@ -6,9 +6,8 @@ interface Props {
     setIsAddChannelModalOpen: (value: boolean) => void
 }
 export const ChannelsNav = ({ channels, setIsAddChannelModalOpen }: Props) => {
-console.log(channels);
 
     return <section className="channels-nav">
-        <NavList channels={channels} setIsAddChannelModalOpen={setIsAddChannelModalOpen}/>
+        {channels.length > 0 && <NavList channels={channels} setIsAddChannelModalOpen={setIsAddChannelModalOpen} />}
     </section>
 }

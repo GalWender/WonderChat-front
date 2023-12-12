@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { Channel } from "../../interfaces/channel"
 import { NavPreview } from "./nav-preview"
 import { useNavigate, useParams } from "react-router-dom";
@@ -12,14 +12,21 @@ interface Props {
 export const NavList = ({ channels, setIsAddChannelModalOpen }: Props) => {
     const navigate = useNavigate()
     const params = useParams()
-    
+
     const [selected, setSelected] = useState(params.channelId)
     const [hovered, setHovered] = useState("")
+
+    useEffect(() => {
+        if (!params.channelId) {
+            navigate(`/channels/${channels[0]._id}`)
+            setSelected(channels[0]._id)
+        }
+    }, [])
 
     const handleChannelSelect = (channelId: string) => {
         setSelected(channelId)
         navigate(`/channels/${channelId}`)
-        
+
     }
     const handleChannelHover = (channelId: string) => {
         setHovered(channelId)
@@ -29,7 +36,7 @@ export const NavList = ({ channels, setIsAddChannelModalOpen }: Props) => {
     const handleChannelLeave = () => {
         setHovered("")
         // console.log('left');
-        
+
     }
 
     const handleAddChannelBtn = () => {

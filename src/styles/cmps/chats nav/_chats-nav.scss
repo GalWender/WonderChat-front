@@ -1,0 +1,38 @@
+.chats-nav {
+    width: 240px;
+    height: 100%;
+    padding-top: 12px;
+    padding-left: 8px;
+    padding-right: 8px;
+    background-color: var(--pop1);
+
+    .friends-icon {
+        fill: var(--text);
+        width: 24px;
+        height: 24px;
+    }
+    
+    .btn-friends {
+        width: 100%;
+        height: 42px;
+        display: flex;
+        gap: 14px;
+        padding-left: 8px;
+        padding-right: 8px;
+        align-items: center;
+        transition: 0.15s ease-in;
+
+        &:hover {
+            // background-color: var(--pop2);
+            filter: brightness(0.8);
+        }
+
+        &.selected {
+
+        }
+
+        // &.hovered {
+
+        // }
+    }
+}
