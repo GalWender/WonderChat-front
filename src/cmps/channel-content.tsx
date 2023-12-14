@@ -1,5 +1,4 @@
 import { useSelector } from "react-redux"
-import { Channel } from "../interfaces/channel"
 import { State } from "../store/store"
 import { ChatsNav } from "./chat nav/chats-nav"
 
@@ -12,6 +11,6 @@ export const ChannelContent = () => {
     
 
     return <section className="channel-content">
-        {channels.length>0 && <ChatsNav/>}
+        {channels.length>0 && <ChatsNav channels={channels}/>}
     </section>
 }

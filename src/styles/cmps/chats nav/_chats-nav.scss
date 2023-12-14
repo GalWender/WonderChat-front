@@ -21,14 +21,17 @@
         padding-right: 8px;
         align-items: center;
         transition: 0.15s ease-in;
+        background-color: transparent;
+        
 
         &:hover {
             // background-color: var(--pop2);
             filter: brightness(0.8);
+            background-color: var(--accent);
         }
 
         &.selected {
-
+            background-color: var(--accent);
         }
 
         // &.hovered {
