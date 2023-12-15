@@ -3,6 +3,9 @@ import { Channel } from "../../interfaces/channel"
 import { NavPreview } from "./nav-preview"
 import { useNavigate, useParams } from "react-router-dom";
 import PlusIcon from '../../assets/svg/plus-icon.svg?react'
+import * as channelActions from "../../store/channel/channel.action"
+import { useDispatch } from "react-redux";
+import { bindActionCreators } from "redux";
 
 interface Props {
     channels: Channel[];
@@ -10,6 +13,8 @@ interface Props {
 }
 
 export const NavList = ({ channels, setIsAddChannelModalOpen }: Props) => {
+    const dispatch = useDispatch()
+    const { setChannel } = bindActionCreators(channelActions, dispatch)
     const navigate = useNavigate()
     const params = useParams()
 
@@ -20,12 +25,14 @@ export const NavList = ({ channels, setIsAddChannelModalOpen }: Props) => {
         if (!params.channelId) {
             navigate(`/channels/${channels[0]._id}`)
             setSelected(channels[0]._id)
+            setChannel(channels[0])
         }
     }, [])
 
     const handleChannelSelect = (channelId: string) => {
         setSelected(channelId)
         navigate(`/channels/${channelId}`)
+        setChannel(channels.find(channel => channel._id === channelId) as Channel)
 
     }
     const handleChannelHover = (channelId: string) => {

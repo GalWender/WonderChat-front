@@ -38,4 +38,34 @@
 
         // }
     }
+
+    .text-chat-toggle-container {
+        cursor: pointer;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        height: 42px;
+        width: 100%;
+
+        svg {
+            height: 13px;
+            width: 13px;
+            fill: var(--text);
+        }
+        .plus-icon {
+            filter: brightness(0.8);
+            &:hover {
+                filter: brightness(1);
+            }
+        }
+        .left {
+            display: flex;
+            align-items: center;
+            gap: 5px;
+            filter: brightness(0.8);
+            &:hover {
+                filter: brightness(1);
+            }
+        }
+    }
 }
