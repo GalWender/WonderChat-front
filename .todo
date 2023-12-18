@@ -9,3 +9,5 @@ chats don't have participants
 
 messages will have their own collection in db
 messages (each one) will be associated with the chatid 
+
+added chats, need to make little changes and render nicely 

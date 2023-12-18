@@ -13,10 +13,10 @@ interface Props {
     // setIsAddChannelModalOpen: (value: boolean) => void
 }
 
-export const ChatsNav = ({ channels }: Props) => {
+export const ChatsNav = ({ channels }: Props) => { //dont this i need channels too
     const dispatch = useDispatch()
     const { loadChats } = bindActionCreators(chatActions, dispatch)
-    const channel = useSelector((state: State) => state.channel.channel)
+    const channel = useSelector((state: State) => state.channel.channel) //chack don't think i need this
     const chats = useSelector((state: State) => state.chat.chats)
     console.log('chat nav chanel', channel);
     const params = useParams()
