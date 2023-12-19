@@ -1,6 +1,5 @@
 import { Channel } from "../../interfaces/channel"
 import WhiteLogo from '../../assets/svg/whiteLogo.svg?react'
-import { useEffect, useRef } from "react";
 
 interface Props {
     channel: Channel;

@@ -1,32 +1,17 @@
-import { useDispatch, useSelector } from 'react-redux';
 import PlusIcon from '../../assets/svg/plus-icon.svg?react'
 import ArrowDownIcon from '../../assets/svg/arrow-down.svg?react'
-import { Channel } from '../../interfaces/channel';
-import { State } from '../../store/store';
-import { useEffect } from 'react';
-import * as chatActions from "../../store/chat/chat.action"
-import { useParams } from 'react-router-dom';
-import { bindActionCreators } from 'redux';
+import { Chat } from '../../interfaces/chat'
+import { NavList } from './nav-list';
 
 interface Props {
-    channels: Channel[];
+    chats: Chat[];
     // setIsAddChannelModalOpen: (value: boolean) => void
 }
 
-export const ChatsNav = ({ channels }: Props) => { //dont this i need channels too
-    const dispatch = useDispatch()
-    const { loadChats } = bindActionCreators(chatActions, dispatch)
-    const channel = useSelector((state: State) => state.channel.channel) //chack don't think i need this
-    const chats = useSelector((state: State) => state.chat.chats)
-    console.log('chat nav chanel', channel);
-    const params = useParams()
+export const ChatsNav = ({ chats }: Props) => { //dont this i need channels too
 
-    useEffect(() => {
-        if (params.channelId) {
-            loadChats({ channelId: params.channelId })
-        }
-        console.log(chats);
-    }, [])
+
+
 
     return <section className="chats-nav">
         {/* <button className="btn-friends btn2">
@@ -41,13 +26,7 @@ export const ChatsNav = ({ channels }: Props) => { //dont this i need channels t
             <PlusIcon className='plus-icon' />
         </div>
 
-        {chats.map((chat) => (
-            <pre key={chat._id}>
-                {JSON.stringify(chat, null, 2)}
-            </pre>
-        ))}
-
-
-
+        {chats.length > 0 && <NavList chats={chats} />}
+        
     </section>
 }
