@@ -24,7 +24,7 @@ export const ChannelContent = () => {
     }, [params])
 
     return <section className="channel-content">
-        {chats.length > 0 && <ChatsNav chats={chats} />}
+        <ChatsNav chats={chats} />
         <Outlet />
     </section>
 }

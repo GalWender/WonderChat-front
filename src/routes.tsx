@@ -4,13 +4,12 @@ import { Register } from "./pages/register";
 import { Login } from "./pages/login";
 import { Channels } from "./pages/channels";
 import { ChannelContent } from "./cmps/channel-content";
-import { BackgroundSvgs } from "./cmps/background-svgs";
+import { ChatContent } from "./cmps/chat-content";
 
 type Route = {
     path: string;
     component: () => JSX.Element;
     children?: Route[];
-    // exact: boolean;
 }
 
 const routes: Route[] = [
@@ -33,25 +32,17 @@ const routes: Route[] = [
             {
                 path: '/channels/:channelId',
                 component: ChannelContent,
+                children: [
+                    {
+                        path: '/channels/:channelId/:chatId',
+                        component: ChatContent,
+                    },
+                ]
             },
         ],
     },
-    // {
-    //     path: '/channels/:channelId',
-    //     component: ChannelContent,
-    //     // exact: false,
-    //     // children: [
-    //     //     {
-    //     //         path: '/:channelId/*',
-    //     //         component: ChannelContent,
-    //     //         // children: []
-    //     //         // exact: false,
-    //     //     },
-    //     // ],
-    // },
-
 ]
-//i think route.children && goes false and doesn't render the route
+
 const renderRoutes = () => routes.map((route) => {
     return (
         <Route
@@ -60,7 +51,21 @@ const renderRoutes = () => routes.map((route) => {
             element={<route.component />}
         >
             {route.children && route.children.map((child) =>
-                <Route key={child.path} path={child.path} element={<child.component />} />
+                <Route
+                    key={child.path}
+                    path={child.path}
+                    element={<child.component />}
+                >
+                    {child.children && child.children.map((grandChild) =>
+                        <Route
+                            key={grandChild.path}
+                            path={grandChild.path}
+                            element={<grandChild.component />}
+                        >
+                        </Route>
+                    )}
+
+                </Route>
             )}
         </Route>
     )

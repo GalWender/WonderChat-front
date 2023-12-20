@@ -26,7 +26,7 @@ export const ChatsNav = ({ chats }: Props) => { //dont this i need channels too
             <PlusIcon className='plus-icon' />
         </div>
 
-        {chats.length > 0 && <NavList chats={chats} />}
-        
+        <NavList chats={chats} />
+
     </section>
 }

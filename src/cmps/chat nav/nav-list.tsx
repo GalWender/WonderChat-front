@@ -8,7 +8,7 @@ interface Props {
 export const NavList = ({ chats }: Props) => {
     return <section className="nav-list">
         {chats.length > 0 && chats.map((chat) =>
-            <NavPreview chat={chat}/>
+            <NavPreview key={chat._id} chat={chat}/>
         )}
     </section>
 }

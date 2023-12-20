@@ -1,5 +1,5 @@
 .chats-nav {
-    width: 240px;
+    min-width: 240px;
     height: 100%;
     padding-top: 12px;
     padding-left: 8px;
@@ -102,20 +102,39 @@
             }
 
             .right {
+                opacity: 0;
                 display: flex;
                 align-items: center;
+                gap: 4px;
 
+                .svg-1 {
+                    filter: brightness(0.7);
+
+                    &:hover {
+                        filter: brightness(1);
+                    }
+                }
+
+                .svg-2 {
+                    filter: brightness(0.7);
+
+                    &:hover {
+                        filter: brightness(1);
+                    }
+                }
+            }
+
+            &:hover .right {
+                opacity: 1;
             }
 
             &:hover {
                 filter: brightness(1);
                 background-color: rgba(221, 221, 221, 0.274);
-                
-            }
-
-            &.selected {
 
             }
+
+            &.selected {}
         }
 
     }

@@ -6,17 +6,21 @@ import { ChannelActions } from "../interfaces/channel.store"
 import { Channel } from "../interfaces/channel"
 import { useSelector } from "react-redux"
 import { State } from "../store/store"
+import { useNavigate } from "react-router-dom"
 // import { useDispatch } from "react-redux"
 // import { bindActionCreators } from 'redux'
 // import * as channelActions from "../store/channel/channel.action"
 
 interface Props {
     setIsAddChannelModalOpen: (value: boolean) => void
-    addChannel:(channel: Channel) => (dispatch: Dispatch<ChannelActions>) => Promise<boolean>;
+    addChannel: (channel: Channel) => (dispatch: Dispatch<ChannelActions>) => Promise<boolean>;
+    setIsAddedChannel: (value: boolean) => void
+    setSelected: (value: string) => void;
 }
-export const AddChannelModal = ({ setIsAddChannelModalOpen,addChannel }: Props) => {
+export const AddChannelModal = ({ setIsAddChannelModalOpen, addChannel, setIsAddedChannel, setSelected }: Props) => {
     const modalRef = useRef(null)
-    const loggedinUser = useSelector((state:State)=>state.user.loggedinUser)
+    const navigate = useNavigate()
+    const loggedinUser = useSelector((state: State) => state.user.loggedinUser)
     // const dispatch = useDispatch()
     // const { addChannel } = bindActionCreators(channelActions, dispatch)
 
@@ -41,9 +45,13 @@ export const AddChannelModal = ({ setIsAddChannelModalOpen,addChannel }: Props) 
         e.preventDefault()
         const isNameValid1 = isNameValid()
         if (isNameValid1 && loggedinUser) {
-            const isChannelAdded:any = await addChannel({logoSrc:"idk right now",name:inputValueName,participantsIds:[loggedinUser._id]} as Channel)
-            if(isChannelAdded) {
+            const channelAdded: any = await addChannel({ logoSrc: "idk  ight now", name: inputValueName, participantsIds: [loggedinUser._id] } as Channel)
+            if (channelAdded) {
+                setIsAddedChannel(true)
+                setSelected(channelAdded._id)
+                navigate(`/channels/${channelAdded._id}`)
                 setIsAddChannelModalOpen(false)
+
             }
             else {
 

@@ -10,15 +10,17 @@ import { bindActionCreators } from "redux";
 interface Props {
     channels: Channel[];
     setIsAddChannelModalOpen: (value: boolean) => void;
+    selected: string | undefined;
+    setSelected: (value: string) => void;
 }
 
-export const NavList = ({ channels, setIsAddChannelModalOpen }: Props) => {
+export const NavList = ({ channels, setIsAddChannelModalOpen, selected, setSelected }: Props) => {
     const dispatch = useDispatch()
     const { setChannel } = bindActionCreators(channelActions, dispatch)
     const navigate = useNavigate()
     const params = useParams()
 
-    const [selected, setSelected] = useState(params.channelId)
+    // const [selected, setSelected] = useState(params.channelId)
     const [hovered, setHovered] = useState("")
 
     useEffect(() => {

@@ -53,7 +53,7 @@ export const addChannel = (channel: Channel) => {
         try {
             const newChannel: any = await channelService.add(channel)
             dispatch({ type: ChannelActionType.ADD_CHANNEL, payload: { ...newChannel } })
-            return true
+            return newChannel
         }
         catch (err) {
             console.log('there was an error adding channel', err);

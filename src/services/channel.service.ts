@@ -71,6 +71,7 @@ async function query(filterBy:Object) {
 async function add(channel: Channel) {
     const postedChannel = await httpService.post(BASE_URL, channel)
     console.log(postedChannel);
+    return postedChannel
 }
 
 // function addActivity(task, activity) {
