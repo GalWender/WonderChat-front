@@ -21,7 +21,7 @@ export const ChatsNav = ({ chats }: Props) => { //dont this i need channels too
         <div className='text-chat-toggle-container'>
             <div className="left">
                 <ArrowDownIcon />
-                <small>TEXT CHANNELS</small>
+                <small>TEXT CHATS</small>
             </div>
             <PlusIcon className='plus-icon' />
         </div>

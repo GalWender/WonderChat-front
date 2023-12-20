@@ -11,3 +11,11 @@ messages will have their own collection in db
 messages (each one) will be associated with the chatid 
 
 added chats, need to make little changes and render nicely 
+
+
+
+
+implement add text chats with the modal
+implement messages via sockets
+add the header bar for chat name 
+...
