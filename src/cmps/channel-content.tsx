@@ -17,11 +17,8 @@ export const ChannelContent = () => {
     const chats = useSelector((state: State) => state.chat.chats)
 
     useEffect(() => {
-        if (params.channelId) {
-            loadChats({ channelId: params?.channelId })
-        }
-        console.log(chats);
-    }, [params])
+        loadChats({ channelId: params?.channelId })
+    }, [])
 
     return <section className="channel-content">
         <ChatsNav chats={chats} />

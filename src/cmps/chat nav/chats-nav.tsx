@@ -5,7 +5,6 @@ import { NavList } from './nav-list';
 
 interface Props {
     chats: Chat[];
-    // setIsAddChannelModalOpen: (value: boolean) => void
 }
 
 export const ChatsNav = ({ chats }: Props) => { //dont this i need channels too

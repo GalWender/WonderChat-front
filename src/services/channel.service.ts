@@ -26,7 +26,7 @@ export const channelService = {
     test,
     query,
     add,
-    //   getById,
+    getById,
     //   save,
     //   update,
     //   remove,
@@ -42,16 +42,15 @@ async function test() {
     socketService.emit(SOCKET_EMIT_SEND_TEST_CHANGES, 'hello')
 }
 
-async function query(filterBy:Object) {
-      if (filterBy) return httpService.get(BASE_URL, filterBy)
+async function query(filterBy: Object) {
+    if (filterBy) return httpService.get(BASE_URL, filterBy)
     //   else return httpService.get(BASE_URL)
     return httpService.get(BASE_URL)
 }
 
-// async function getById(taskId) {
-//   socketService.emit(SOCKET_EMIT_SET_TASK_ID_CHANNEL, taskId)
-//   return httpService.get(BASE_URL + taskId)
-// }
+async function getById(channelId: string | undefined) {
+    return httpService.get(BASE_URL + channelId)
+}
 
 // async function remove({ taskId, groupId, boardId }) {
 //   const group = await groupService.getById({ groupId, boardId })

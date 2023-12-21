@@ -12,6 +12,8 @@ const reducer = (state: ReducerInitialState = initialState, action: ChannelActio
       return { ...state, channels: action.payload };
     case ChannelActionType.SET_CHANNEL:
       return { ...state, channel: action.payload };
+    case ChannelActionType.ADD_CHANNEL:
+      return { ...state, channels: [...state.channels, action.payload] };
 
     default:
       return state

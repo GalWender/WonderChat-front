@@ -12,7 +12,8 @@ const reducer = (state: ReducerInitialState = initialState, action: ChatActions)
       return { ...state, chats: action.payload };
     case ChatActionType.SET_CHAT:
       return { ...state, chat: action.payload };
-
+    case ChatActionType.ADD_CHAT:
+      return { ...state, chats: [...state.chats, action.payload] };
     default:
       return state
   }

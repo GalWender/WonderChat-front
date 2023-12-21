@@ -2,14 +2,13 @@ import { Chat } from "../../interfaces/chat"
 import TextIcon from '../../assets/svg/text-icon.svg?react'
 import SettingsIcon from '../../assets/svg/settings-icon.svg?react'
 import AddFriendIcon from '../../assets/svg/add-friend.svg?react'
-import { useNavigate, useParams } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 
 interface Props {
     chat: Chat;
 }
 
 export const NavPreview = ({ chat }: Props) => {
-    const params = useParams()
     const navigate = useNavigate()
 
     const handleChatSelect = () => {

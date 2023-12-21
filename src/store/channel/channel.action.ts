@@ -18,6 +18,19 @@ export const loadChannels = (filterBy: Object) => {
     }
 }
 
+export const loadChannel = (channelId: string| undefined) => {
+    return async (dispatch: Dispatch<ChannelActions>) => {
+        try {
+            const channel: any = await channelService.getById(channelId)
+            console.log(channel)
+            dispatch({ type: ChannelActionType.SET_CHANNEL, payload: { ...channel } })
+        }
+        catch (err) {
+            console.log('there was an error when loading model', err);
+        }
+    }
+}
+
 // export const setChannels = (channels: Channel[]) => {
 //     return async (dispatch: Dispatch<ChannelActions>) => {
 //         try {

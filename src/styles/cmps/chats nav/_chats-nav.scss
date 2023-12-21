@@ -46,6 +46,7 @@
         justify-content: space-between;
         height: 42px;
         width: 100%;
+        filter: brightness(0.8);
 
         svg {
             height: 13px;
@@ -65,11 +66,15 @@
             display: flex;
             align-items: center;
             gap: 5px;
-            filter: brightness(0.8);
+            // filter: brightness(0.8);
 
-            &:hover {
-                filter: brightness(1);
-            }
+            // &:hover {
+            //     filter: brightness(1);
+            // }
+        }
+
+        &:hover {
+            filter: brightness(1);
         }
     }
 

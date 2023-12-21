@@ -26,7 +26,7 @@ export const chatService = {
     // test,
     query,
     add,
-    //   getById,
+    getById,
     //   save,
     //   update,
     //   remove,
@@ -42,16 +42,15 @@ const BASE_URL = 'chat/'
 //     socketService.emit(SOCKET_EMIT_SEND_TEST_CHANGES, 'hello')
 // }
 
-async function query(filterBy:Object) {
-      if (filterBy) return httpService.get(BASE_URL, filterBy)
+async function query(filterBy: Object) {
+    if (filterBy) return httpService.get(BASE_URL, filterBy)
     //   else return httpService.get(BASE_URL)
     return httpService.get(BASE_URL)
 }
 
-// async function getById(taskId) {
-//   socketService.emit(SOCKET_EMIT_SET_TASK_ID_CHAT, taskId)
-//   return httpService.get(BASE_URL + taskId)
-// }
+async function getById(chatId: string | undefined) {
+    return httpService.get(BASE_URL + chatId)
+}
 
 // async function remove({ taskId, groupId, boardId }) {
 //   const group = await groupService.getById({ groupId, boardId })
@@ -71,6 +70,7 @@ async function query(filterBy:Object) {
 async function add(chat: Chat) {
     const postedChat = await httpService.post(BASE_URL, chat)
     console.log(postedChat);
+    return postedChat
 }
 
 // function addActivity(task, activity) {

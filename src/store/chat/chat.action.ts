@@ -18,6 +18,19 @@ export const loadChats = (filterBy: Object) => {
     }
 }
 
+export const loadChat = (chatId: string | undefined) => {
+    return async (dispatch: Dispatch<ChatActions>) => {
+        try {
+            const chat: any = await chatService.getById(chatId)
+            console.log(chat)
+            dispatch({ type: ChatActionType.SET_CHAT, payload: { ...chat } })
+        }
+        catch (err) {
+            console.log('there was an error when loading model', err);
+        }
+    }
+}
+
 // export const setChats = (chats: Chat[]) => {
 //     return async (dispatch: Dispatch<ChatActions>) => {
 //         try {

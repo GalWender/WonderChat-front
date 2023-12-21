@@ -14,15 +14,12 @@ import { useNavigate } from "react-router-dom"
 interface Props {
     setIsAddChannelModalOpen: (value: boolean) => void
     addChannel: (channel: Channel) => (dispatch: Dispatch<ChannelActions>) => Promise<boolean>;
-    setIsAddedChannel: (value: boolean) => void
     setSelected: (value: string) => void;
 }
-export const AddChannelModal = ({ setIsAddChannelModalOpen, addChannel, setIsAddedChannel, setSelected }: Props) => {
+export const AddChannelModal = ({ setIsAddChannelModalOpen, addChannel, setSelected }: Props) => {
     const modalRef = useRef(null)
     const navigate = useNavigate()
     const loggedinUser = useSelector((state: State) => state.user.loggedinUser)
-    // const dispatch = useDispatch()
-    // const { addChannel } = bindActionCreators(channelActions, dispatch)
 
     const validationRules = useMemo(() => {
         return {
@@ -47,7 +44,6 @@ export const AddChannelModal = ({ setIsAddChannelModalOpen, addChannel, setIsAdd
         if (isNameValid1 && loggedinUser) {
             const channelAdded: any = await addChannel({ logoSrc: "idk  ight now", name: inputValueName, participantsIds: [loggedinUser._id] } as Channel)
             if (channelAdded) {
-                setIsAddedChannel(true)
                 setSelected(channelAdded._id)
                 navigate(`/channels/${channelAdded._id}`)
                 setIsAddChannelModalOpen(false)
@@ -58,7 +54,6 @@ export const AddChannelModal = ({ setIsAddChannelModalOpen, addChannel, setIsAdd
             }
         }
     }
-    //make the ccreating channel work 
     return <section className="add-channel-modal">
         <form ref={modalRef} onSubmit={handleSubmit}>
             <h5>Customize your channel  </h5>
