@@ -19,3 +19,6 @@ implement add text chats with the modal
 implement messages via sockets
 add the header bar for chat name 
 ...
+
+
+fix backend objectId error
