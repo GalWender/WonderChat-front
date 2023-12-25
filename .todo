@@ -22,3 +22,6 @@ add the header bar for chat name
 
 
 fix backend objectId error
+
+
+implement chat messages with textarea
