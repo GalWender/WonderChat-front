@@ -31,6 +31,17 @@ export const loadChat = (chatId: string | undefined) => {
     }
 }
 
+export const setIsAddChatModalOpen = (isOpen: boolean) => {
+    return async (dispatch: Dispatch<ChatActions>) => {
+        try {
+            dispatch({ type: ChatActionType.SET_ADD_CHAT_MODAL, payload: isOpen })
+        }
+        catch (err) {
+            console.log('there was an error when changing modal status', err);
+        }
+    }
+}
+
 // export const setChats = (chats: Chat[]) => {
 //     return async (dispatch: Dispatch<ChatActions>) => {
 //         try {

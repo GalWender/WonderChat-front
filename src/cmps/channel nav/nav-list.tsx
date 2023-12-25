@@ -48,10 +48,6 @@ export const NavList = ({ channels, setIsAddChannelModalOpen, selected, setSelec
 
     }
 
-    const handleAddChannelBtn = () => {
-
-    }
-
     return <section className="nav-list">
         <section className="channels-container">
             {channels?.length > 0 && channels.map((channel) =>
