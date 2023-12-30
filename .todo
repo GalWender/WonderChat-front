@@ -25,3 +25,5 @@ fix backend objectId error
 
 
 implement chat messages with textarea
+
+add store functionallity to messages and put the client side socket for adding messages 

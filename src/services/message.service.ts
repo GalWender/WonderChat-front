@@ -1,6 +1,6 @@
 // import { groupService } from "./group.service";
 // import { httpService } from "./http.service"
-import { SOCKET_EVENT_ADD_TEST_CHANGES, socketService } from "./socket.service";
+import { SOCKET_EVENT_ADD_TEST_CHANGES, socketService } from "./socket.service"; // fix
 // import { userService } from "./user.service";
 // import { utilService } from "./util.service";
 // import { SOCKET_EMIT_SET_TEST_ID_MESSAGE, SOCKET_EMIT_SEND_TEST_CHANGES } from "./socket.service";
@@ -11,15 +11,13 @@ import { Message } from "../interfaces/message";
 
 /* ?- WebSocket */;
 (() => {
-    // socketService.on(SOCKET_EMIT_SEND_TEST_CHANGES, (res) => {
-    //     // store.dispatch(getActionUpdateTask(task))
-    //     console.log(res)
-    // })
-    socketService.on(SOCKET_EVENT_ADD_TEST_CHANGES, (res) => {
-        console.log(res);
-        // store.dispatch(getActionUpdateTask(task))
-    })
-})()
+    //fix
+    // socketService.on(SOCKET_EVENT_ADD_MESSAGE_CHANGES, (message) => {
+    //     console.log(message);
+    //     // Dispatch an action to update the UI with the new message
+    //     // store.dispatch(yourActionToUpdateUI(message));
+    // });
+})();
 
 
 export const messageService = {
