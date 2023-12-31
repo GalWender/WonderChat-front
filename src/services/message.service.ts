@@ -1,6 +1,6 @@
 // import { groupService } from "./group.service";
 // import { httpService } from "./http.service"
-import { SOCKET_EVENT_ADD_TEST_CHANGES, socketService } from "./socket.service"; // fix
+import { SOCKET_EVENT_ADD_MESSAGE_CHANGES, SOCKET_EMIT_SEND_MESSAGE_CHANGES, socketService } from "./socket.service"; // fix
 // import { userService } from "./user.service";
 // import { utilService } from "./util.service";
 // import { SOCKET_EMIT_SET_TEST_ID_MESSAGE, SOCKET_EMIT_SEND_TEST_CHANGES } from "./socket.service";
@@ -12,11 +12,16 @@ import { Message } from "../interfaces/message";
 /* ?- WebSocket */;
 (() => {
     //fix
-    // socketService.on(SOCKET_EVENT_ADD_MESSAGE_CHANGES, (message) => {
-    //     console.log(message);
-    //     // Dispatch an action to update the UI with the new message
-    //     // store.dispatch(yourActionToUpdateUI(message));
-    // });
+    socketService.on(SOCKET_EMIT_SEND_MESSAGE_CHANGES, (message) => {
+        // store.dispatch(getActionUpdateTask(task))\
+        console.log(message);
+
+    })
+    socketService.on(SOCKET_EVENT_ADD_MESSAGE_CHANGES, (message) => {
+        console.log(message);
+        // Dispatch an action to update the UI with the new message
+        // store.dispatch(yourActionToUpdateUI(message));
+    });
 })();
 
 
@@ -66,6 +71,7 @@ async function getById(messageId: string | undefined) {
 // }
 
 async function add(message: Message) {
+    // socketService.emit()
     const postedMessage = await httpService.post(BASE_URL, message)
     console.log(postedMessage);
     return postedMessage
