@@ -132,6 +132,18 @@ input {
     padding: 10px;
 }
 
+textarea {
+    outline: none;
+    font-family: "Poppins";
+    color: var(--text);
+    background-color: var(--pop);
+    border: none;
+    filter: opacity(0.5);
+    border-radius: 4px;
+    padding: 10px;
+    resize: none;
+}
+
 // select {
 //     font-family: "Poppins";
 //     outline: none;

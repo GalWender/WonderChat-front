@@ -1,6 +1,6 @@
 // import { groupService } from "./group.service";
 // import { httpService } from "./http.service"
-import { SOCKET_EVENT_ADD_MESSAGE_CHANGES, SOCKET_EMIT_SEND_MESSAGE_CHANGES, socketService } from "./socket.service"; // fix
+import { SOCKET_EVENT_ADD_MESSAGE_CHANGES, SOCKET_EMIT_SEND_MESSAGE_CHANGES, SOCKET_EMIT_SET_MESSAGE_ID_CHANNEL, socketService } from "./socket.service"; // fix
 // import { userService } from "./user.service";
 // import { utilService } from "./util.service";
 // import { SOCKET_EMIT_SET_TEST_ID_MESSAGE, SOCKET_EMIT_SEND_TEST_CHANGES } from "./socket.service";
@@ -72,6 +72,8 @@ async function getById(messageId: string | undefined) {
 
 async function add(message: Message) {
     // socketService.emit()
+    socketService.emit(SOCKET_EMIT_SET_MESSAGE_ID_CHANNEL, message._id)
+    socketService.emit(SOCKET_EMIT_SEND_MESSAGE_CHANGES, message)
     const postedMessage = await httpService.post(BASE_URL, message)
     console.log(postedMessage);
     return postedMessage

@@ -29,7 +29,27 @@
             }
 
         }
+    }
 
+    .messages-container {
+        height: 100%;
+        // width: 100%;
+    }
 
+    .message-input-container {
+        width: 100%;
+
+        .message-input {
+            padding: 10px;
+            padding-left: 16px;
+            padding-right: 16px;
+            outline: none;
+            border: none;
+            max-height: 45vh;
+            resize: none;
+            overflow-y: auto;
+            // overflow-wrap: break-word;
+            max-width: calc(100vw - 315px);
+        }
     }
 }

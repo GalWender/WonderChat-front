@@ -6,6 +6,8 @@ import * as channelActions from "../store/channel/channel.action"
 import * as chatActions from "../store/chat/chat.action"
 import { useEffect } from "react"
 import TextIcon from '../assets/svg/text-icon.svg?react'
+import { messageService } from "../services/message.service"
+import { Message } from "../interfaces/message"
 
 export const ChatContent = () => {
     const dispatch = useDispatch()
@@ -28,6 +30,13 @@ export const ChatContent = () => {
         }
     }, [params])
 
+    const handleAddMessage = async () => {
+        const tempMessage = { _id: '123', content: 'hello there dsadasd', createdAt: new Date(), messageBy: 'dik', messageTo: ['idk'] } as Message
+        const res = await messageService.add(tempMessage)
+        console.log('res',res);
+        
+    }
+
     return <section className="chat-content">
         <div className="header">
             <div className="left">
@@ -40,7 +49,8 @@ export const ChatContent = () => {
 
         </div>
         <div className="message-input-container">
-
+            <div className="message-input" contentEditable suppressContentEditableWarning placeholder="Take a note...">hello</div>
+            {/* <button onClick={handleAddMessage}>MESSAGE OK</button> */}
         </div>
 
     </section>
