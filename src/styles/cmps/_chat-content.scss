@@ -38,18 +38,36 @@
 
     .message-input-container {
         width: 100%;
+        display: flex;
+        // margin-left: 20px;
+        // margin-right: 20px;
+        // margin: 20px;
+        [contentEditable=true]:empty:before {
+            content: attr(datatext)
+            
+        }
+
+        [contentEditable=true]:empty:before {
+            opacity: 0.8;
+            font-family: 'Poppins';
+            cursor: text;
+        }
 
         .message-input {
+            background-color: var(--pop-lighter);
+            border-radius: 8px;
             padding: 10px;
             padding-left: 16px;
             padding-right: 16px;
             outline: none;
             border: none;
-            max-height: 45vh;
-            resize: none;
-            overflow-y: auto;
+            // max-height: 45vh;
+            // resize: none;
             // overflow-wrap: break-word;
-            max-width: calc(100vw - 315px);
+            max-width: calc(100vw - 350px);
+            font-family: 'Poppins';
+            color: var(--text);
+            margin: 20px;
         }
     }
 }

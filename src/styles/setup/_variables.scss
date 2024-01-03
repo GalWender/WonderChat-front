@@ -8,5 +8,29 @@
     --pop: #1F1315;
     --pop1: #2d1d21;
     --pop2: #31171e;
-    --mood:rgba(0, 0, 0, 0.507);
+    --mood: rgba(0, 0, 0, 0.507);
+
+    /* Lighter versions */
+    --text-lighter: #ffffff;
+    --background-lighter: #2b1315;
+    --primary-lighter: #e8bcc2;
+    --secondary-lighter: #6f3c47;
+    --accent-lighter: #e3aeb8;
+    --outline-lighter: #ececec;
+    --pop-lighter: #381f21;
+    --pop1-lighter: #4a2d31;
+    --pop2-lighter: #4f2530;
+    --mood-lighter: rgba(0, 0, 0, 0.3);
+
+    /* Darker versions */
+    --text-darker: #d9c2c3;
+    --background-darker: #10070a;
+    --primary-darker: #a47682;
+    --secondary-darker: #31161e;
+    --accent-darker: #8c4e5c;
+    --outline-darker: #b9b9b9;
+    --pop-darker: #160c0e;
+    --pop1-darker: #21151a;
+    --pop2-darker: #1a0f15;
+    --mood-darker: rgba(0, 0, 0, 0.7);
 }

@@ -4,16 +4,19 @@ import { State } from "../store/store"
 import { bindActionCreators } from "redux"
 import * as channelActions from "../store/channel/channel.action"
 import * as chatActions from "../store/chat/chat.action"
-import { useEffect } from "react"
+import { useEffect, useRef } from "react"
 import TextIcon from '../assets/svg/text-icon.svg?react'
 import { messageService } from "../services/message.service"
 import { Message } from "../interfaces/message"
+import { ExpandingInput } from "./expanding-input"
 
 export const ChatContent = () => {
     const dispatch = useDispatch()
     const params = useParams()
+    const inputRef = useRef(null);
     // const channel = useSelector((state: State) => state.channel.channel)
     const chat = useSelector((state: State) => state.chat.chat)
+    const loggedinUser = useSelector((state: State) => state.user.loggedinUser)
     // console.log(channel);
     // const { loadChannel } = bindActionCreators(channelActions, dispatch)
     const { loadChat } = bindActionCreators(chatActions, dispatch)
@@ -31,10 +34,13 @@ export const ChatContent = () => {
     }, [params])
 
     const handleAddMessage = async () => {
-        const tempMessage = { _id: '123', content: 'hello there dsadasd', createdAt: new Date(), messageBy: 'dik', messageTo: ['idk'] } as Message
+        // console.log(inputRef.current.textContent.trim());
+        // if()
+        /*// @ts-ignore */
+        const tempMessage = { content: inputRef.current.textContent.trim(), createdAt: new Date(), messageBy: loggedinUser?._id, chatId: chat?._id } as Message
         const res = await messageService.add(tempMessage)
-        console.log('res',res);
-        
+        console.log('res', res);
+
     }
 
     return <section className="chat-content">
@@ -49,8 +55,11 @@ export const ChatContent = () => {
 
         </div>
         <div className="message-input-container">
-            <div className="message-input" contentEditable suppressContentEditableWarning placeholder="Take a note...">hello</div>
-            {/* <button onClick={handleAddMessage}>MESSAGE OK</button> */}
+
+            {/* <div
+                ref={inputRef} className="message-input" datatext={`Message ${chat?.name}`} contentEditable suppressContentEditableWarning onKeyDown={(ev) => handleAddMessage(ev)}
+            ></div> */}
+            <ExpandingInput placeholder={`Message ${chat?.name}`} inputRef={inputRef} submitKey="Enter" submitFunc={handleAddMessage} />
         </div>
 
     </section>
