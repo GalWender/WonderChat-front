@@ -27,12 +27,7 @@ export const ChatContent = () => {
 
 
     useEffect(() => {
-        // if (params.channelId) {
-        //     console.log('checking paramas', params.channelId);
-        //     loadChannel(params?.channelId)
-        // }
         if (params.chatId) {
-            console.log('checking paramas', params.chatId);
             socketService.emit(SOCKET_EMIT_SET_MESSAGE_ID_CHANNEL, params.chatId)
             loadChat(params?.chatId)
             loadMessages({ chatId: params.chatId })
@@ -45,12 +40,10 @@ export const ChatContent = () => {
             /*// @ts-ignore */
             const toAddMessage = { content: inputRef.current.textContent.trim(), createdAt: new Date(), messageBy: loggedinUser?._id, chatId: chat?._id } as Message;
             if (params.chatId) {
-                const res = await messageService.add(toAddMessage, params.chatId);
-                // const res = await messageService.add(toAddMessage);
+                const res = await messageService.add(toAddMessage);
                 if (res) {
                     /*// @ts-ignore */
                     inputRef.current.textContent = ""
-                    loadMessages({ chatId: params.chatId });
                 }
             }
         } catch (error) {
@@ -70,10 +63,6 @@ export const ChatContent = () => {
             <MessageCmp messages={messages} />
         </div>
         <div className="message-input-container">
-
-            {/* <div
-                ref={inputRef} className="message-input" datatext={`Message ${chat?.name}`} contentEditable suppressContentEditableWarning onKeyDown={(ev) => handleAddMessage(ev)}
-            ></div> */}
             <ExpandingInput placeholder={`Message ${chat?.name}`} inputRef={inputRef} submitKey="Enter" submitFunc={handleAddMessage} />
         </div>
 

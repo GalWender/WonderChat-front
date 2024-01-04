@@ -8,8 +8,6 @@ export const loadChats = (filterBy: Object) => {
         try {
             // const loggedinUser: any = await userService.login(creds)
             const chats: any = await chatService.query(filterBy)
-            console.log('chats', chats);
-
             dispatch({ type: ChatActionType.SET_CHATS, payload: [...chats] })
         }
         catch (err) {
@@ -22,7 +20,6 @@ export const loadChat = (chatId: string | undefined) => {
     return async (dispatch: Dispatch<ChatActions>) => {
         try {
             const chat: any = await chatService.getById(chatId)
-            console.log(chat)
             dispatch({ type: ChatActionType.SET_CHAT, payload: { ...chat } })
         }
         catch (err) {
@@ -77,7 +74,7 @@ export const addChat = (chat: Chat) => {
         try {
             const newChat: any = await chatService.add(chat)
             dispatch({ type: ChatActionType.ADD_CHAT, payload: { ...newChat } })
-            return true
+            return newChat
         }
         catch (err) {
             console.log('there was an error adding chat', err);

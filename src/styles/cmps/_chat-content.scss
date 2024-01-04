@@ -3,6 +3,7 @@
     display: flex;
     flex-direction: column;
 
+
     .header {
         border-bottom: 1px solid rgb(44, 17, 20);
 
@@ -33,18 +34,25 @@
 
     .messages-container {
         height: 100%;
-        // width: 100%;
+        max-height: calc(100vh - 150px);
+        overflow-y: auto;
+        padding-left: 20px;
+
+        .message {
+            .message-list {
+                margin-top: 20px;
+                margin-bottom: 20px;
+                .message-preview {}
+            }
+        }
     }
 
     .message-input-container {
         width: 100%;
         display: flex;
-        // margin-left: 20px;
-        // margin-right: 20px;
-        // margin: 20px;
+
         [contentEditable=true]:empty:before {
             content: attr(datatext)
-            
         }
 
         [contentEditable=true]:empty:before {
@@ -52,6 +60,7 @@
             font-family: 'Poppins';
             cursor: text;
         }
+
 
         .message-input {
             background-color: var(--pop-lighter);
@@ -61,13 +70,12 @@
             padding-right: 16px;
             outline: none;
             border: none;
-            // max-height: 45vh;
-            // resize: none;
-            // overflow-wrap: break-word;
             max-width: calc(100vw - 350px);
             font-family: 'Poppins';
             color: var(--text);
-            margin: 20px;
+            margin-bottom: 20px;
+            margin-left: 20px;
+            margin-right: 20px;
         }
     }
 }

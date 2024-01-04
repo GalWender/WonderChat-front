@@ -8,8 +8,6 @@ export const loadChannels = (filterBy: Object) => {
         try {
             // const loggedinUser: any = await userService.login(creds)
             const channels: any = await channelService.query(filterBy)
-            console.log('channels', channels);
-
             dispatch({ type: ChannelActionType.SET_CHANNELS, payload: [...channels] })
         }
         catch (err) {
@@ -22,7 +20,6 @@ export const loadChannel = (channelId: string| undefined) => {
     return async (dispatch: Dispatch<ChannelActions>) => {
         try {
             const channel: any = await channelService.getById(channelId)
-            console.log(channel)
             dispatch({ type: ChannelActionType.SET_CHANNEL, payload: { ...channel } })
         }
         catch (err) {

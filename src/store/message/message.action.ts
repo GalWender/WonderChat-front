@@ -8,8 +8,6 @@ export const loadMessages = (filterBy: Object) => {
         try {
             // const loggedinUser: any = await userService.login(creds)
             const messages: any = await messageService.query(filterBy)
-            console.log('messages', messages);
-
             dispatch({ type: MessageActionType.SET_MESSAGES, payload: [...messages] })
         }
         catch (err) {
@@ -22,7 +20,6 @@ export const loadMessage = (messageId: string | undefined) => {
     return async (dispatch: Dispatch<MessageActions>) => {
         try {
             const message: any = await messageService.getById(messageId)
-            console.log(message)
             dispatch({ type: MessageActionType.SET_MESSAGE, payload: { ...message } })
         }
         catch (err) {
@@ -72,10 +69,10 @@ export const setMessage = (message: Message) => {
     }
 }
 
-export const addMessage = (message: Message,chatId:string) => {
+export const addMessage = (message: Message) => {
     return async (dispatch: Dispatch<MessageActions>) => {
         try {
-            const newMessage: any = await messageService.add(message,chatId)
+            const newMessage: any = await messageService.add(message)
             dispatch({ type: MessageActionType.ADD_MESSAGE, payload: { ...newMessage } })
             return true
         }

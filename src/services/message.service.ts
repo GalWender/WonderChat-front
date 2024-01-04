@@ -74,7 +74,7 @@ async function getById(messageId: string | undefined) {
 //   return groupService.update({ group, boardId })
 // }
 
-async function add(message: Message,chatId:string) {
+async function add(message: Message) {
     // socketService.emit()
     
     socketService.emit(SOCKET_EMIT_SEND_MESSAGE_CHANGES, message)
