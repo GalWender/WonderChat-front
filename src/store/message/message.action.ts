@@ -72,10 +72,10 @@ export const setMessage = (message: Message) => {
     }
 }
 
-export const addMessage = (message: Message) => {
+export const addMessage = (message: Message,chatId:string) => {
     return async (dispatch: Dispatch<MessageActions>) => {
         try {
-            const newMessage: any = await messageService.add(message)
+            const newMessage: any = await messageService.add(message,chatId)
             dispatch({ type: MessageActionType.ADD_MESSAGE, payload: { ...newMessage } })
             return true
         }
@@ -85,3 +85,6 @@ export const addMessage = (message: Message) => {
         }
     }
 }
+
+
+// export const getAction

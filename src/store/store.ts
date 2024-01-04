@@ -3,11 +3,13 @@ import thunk from 'redux-thunk';
 import userReducer from "./user/user.reducer"
 import channelReducer from "./channel/channel.reducer"
 import chatReducer from "./chat/chat.reducer"
+import messageReducer from "./message/message.reducer"
 
 const reducers = combineReducers({
   user: userReducer,
   channel:channelReducer,
   chat:chatReducer,
+  message:messageReducer,
 })
 //export the reducers types for useSelector useage 
 export type State = ReturnType<typeof reducers>

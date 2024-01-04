@@ -7,18 +7,22 @@ import { SOCKET_EVENT_ADD_MESSAGE_CHANGES, SOCKET_EMIT_SEND_MESSAGE_CHANGES, SOC
 import store from "../store/store";
 import { httpService } from "./http.service";
 import { Message } from "../interfaces/message";
+import { MessageActionType } from "../interfaces/message.store";
 // import { getActionUpdateTask } from "../store/board/board.action";
 
 /* ?- WebSocket */;
 (() => {
-    //fix
     socketService.on(SOCKET_EMIT_SEND_MESSAGE_CHANGES, (message) => {
-        // store.dispatch(getActionUpdateTask(task))\
-        console.log(message);
-
+        console.log('ok in message changes');
+        
+        store.dispatch({ type: MessageActionType.ADD_MESSAGE, payload: { ...message } })
+        console.log(message,"this is a message that was added ok");
+        
     })
     socketService.on(SOCKET_EVENT_ADD_MESSAGE_CHANGES, (message) => {
-        console.log(message);
+        console.log('ok in message add changes event');
+        store.dispatch({ type: MessageActionType.ADD_MESSAGE, payload: { ...message } })
+        console.log(message,"this is a message that was added ok difff");
         // Dispatch an action to update the UI with the new message
         // store.dispatch(yourActionToUpdateUI(message));
     });
@@ -70,9 +74,9 @@ async function getById(messageId: string | undefined) {
 //   return groupService.update({ group, boardId })
 // }
 
-async function add(message: Message) {
+async function add(message: Message,chatId:string) {
     // socketService.emit()
-    socketService.emit(SOCKET_EMIT_SET_MESSAGE_ID_CHANNEL, message._id)
+    
     socketService.emit(SOCKET_EMIT_SEND_MESSAGE_CHANGES, message)
     const postedMessage = await httpService.post(BASE_URL, message)
     console.log(postedMessage);

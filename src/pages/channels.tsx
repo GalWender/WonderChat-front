@@ -12,8 +12,8 @@ import { AddChatModal } from "../cmps/add-chat-modal"
 export const Channels = () => {
     const dispatch = useDispatch()
     const params = useParams()
-    const { loadChannels,loadChannel, addChannel } = bindActionCreators(channelActions, dispatch)
-    const { setIsAddChatModalOpen,addChat } = bindActionCreators(chatActions, dispatch)
+    const { loadChannels, loadChannel, addChannel } = bindActionCreators(channelActions, dispatch)
+    const { setIsAddChatModalOpen, addChat } = bindActionCreators(chatActions, dispatch)
     const loggedinUser = useSelector((state: State) => state.user.loggedinUser)
     const channels = useSelector((state: State) => state.channel.channels)
     const isAddChatModalOpen = useSelector((state: State) => state.chat.isAddChatModalOpen)
@@ -21,10 +21,12 @@ export const Channels = () => {
     const [selected, setSelected] = useState(params.channelId)
 
     useEffect(() => {
-        loadChannels({ userId: loggedinUser?._id })
-        if(params.channelId) {
-            console.log('checking paramas',params.channelId);
-            
+        if (loggedinUser?._id) {
+            loadChannels({ userId: loggedinUser?._id })
+        }
+        if (params.channelId) {
+            console.log('checking paramas', params.channelId);
+
             loadChannel(params?.channelId)
         }
     }, [])
@@ -43,7 +45,7 @@ export const Channels = () => {
         {isAddChatModalOpen && <AddChatModal
             setIsAddChatModalOpen={setIsAddChatModalOpen}
             addChat={addChat}
-            // setSelected={setSelected}
+        // setSelected={setSelected}
         />}
         <Outlet />
     </section>
