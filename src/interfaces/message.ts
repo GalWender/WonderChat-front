@@ -3,6 +3,5 @@ export interface Message {
     createdAt: Date;
     content: string;
     messageBy: string;
-    // messageTo: string[];
     chatId:string;
 }

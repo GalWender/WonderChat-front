@@ -1,0 +1,30 @@
+.message-preview {
+    display: flex;
+    margin-top: 15px;
+    gap: 20px;
+
+    .left {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        background-color: var(--accent-lighter);
+        border-radius: 50%;
+        width: 50px;
+
+        h4 {
+
+        }
+    }
+
+    .right {
+        display: flex;
+        flex-direction: column;
+
+        .top {
+            display: flex;
+            gap: 10px;
+            align-items: center;
+        }
+
+    }
+}

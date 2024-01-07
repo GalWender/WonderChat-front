@@ -43,6 +43,21 @@ export const login = (creds: { email: string, password: string }) => {
     }
 }
 
+
+export const getById = (userId:string) => {
+    return async (dispatch: Dispatch<UserActions>) => {
+        try {
+            const user: any = await userService.getById(userId)
+            // console.log(user);
+            
+            return user
+        }
+        catch (err) {
+          return false
+        }
+    }
+}
+
 // export const verifyUser = (email: string, code: string) => {
 //     return async (dispatch: Dispatch<UserActions>) => {
 //         try {
@@ -158,3 +173,4 @@ export const login = (creds: { email: string, password: string }) => {
 //         dispatch({type: UserActionType.LOADING_OFF, payload: null})
 //     }
 // }
+
