@@ -27,3 +27,9 @@ fix backend objectId error
 implement chat messages with textarea
 
 add store functionallity to messages and put the client side socket for adding messages 
+
+
+add fiend option:
+make sure u can loadUsers action 
+make sure the query in userService works 
+make the modal show and invite friends with custom scss
