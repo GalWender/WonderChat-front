@@ -3,7 +3,7 @@ import { Chat } from "./chat"
 export interface ReducerInitialState {
     chats: Chat[],
     chat: Chat | null,
-    isAddChatModalOpen: boolean
+    isAddChatModalOpen: boolean,
 }
 
 interface SetChatsAction {

@@ -40,7 +40,7 @@ export const MessagePreview = ({ message }: Props) => {
                 <p>{userOfMessage?.name}</p>
                 <small>{utilService.getStringFromDate(new Date(message.createdAt))}</small>
             </div>
-            <p>{message.content}</p>
+            <p className="message-txt">{message.content}</p>
         </div>
     </section>
 }

@@ -58,6 +58,17 @@ export const getById = (userId:string) => {
     }
 }
 
+export const setIsAddFriendModalOpen = (isOpen: boolean) => {
+    return async (dispatch: Dispatch<UserActions>) => {
+        try {
+            dispatch({ type: UserActionType.SET_ADD_FRIEND_MODAL, payload: isOpen })
+        }
+        catch (err) {
+            console.log('there was an error when changing modal status', err);
+        }
+    }
+}
+
 // export const verifyUser = (email: string, code: string) => {
 //     return async (dispatch: Dispatch<UserActions>) => {
 //         try {
@@ -125,42 +136,16 @@ export const getById = (userId:string) => {
 //     }
 // }
 
-// export const getUsers = () => {
-//     return async (dispatch: Dispatch<UserActions>) => {
-//         try {
-//             let res:any = await userService.query()
-//             res = res.Users?.map((user: any) => {
-//                 const userAttributes = user.Attributes.reduce((obj: any, { Name, Value }: { Name: string, Value: string }) => {
-//                     obj[Name] = Value;
-//                     return obj;
-//                 }, {});
-//                 let resUser: MiniUser = {
-//                     _id: userAttributes.sub,
-//                     firstname: userAttributes.given_name,
-//                     lastname: userAttributes.family_name,
-//                     email: userAttributes.email,
-//                     phone: userAttributes.phone_number,
-//                     code: userAttributes['custom:code'],
-//                     group: userAttributes['custom:group'],
-//                     favorite: JSON.parse(userAttributes['custom:favorite']),
-//                     profilePic: userAttributes.picture,
-//                     location: userAttributes['custom:location'],
-//                     createdAt: +userAttributes['custom:createdAt']
-//                 }
-//                 if (userAttributes['custom:position']) {
-//                     resUser.position = userAttributes['custom:position']
-//                 }
-//                 if (resUser.group === "adminGroup") {
-//                     return false
-//                 }
-//                 return resUser
-//             })
-//             return res
-//         } catch(err) {
-//             throw err
-//         }
-//     }
-// }
+export const getUsers = () => {
+    return async (dispatch: Dispatch<UserActions>) => {
+        try {
+            const users = await userService.getUsers()
+           return true
+        } catch(err) {
+            throw err
+        }
+    }
+}
 
 // export const setLoadingOn = () => {
 //     return (dispatch: Dispatch<UserActions>) => {

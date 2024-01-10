@@ -18,7 +18,7 @@
 
     &::-webkit-scrollbar-thumb {
         border-radius: 25px;
-        background-color: #1a1919;
+        background-color: var(--accent);
         cursor: pointer;
     }
 }
