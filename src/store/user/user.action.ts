@@ -136,13 +136,15 @@ export const setIsAddFriendModalOpen = (isOpen: boolean) => {
 //     }
 // }
 
-export const getUsers = () => {
+export const loadUsers = (filterBy: Object) => {
     return async (dispatch: Dispatch<UserActions>) => {
         try {
-            const users = await userService.getUsers()
-           return true
-        } catch(err) {
-            throw err
+            // const loggedinUser: any = await userService.login(creds)
+            const users: any = await userService.getUsers(filterBy)
+            dispatch({ type: UserActionType.SET_USERS, payload: [...users] })
+        }
+        catch (err) {
+            console.log('there was an error when loading models', err);
         }
     }
 }

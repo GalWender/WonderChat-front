@@ -1,11 +1,12 @@
 import { FormEvent, useEffect, useMemo, useRef } from "react"
 import useInputValidation from "../hooks/useInputValidation"
 import useOutsideClick from "../hooks/useOutsideClick"
-import { Dispatch } from "redux"
+import { Dispatch, bindActionCreators } from "redux"
 import { ChatActions } from "../interfaces/chat.store"
 import { Chat } from "../interfaces/chat"
+import * as userActions from "../store/user/user.action"
 import { useNavigate, useParams } from "react-router-dom"
-import { useSelector } from "react-redux"
+import { useDispatch, useSelector } from "react-redux"
 import { State } from "../store/store"
 
 interface Props {
@@ -15,23 +16,20 @@ interface Props {
 }
 export const AddFriendModal = ({ setIsAddFriendModalOpen }: Props) => {
     const params = useParams()
+    const dispatch = useDispatch()
+    const { loadUsers } = bindActionCreators(userActions, dispatch)
     const modalRef = useRef(null)
     const navigate = useNavigate()
     // const chat = useSelector((state:State)=>state.chat.chat)
-    const {loggedinUser, users} = useSelector((state:State)=>state.user)
+    const { loggedinUser, users } = useSelector((state: State) => state.user)
 
     const validationRules = useMemo(() => {
         return {
             name: {
-                required: true,
+                required: false,
             },
         }
     }, [])
-
-    useEffect(()=>{
-    },[])
-
-    useOutsideClick(modalRef, () => setIsAddFriendModalOpen(false))
 
     const {
         inputValue: inputValueName,
@@ -39,6 +37,14 @@ export const AddFriendModal = ({ setIsAddFriendModalOpen }: Props) => {
         handleChange: handleChangeName,
         isInputValid: isNameValid
     } = useInputValidation('', 'name', validationRules.name)
+
+
+    useEffect(() => {
+        loadUsers({ txt: inputValueName })
+    }, [inputValueName])
+
+    useOutsideClick(modalRef, () => setIsAddFriendModalOpen(false))
+
 
     const handleSubmit = async (e: FormEvent) => {
         e.preventDefault()
@@ -75,7 +81,12 @@ export const AddFriendModal = ({ setIsAddFriendModalOpen }: Props) => {
                     {errorName}
                 </span>
             </div>
-            <button className="btn1">Create</button>
+            <ul>
+                {users && users?.map((user) => {
+                    return <li key={user._id}>{user.name}</li>
+                })}
+            </ul>
+            {/* <button className="btn1">Create</button> */}
         </form>
     </section>
 }

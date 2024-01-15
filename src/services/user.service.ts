@@ -24,7 +24,7 @@ export const userService = {
 async function login(creds: { email: string; password: string }) {
   const user = await httpService.post(URL_AUTH + 'login', creds);
   console.log(user);
-  
+
   if (user) {
     // socketService.login(user._id);
     return saveLocalUser(user);
@@ -40,14 +40,14 @@ async function logout(): Promise<void> {
 // async function signup(creds: { username: string; password: string }): Promise<User> {
 async function signup(creds: User) {
   await httpService.post(URL_AUTH + 'signup', creds);
-  await login({email:creds.email,password:creds.password})
-  
+  await login({ email: creds.email, password: creds.password })
+
   // socketService.login(user._id);
   // return saveLocalUser(user);
 }
 
-async function getUsers(): Promise<User[]> {
-  return httpService.get(URL_USER);
+async function getUsers(filterBy: Object): Promise<User[]> {
+  return httpService.get(URL_USER, filterBy);
 }
 
 async function getById(userId: string): Promise<User> {

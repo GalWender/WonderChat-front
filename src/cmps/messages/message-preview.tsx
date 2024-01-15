@@ -7,9 +7,10 @@ import { useDispatch } from "react-redux"
 import { bindActionCreators } from "redux"
 
 interface Props {
-    message: Message
+    message: Message;
+    stillUser: boolean;
 }
-export const MessagePreview = ({ message }: Props) => {
+export const MessagePreview = ({ message, stillUser }: Props) => {
     const dispatch = useDispatch()
     const { getById } = bindActionCreators(userActions, dispatch)
     const [userOfMessage, setUserOfMessage] = useState<User>()
@@ -29,18 +30,31 @@ export const MessagePreview = ({ message }: Props) => {
     // console.log(await getById(message.messageBy));
 
     return <section className="message-preview">
-        <div className="left">
-            <h4 className="profile-pic">
-                {userOfMessage?.name[0].toUpperCase()}
-                {/* {userOfMessage?.name} */}
-            </h4>
-        </div>
-        <div className="right">
-            <div className="top">
-                <p>{userOfMessage?.name}</p>
-                <small>{utilService.getStringFromDate(new Date(message.createdAt))}</small>
+
+        {!stillUser &&
+            <div className="first-preview">
+                <div className="left">
+                    <h4 className="profile-pic">
+                        {userOfMessage?.name[0].toUpperCase()}
+                        {/* {userOfMessage?.name} */}
+                    </h4>
+                </div>
+                <div className="right">
+                    <div className="top">
+                        <p>{userOfMessage?.name}</p>
+                        <small>{utilService.getStringFromDate(new Date(message.createdAt))}</small>
+                    </div>
+                    <p className="message-txt">{message.content}</p>
+                </div>
             </div>
-            <p className="message-txt">{message.content}</p>
-        </div>
+        }
+        {
+            stillUser &&
+            <div className="right-continue">
+                <p className="message-txt-continue">{message.content}</p>
+            </div>
+        }
+
+
     </section>
 }
