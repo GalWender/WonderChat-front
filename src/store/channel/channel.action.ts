@@ -71,3 +71,17 @@ export const addChannel = (channel: Channel) => {
         }
     }
 }
+
+export const updateChannel = (channel: Channel) => {
+    return async (dispatch: Dispatch<ChannelActions>) => {
+        try {
+            const updatedChannel: any = await channelService.update(channel)
+            dispatch({ type: ChannelActionType.UPDATE_CHANNEL, payload: { ...updatedChannel } })
+            return updatedChannel
+        }
+        catch (err) {
+            console.log('there was an error updating channel', err);
+            return false
+        }
+    }
+}

@@ -1,10 +1,9 @@
 import { FormEvent, useEffect, useMemo, useRef } from "react"
 import useInputValidation from "../hooks/useInputValidation"
 import useOutsideClick from "../hooks/useOutsideClick"
-import { Dispatch, bindActionCreators } from "redux"
-import { ChatActions } from "../interfaces/chat.store"
-import { Chat } from "../interfaces/chat"
+import { bindActionCreators } from "redux"
 import * as userActions from "../store/user/user.action"
+import * as channelActions from "../store/channel/channel.action"
 import { useNavigate, useParams } from "react-router-dom"
 import { useDispatch, useSelector } from "react-redux"
 import { State } from "../store/store"
@@ -18,10 +17,12 @@ export const AddFriendModal = ({ setIsAddFriendModalOpen }: Props) => {
     const params = useParams()
     const dispatch = useDispatch()
     const { loadUsers } = bindActionCreators(userActions, dispatch)
+    const { updateChannel } = bindActionCreators(channelActions, dispatch)
     const modalRef = useRef(null)
     const navigate = useNavigate()
     // const chat = useSelector((state:State)=>state.chat.chat)
     const { loggedinUser, users } = useSelector((state: State) => state.user)
+    const { channel } = useSelector((state: State) => state.channel)
 
     const validationRules = useMemo(() => {
         return {
@@ -46,25 +47,15 @@ export const AddFriendModal = ({ setIsAddFriendModalOpen }: Props) => {
     useOutsideClick(modalRef, () => setIsAddFriendModalOpen(false))
 
 
-    const handleSubmit = async (e: FormEvent) => {
-        e.preventDefault()
-        const isNameValid1 = isNameValid()
-        if (isNameValid1) {
-            // const chatAdded: any = await addChat({ channelId: params.channelId, name: inputValueName, isDirectMessages: false } as Chat)
-            // if (chatAdded) {
-            //     console.log(chatAdded);
-
-            //     // setSelected(chatAdded._id)
-            //     // navigate(`/channels/${params.channelId}/${chatAdded._id}`)
-            //     setIsAddFriendModalOpen(false)
-            // }
-            // else {
-
-            // }
+    const handleInvite = async (userId: string) => {
+        if (channel) {
+            const toUpdateChannel = { ...channel, participantsIds: [...channel?.participantsIds, userId] }
+            const updatedChannel = await updateChannel(toUpdateChannel)
         }
     }
-    return <section className="add-chat-modal">
-        <form ref={modalRef} onSubmit={handleSubmit}>
+
+    return <section className="add-friend-modal">
+        <form ref={modalRef}>
             <p>
                 invite friends to {loggedinUser?.username}'s server
             </p>
@@ -81,9 +72,12 @@ export const AddFriendModal = ({ setIsAddFriendModalOpen }: Props) => {
                     {errorName}
                 </span>
             </div>
-            <ul>
+            <ul className="users-list">
                 {users && users?.map((user) => {
-                    return <li key={user._id}>{user.name}</li>
+                    return <li key={user._id}>
+                        <p>{user.name}</p>
+                        <button className="btn1" onClick={() => handleInvite(user._id)}>INVITE</button>
+                    </li>
                 })}
             </ul>
             {/* <button className="btn1">Create</button> */}
