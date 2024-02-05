@@ -1,6 +1,27 @@
 import { httpService } from "./http.service";
 import { Channel } from "../interfaces/channel";
+import store from "../store/store";
+import { ChannelActionType } from "../interfaces/channel.store";
+import { socketService, SOCKET_EMIT_SEND_CHANNEL_CHANGES,SOCKET_EMIT_SET_CHANNEL_ID_CHANNEL,SOCKET_EVENT_UPDATE_CHANNEL_CHANGES } from './socket.service';
 
+
+/* ?- WebSocket */;
+(() => {
+    // socketService.on(SOCKET_EMIT_SEND__CHANGES, (message) => {
+    //     console.log('ok in message changes');
+        
+    //     store.dispatch({ type: MessageActionType.ADD_MESSAGE, payload: { ...message } })
+    //     console.log(message,"this is a message that was added ok");
+        
+    // })
+    socketService.on(SOCKET_EVENT_UPDATE_CHANNEL_CHANGES, (channel) => {
+        console.log('ok in channel update changes event');
+        store.dispatch({ type: ChannelActionType.UPDATE_CHANNEL, payload: { ...channel } })
+        console.log(channel,"this is a channel that was updated ok difff");
+        // Dispatch an action to update the UI with the new channel
+        // store.dispatch(yourActionToUpdateUI(channel));
+    });
+  })();
 
 export const channelService = {
     query,
@@ -30,6 +51,7 @@ async function getById(channelId: string | undefined) {
 // }
 
 async function update(channel: Channel) {
+    socketService.emit(SOCKET_EVENT_UPDATE_CHANNEL_CHANGES,channel)
     const updatedChannel = await httpService.put(BASE_URL + channel._id, channel)
     return updatedChannel
 }

@@ -65,13 +65,21 @@ async function remove(userId: string): Promise<void> {
   // Implement the logic to remove a user
 }
 
+// async function dupdate(user: User): Promise<User> {
+//   user = await httpService.put(`user/${user._id}`, user);
+//   const loggedInUser = getLoggedinUser();
+//   if (loggedInUser && loggedInUser._id === user._id) {
+//     saveLocalUser(user);
+//   }
+//   return user;
+// }
 async function update(user: User): Promise<User> {
-  user = await httpService.put(`user/${user._id}`, user);
+  const updatedUser = await httpService.put(`user/${user._id}`, user);
   const loggedInUser = getLoggedinUser();
   if (loggedInUser && loggedInUser._id === user._id) {
-    saveLocalUser(user);
+    saveLocalUser(updatedUser);
   }
-  return user;
+  return updatedUser;
 }
 
 function saveLocalUser(user: User): User {

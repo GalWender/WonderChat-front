@@ -16,6 +16,10 @@ export const SOCKET_EMIT_SET_MESSAGE_ID_CHANNEL = 'message-set-channel'
 export const SOCKET_EMIT_SEND_MESSAGE_CHANGES = 'message-send-changes'
 export const SOCKET_EVENT_ADD_MESSAGE_CHANGES = 'message-add-changes'
 
+export const SOCKET_EMIT_SET_CHANNEL_ID_CHANNEL = 'channel-set-channel'
+export const SOCKET_EMIT_SEND_CHANNEL_CHANGES = 'channel-send-changes'
+export const SOCKET_EVENT_UPDATE_CHANNEL_CHANGES = 'channel-update-changes'
+
 const SOCKET_EMIT_LOGIN = 'set-user-socket'
 const SOCKET_EMIT_LOGOUT = 'unset-user-socket'
 

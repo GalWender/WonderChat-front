@@ -12,13 +12,13 @@ import { MessageActionType } from "../interfaces/message.store";
 
 /* ?- WebSocket */;
 (() => {
-    socketService.on(SOCKET_EMIT_SEND_MESSAGE_CHANGES, (message) => {
-        console.log('ok in message changes');
+    // socketService.on(SOCKET_EMIT_SEND_MESSAGE_CHANGES, (message) => {
+    //     console.log('ok in message changes');
         
-        store.dispatch({ type: MessageActionType.ADD_MESSAGE, payload: { ...message } })
-        console.log(message,"this is a message that was added ok");
+    //     store.dispatch({ type: MessageActionType.ADD_MESSAGE, payload: { ...message } })
+    //     console.log(message,"this is a message that was added ok");
         
-    })
+    // })
     socketService.on(SOCKET_EVENT_ADD_MESSAGE_CHANGES, (message) => {
         console.log('ok in message add changes event');
         store.dispatch({ type: MessageActionType.ADD_MESSAGE, payload: { ...message } })

@@ -33,3 +33,6 @@ add fiend option:
 make sure u can loadUsers action 
 make sure the query in userService works 
 make the modal show and invite friends with custom scss
+
+
+switch the updateOfChannel to socket so that it can show live when u add a channel

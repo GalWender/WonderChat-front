@@ -9,6 +9,29 @@
     align-items: center;
     justify-content: center;
 
+    box-sizing: border-box;
+    scrollbar-width: thin;
+    scrollbar-color: #1a1919;
+    -webkit-tap-highlight-color: transparent;
+
+
+    // /* Chrome, Edge, and Safari */
+    // &::-webkit-scrollbar {
+    //     width: 6px;
+    //     cursor: pointer;
+    // }
+
+    // &::-webkit-scrollbar-track {
+    //     // background: #d9d9d9;
+
+    // }
+
+    // &::-webkit-scrollbar-thumb {
+    //     border-radius: 25px;
+    //     background-color: var(--accent);
+    //     cursor: pointer;
+    // }
+
     form {
         border-radius: 6px;
         padding: 25px;

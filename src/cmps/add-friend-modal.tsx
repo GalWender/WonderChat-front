@@ -7,6 +7,7 @@ import * as channelActions from "../store/channel/channel.action"
 import { useNavigate, useParams } from "react-router-dom"
 import { useDispatch, useSelector } from "react-redux"
 import { State } from "../store/store"
+import { channelService } from "../services/channel.service"
 
 interface Props {
     setIsAddFriendModalOpen: (value: boolean) => void;
@@ -50,7 +51,8 @@ export const AddFriendModal = ({ setIsAddFriendModalOpen }: Props) => {
     const handleInvite = async (userId: string) => {
         if (channel) {
             const toUpdateChannel = { ...channel, participantsIds: [...channel?.participantsIds, userId] }
-            const updatedChannel = await updateChannel(toUpdateChannel)
+            // const updatedChannel = await updateChannel(toUpdateChannel)
+            const updatedChannel = await channelService.update(toUpdateChannel)
         }
     }
 
@@ -75,7 +77,7 @@ export const AddFriendModal = ({ setIsAddFriendModalOpen }: Props) => {
             <ul className="users-list">
                 {users && users?.map((user) => {
                     return <li key={user._id}>
-                        <p>{user.name}</p>
+                        <p>{user.username}</p>
                         <button className="btn1" onClick={() => handleInvite(user._id)}>INVITE</button>
                     </li>
                 })}
