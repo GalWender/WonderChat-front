@@ -36,3 +36,6 @@ make the modal show and invite friends with custom scss
 
 
 switch the updateOfChannel to socket so that it can show live when u add a channel
+
+
+check why channel is not updating with the socket change when adding users to different channels
