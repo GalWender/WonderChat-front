@@ -48,11 +48,18 @@ export const AddFriendModal = ({ setIsAddFriendModalOpen }: Props) => {
     useOutsideClick(modalRef, () => setIsAddFriendModalOpen(false))
 
 
-    const handleInvite = async (userId: string) => {
+    const handleInvite = async (ev: any, userId: string) => {
+        ev.preventDefault()
         if (channel) {
+            console.log('inside and has channel');
+            
             const toUpdateChannel = { ...channel, participantsIds: [...channel?.participantsIds, userId] }
             // const updatedChannel = await updateChannel(toUpdateChannel)
             const updatedChannel = await channelService.update(toUpdateChannel)
+            if(updatedChannel) {
+                console.log('closing mmodal ');
+                setIsAddFriendModalOpen(false)
+            }
         }
     }
 
@@ -78,7 +85,7 @@ export const AddFriendModal = ({ setIsAddFriendModalOpen }: Props) => {
                 {users && users?.map((user) => {
                     return <li key={user._id}>
                         <p>{user.username}</p>
-                        <button className="btn1" onClick={() => handleInvite(user._id)}>INVITE</button>
+                        <button className="btn1" onClick={(ev) => handleInvite(ev, user._id)}>INVITE</button>
                     </li>
                 })}
             </ul>

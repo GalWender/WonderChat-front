@@ -6,6 +6,7 @@ import PlusIcon from '../../assets/svg/plus-icon.svg?react'
 import * as channelActions from "../../store/channel/channel.action"
 import { useDispatch } from "react-redux";
 import { bindActionCreators } from "redux";
+import { SOCKET_EMIT_SET_CHANNEL_ID_CHANNEL, socketService } from "../../services/socket.service";
 
 interface Props {
     channels: Channel[];
@@ -34,6 +35,7 @@ export const NavList = ({ channels, setIsAddChannelModalOpen, selected, setSelec
     const handleChannelSelect = (channelId: string) => {
         setSelected(channelId)
         navigate(`/channels/${channelId}`)
+        // socketService.emit(SOCKET_EMIT_SET_CHANNEL_ID_CHANNEL,channelId)
         setChannel(channels.find(channel => channel._id === channelId) as Channel)
 
     }

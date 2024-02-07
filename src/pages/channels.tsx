@@ -26,6 +26,8 @@ export const Channels = () => {
 
     useEffect(() => {
         if (loggedinUser?._id) {
+            console.log('loading channels from pages channels');
+            
             loadChannels({ userId: loggedinUser?._id })
         }
         if (params.channelId) {
@@ -39,7 +41,8 @@ export const Channels = () => {
         <ChannelsNav
             channels={channels}
             setIsAddChannelModalOpen={setIsAddChannelModalOpen}
-            selected={selected} setSelected={setSelected}
+            selected={selected} 
+            setSelected={setSelected}
         />
         {isAddChannelModalOpen && <AddChannelModal
             setIsAddChannelModalOpen={setIsAddChannelModalOpen}

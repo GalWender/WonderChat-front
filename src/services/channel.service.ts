@@ -7,8 +7,8 @@ import { socketService, SOCKET_EMIT_SEND_CHANNEL_CHANGES,SOCKET_EMIT_SET_CHANNEL
 
 /* ?- WebSocket */;
 (() => {
-    // socketService.on(SOCKET_EMIT_SEND__CHANGES, (message) => {
-    //     console.log('ok in message changes');
+    // socketService.on(SOCKET_EMIT_SEND_CHANNEL_CHANGES, (message) => {
+    //     console.log('ok in channel send changes');
         
     //     store.dispatch({ type: MessageActionType.ADD_MESSAGE, payload: { ...message } })
     //     console.log(message,"this is a message that was added ok");
@@ -18,10 +18,8 @@ import { socketService, SOCKET_EMIT_SEND_CHANNEL_CHANGES,SOCKET_EMIT_SET_CHANNEL
         console.log('ok in channel update changes event');
         store.dispatch({ type: ChannelActionType.UPDATE_CHANNEL, payload: { ...channel } })
         console.log(channel,"this is a channel that was updated ok difff");
-        // Dispatch an action to update the UI with the new channel
-        // store.dispatch(yourActionToUpdateUI(channel));
-    });
-  })();
+    })
+  })()
 
 export const channelService = {
     query,
@@ -51,7 +49,8 @@ async function getById(channelId: string | undefined) {
 // }
 
 async function update(channel: Channel) {
-    socketService.emit(SOCKET_EVENT_UPDATE_CHANNEL_CHANGES,channel)
+    socketService.emit(SOCKET_EMIT_SET_CHANNEL_ID_CHANNEL,channel._id)
+    socketService.emit(SOCKET_EMIT_SEND_CHANNEL_CHANGES,channel)
     const updatedChannel = await httpService.put(BASE_URL + channel._id, channel)
     return updatedChannel
 }
