@@ -10,24 +10,33 @@ const initialState: ReducerInitialState = {
 const reducer = (state: ReducerInitialState = initialState, action: ChannelActions) => {
   switch (action.type) {
     case ChannelActionType.SET_CHANNELS:
-      return { ...state, channels: action.payload };
+      return { ...state, channels: action.payload }
     case ChannelActionType.SET_CHANNEL:
-      return { ...state, channel: action.payload };
+      return { ...state, channel: action.payload }
     case ChannelActionType.ADD_CHANNEL:
-      return { ...state, channels: [...state.channels, action.payload] };
+      return { ...state, channels: [...state.channels, action.payload] }
     case ChannelActionType.UPDATE_CHANNEL:
-      console.log('updating channel in reducer', state.channels.map((channel: Channel) => {
-        if (channel._id !== action.payload._id) return channel
-        return action.payload
-      }));
-      
-      return {
-        ...state,
-        channels: state.channels.map((channel: Channel) => {
-          if (channel._id !== action.payload._id) return channel
-          return action.payload
-        }),
-        channel: { ...action.payload }
+      const updatedChannel = action.payload
+      const existingChannelIndex = state.channels.findIndex(channel => channel._id === updatedChannel._id)
+
+      if (existingChannelIndex !== -1) {
+        return {
+          ...state,
+          channels: state.channels.map((channel: Channel, index: number) => {
+            if (index === existingChannelIndex) {
+              return { ...updatedChannel }
+            } else {
+              return channel
+            }
+          }),
+          channel: { ...updatedChannel }
+        }
+      } else {
+        return {
+          ...state,
+          channels: [...state.channels, updatedChannel],
+          channel: { ...updatedChannel } 
+        }
       }
 
     default:
