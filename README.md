@@ -34,6 +34,6 @@ This is a chat app influenced by the chat app Discord. Currently i am sunsetting
     ``` 
 
 ## Screenshots
-![WonderChat](./assets/screenshots/screenshot1.jpg)
+![WonderChat](./assets/screenshots/screenshot1.png)
 
-![WonderChat](./assets/screenshots/screenshot2.jpg)
+![WonderChat](./assets/screenshots/screenshot2.png)
