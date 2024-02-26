@@ -6,7 +6,6 @@ import { channelService } from '../../services/channel.service';
 export const loadChannels = (filterBy: Object) => {
     return async (dispatch: Dispatch<ChannelActions>) => {
         try {
-            // const loggedinUser: any = await userService.login(creds)
             const channels: any = await channelService.query(filterBy)
             dispatch({ type: ChannelActionType.SET_CHANNELS, payload: [...channels] })
         }
@@ -28,28 +27,9 @@ export const loadChannel = (channelId: string| undefined) => {
     }
 }
 
-// export const setChannels = (channels: Channel[]) => {
-//     return async (dispatch: Dispatch<ChannelActions>) => {
-//         try {
-//             // const loggedinUser: any = await userService.login(creds)
-//             // const channel: any = await channelService.query(filterBy)
-//             // console.log('channels', channels);
-
-//             dispatch({ type: ChannelActionType.SET_CHANNEL, payload: { ...channel } })
-//         }
-//         catch (err) {
-//             console.log('there was an error when setting channel', err);
-//         }
-//     }
-// }
-
 export const setChannel = (channel: Channel) => {
     return async (dispatch: Dispatch<ChannelActions>) => {
         try {
-            // const loggedinUser: any = await userService.login(creds)
-            // const channel: any = await channelService.query(filterBy)
-            // console.log('channels', channels);
-
             dispatch({ type: ChannelActionType.SET_CHANNEL, payload: { ...channel } })
         }
         catch (err) {

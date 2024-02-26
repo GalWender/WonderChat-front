@@ -6,7 +6,6 @@ import { messageService } from '../../services/message.service';
 export const loadMessages = (filterBy: Object) => {
     return async (dispatch: Dispatch<MessageActions>) => {
         try {
-            // const loggedinUser: any = await userService.login(creds)
             const messages: any = await messageService.query(filterBy)
             dispatch({ type: MessageActionType.SET_MESSAGES, payload: [...messages] })
         }
@@ -39,28 +38,9 @@ export const setIsAddMessageModalOpen = (isOpen: boolean) => {
     }
 }
 
-// export const setMessages = (messages: Message[]) => {
-//     return async (dispatch: Dispatch<MessageActions>) => {
-//         try {
-//             // const loggedinUser: any = await userService.login(creds)
-//             // const message: any = await messageService.query(filterBy)
-//             // console.log('messages', messages);
-
-//             dispatch({ type: MessageActionType.SET_MESSAGE, payload: { ...message } })
-//         }
-//         catch (err) {
-//             console.log('there was an error when setting message', err);
-//         }
-//     }
-// }
-
 export const setMessage = (message: Message) => {
     return async (dispatch: Dispatch<MessageActions>) => {
         try {
-            // const loggedinUser: any = await userService.login(creds)
-            // const message: any = await messageService.query(filterBy)
-            // console.log('messages', messages);
-
             dispatch({ type: MessageActionType.SET_MESSAGE, payload: { ...message } })
         }
         catch (err) {
@@ -82,6 +62,3 @@ export const addMessage = (message: Message) => {
         }
     }
 }
-
-
-// export const getAction

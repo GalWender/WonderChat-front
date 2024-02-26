@@ -6,7 +6,6 @@ import { chatService } from '../../services/chat.service';
 export const loadChats = (filterBy: Object) => {
     return async (dispatch: Dispatch<ChatActions>) => {
         try {
-            // const loggedinUser: any = await userService.login(creds)
             const chats: any = await chatService.query(filterBy)
             dispatch({ type: ChatActionType.SET_CHATS, payload: [...chats] })
         }
@@ -39,28 +38,9 @@ export const setIsAddChatModalOpen = (isOpen: boolean) => {
     }
 }
 
-// export const setChats = (chats: Chat[]) => {
-//     return async (dispatch: Dispatch<ChatActions>) => {
-//         try {
-//             // const loggedinUser: any = await userService.login(creds)
-//             // const chat: any = await chatService.query(filterBy)
-//             // console.log('chats', chats);
-
-//             dispatch({ type: ChatActionType.SET_CHAT, payload: { ...chat } })
-//         }
-//         catch (err) {
-//             console.log('there was an error when setting chat', err);
-//         }
-//     }
-// }
-
 export const setChat = (chat: Chat) => {
     return async (dispatch: Dispatch<ChatActions>) => {
         try {
-            // const loggedinUser: any = await userService.login(creds)
-            // const chat: any = await chatService.query(filterBy)
-            // console.log('chats', chats);
-
             dispatch({ type: ChatActionType.SET_CHAT, payload: { ...chat } })
         }
         catch (err) {
