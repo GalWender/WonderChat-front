@@ -7,10 +7,6 @@ import { Channel } from "../interfaces/channel"
 import { useSelector } from "react-redux"
 import { State } from "../store/store"
 import { useNavigate } from "react-router-dom"
-import { SOCKET_EMIT_SET_CHANNEL_ID_CHANNEL, socketService } from "../services/socket.service"
-// import { useDispatch } from "react-redux"
-// import { bindActionCreators } from 'redux'
-// import * as channelActions from "../store/channel/channel.action"
 
 interface Props {
     setIsAddChannelModalOpen: (value: boolean) => void
@@ -43,13 +39,11 @@ export const AddChannelModal = ({ setIsAddChannelModalOpen, addChannel, setSelec
         e.preventDefault()
         const isNameValid1 = isNameValid()
         if (isNameValid1 && loggedinUser) {
-            const channelAdded: any = await addChannel({ logoSrc: "idk  ight now", name: inputValueName, participantsIds: [loggedinUser._id], isDirectMessages: false } as Channel)
+            const channelAdded: any = await addChannel({ logoSrc: "idk  right now", name: inputValueName, participantsIds: [loggedinUser._id], isDirectMessages: false } as Channel)
             if (channelAdded) {
                 setSelected(channelAdded._id)
-                // socketService.emit(SOCKET_EMIT_SET_CHANNEL_ID_CHANNEL,channelAdded._id)
                 navigate(`/channels/${channelAdded._id}`)
                 setIsAddChannelModalOpen(false)
-
             }
             else {
 

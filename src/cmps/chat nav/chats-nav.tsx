@@ -10,16 +10,12 @@ interface Props {
     chats: Chat[];
 }
 
-export const ChatsNav = ({ chats }: Props) => { //dont this i need channels too
+export const ChatsNav = ({ chats }: Props) => { 
     const dispatch = useDispatch()
     const { setIsAddChatModalOpen } = bindActionCreators(chatActions, dispatch)
 
 
     return <section className="chats-nav">
-        {/* <button className="btn-friends btn2">
-            <FriendsIcon className="friends-icon"/>
-            Friends
-        </button> */}
         <div className='text-chat-toggle-container'>
             <div className="left">
                 <ArrowDownIcon />

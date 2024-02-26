@@ -16,12 +16,9 @@ export const ChatContent = () => {
     const dispatch = useDispatch()
     const params = useParams()
     const inputRef = useRef(null);
-    // const channel = useSelector((state: State) => state.channel.channel)
     const chat = useSelector((state: State) => state.chat.chat)
     const messages = useSelector((state: State) => state.message.messages)
     const loggedinUser = useSelector((state: State) => state.user.loggedinUser)
-    // console.log(channel);
-    // const { loadChannel } = bindActionCreators(channelActions, dispatch)
     const { loadChat } = bindActionCreators(chatActions, dispatch)
     const { loadMessages } = bindActionCreators(messageActions, dispatch)
 

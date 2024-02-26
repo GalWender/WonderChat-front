@@ -1,5 +1,5 @@
-import { Message } from "../../interfaces/message"
-import { MessagePreview } from "./message-preview"
+import { Message } from "../../interfaces/message";
+import { MessagePreview } from "./message-preview";
 
 interface Props {
     messages: Message[]

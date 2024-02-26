@@ -29,13 +29,13 @@ const useInputValidation = (
                 firstTimeLengthRef.current = -1
                 validate(inputValue)
             }
-        }, debounceTime);
+        }, debounceTime)
 
         return () => {
             if (debounceTimer) {
                 clearTimeout(debounceTimer)
             }
-        };
+        }
     }, [inputValue])
 
     const validate = (value: string) => {
@@ -70,9 +70,9 @@ const useInputValidation = (
 
     const handleChange = (newValue: string) => {
         setInputValue(newValue)
-    };
+    }
 
     return { inputValue, error, handleChange, isInputValid }
-};
+}
 
 export default useInputValidation

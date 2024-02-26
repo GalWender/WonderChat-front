@@ -1,5 +1,5 @@
 import { useState, useEffect, useRef } from 'react';
-import ArrowDown from '../assets/svg/arrow-down.svg?react'
+import ArrowDown from '../assets/svg/arrow-down.svg?react';
 
 interface CustomSelectProps {
     placeholder: string;
@@ -14,7 +14,7 @@ export const CustomSelect = ({ placeholder, options, handleSelected, selected }:
 
     const handleClickOutside = (e: MouseEvent) => {
         if (selectRef.current && !selectRef.current.contains(e.target as Node)) {
-            setIsOpen(false);
+            setIsOpen(false)
         }
     }
 

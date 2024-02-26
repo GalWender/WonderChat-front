@@ -1,14 +1,10 @@
-import { useDispatch, useSelector } from "react-redux"
-import { State } from "../store/store"
-import { ChatsNav } from "./chat nav/chats-nav"
-import { useEffect } from "react"
-import { Outlet, useParams } from "react-router-dom"
-import { bindActionCreators } from "redux"
-import * as chatActions from "../store/chat/chat.action"
-
-interface Props {
-
-}
+import { useDispatch, useSelector } from "react-redux";
+import { State } from "../store/store";
+import { ChatsNav } from "./chat nav/chats-nav";
+import { useEffect } from "react";
+import { Outlet, useParams } from "react-router-dom";
+import { bindActionCreators } from "redux";
+import * as chatActions from "../store/chat/chat.action";
 
 export const ChannelContent = () => {
     const params = useParams()

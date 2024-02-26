@@ -7,9 +7,14 @@ interface Props {
     selected: string | undefined;
     setSelected: (value: string) => void;
 }
-export const ChannelsNav = ({ channels, setIsAddChannelModalOpen,selected,setSelected }: Props) => {
+export const ChannelsNav = ({ channels, setIsAddChannelModalOpen, selected, setSelected }: Props) => {
 
     return <section className="channels-nav">
-        {channels.length > 0 && <NavList channels={channels} setIsAddChannelModalOpen={setIsAddChannelModalOpen} selected={selected} setSelected={setSelected}/>}
+        {channels.length > 0 && <NavList
+            channels={channels}
+            setIsAddChannelModalOpen={setIsAddChannelModalOpen}
+            selected={selected}
+            setSelected={setSelected}
+        />}
     </section>
 }

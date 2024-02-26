@@ -1,5 +1,5 @@
-import { MessageList } from "./message-list"
-import { Message } from "../../interfaces/message"
+import { MessageList } from "./message-list";
+import { Message } from "../../interfaces/message";
 
 interface Props {
     messages: Message[];

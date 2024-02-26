@@ -43,32 +43,14 @@ const routes: Route[] = [
     },
 ]
 
-const renderRoutes = () => routes.map((route) => {
-    return (
-        <Route
-            key={route.path}
-            path={route.path}
-            element={<route.component />}
-        >
-            {route.children && route.children.map((child) =>
-                <Route
-                    key={child.path}
-                    path={child.path}
-                    element={<child.component />}
-                >
-                    {child.children && child.children.map((grandChild) =>
-                        <Route
-                            key={grandChild.path}
-                            path={grandChild.path}
-                            element={<grandChild.component />}
-                        >
-                        </Route>
-                    )}
+const renderRoutes = (routes: Route[]) => routes.map((route) => (
+    <Route
+        key={route.path}
+        path={route.path}
+        element={<route.component />}
+    >
+        {route.children && renderRoutes(route.children)}
+    </Route>
+))
 
-                </Route>
-            )}
-        </Route>
-    )
-})
-
-export default renderRoutes;
+export default renderRoutes(routes)

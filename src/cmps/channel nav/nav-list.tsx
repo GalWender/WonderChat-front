@@ -21,8 +21,6 @@ export const NavList = ({ channels, setIsAddChannelModalOpen, selected, setSelec
     const { setChannel } = bindActionCreators(channelActions, dispatch)
     const navigate = useNavigate()
     const params = useParams()
-
-    // const [selected, setSelected] = useState(params.channelId)
     const [hovered, setHovered] = useState("")
 
     useEffect(() => {
@@ -36,19 +34,14 @@ export const NavList = ({ channels, setIsAddChannelModalOpen, selected, setSelec
     const handleChannelSelect = (channelId: string) => {
         setSelected(channelId)
         navigate(`/channels/${channelId}`)
-        // socketService.emit(SOCKET_EMIT_SET_CHANNEL_ID_CHANNEL,channelId)
         setChannel(channels.find(channel => channel._id === channelId) as Channel)
 
     }
     const handleChannelHover = (channelId: string) => {
         setHovered(channelId)
-        // console.log('hovered', hovered);
-
     }
     const handleChannelLeave = () => {
         setHovered("")
-        // console.log('left');
-
     }
 
     return <section className="nav-list">

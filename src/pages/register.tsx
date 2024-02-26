@@ -4,13 +4,9 @@ import { BackgroundSvgs } from '../cmps/background-svgs';
 import { NavLink, useNavigate } from 'react-router-dom';
 import useInputValidation from '../hooks/useInputValidation';
 import { User } from '../interfaces/user';
-import { utilService } from '../services/util.service';
 import { useDispatch } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import * as userActions from "../store/user/user.action"
-
-interface Props {
-}
 
 export const Register = () => {
     const dispatch = useDispatch()
@@ -54,20 +50,19 @@ export const Register = () => {
         return [
             'January', 'February', 'March', 'April', 'May', 'June',
             'July', 'August', 'September', 'October', 'November', 'December',
-        ];
-    }, []);
+        ]
+    }, [])
 
     const days: number[] = useMemo(() => {
-        return Array.from({ length: 31 }, (_, i) => i + 1);
+        return Array.from({ length: 31 }, (_, i) => i + 1)
     }, [])
 
     const years: number[] = useMemo(() => {
-        const minYear = currentYear - 152;
-        const maxYear = currentYear - 3;
-        return Array.from({ length: maxYear - minYear + 1 }, (_, i) => maxYear - i);
+        const minYear = currentYear - 152
+        const maxYear = currentYear - 3
+        return Array.from({ length: maxYear - minYear + 1 }, (_, i) => maxYear - i)
     }, [currentYear])
 
-    // input validation hook
     const {
         inputValue: inputValueEmail,
         error: errorEmail,
@@ -92,16 +87,13 @@ export const Register = () => {
         handleChange: handleChangePassword,
         isInputValid: isPasswordValid
     } = useInputValidation('', 'password', validationRules.password)
-    //created a custom one for the birthday section which is not an input
     const {
         inputValue: inputValueBirthday,
         error: errorBirthday,
         handleChange: handleChangeBirthday,
-        // isInputValid: isBirthdayValid
     } = useInputValidation('', 'birthday', validationRules.birthday)
 
 
-    //date selection handling
     const handleSelected = (option: string) => {
         if (months.includes(option)) {
             setSelected1(option)
@@ -122,7 +114,6 @@ export const Register = () => {
         }
     }, [date])
 
-    // i think i could have made a custom hook for my custom select but this seems fine for now
     const isBirthdayValid = () => {
 
         if (date.day && date.month && date.year) {
@@ -132,22 +123,17 @@ export const Register = () => {
         return false
     }
 
-    //form submittion handling 
-    const handleSubmit = async (e: any) => { //blame typescript for not having this prebuilt in the FormEvent
+    const handleSubmit = async (e: any) => {
         e.preventDefault()
 
-        // a bit hardcoded but how many fields would you really ever have in one form...
-        //check to see if there is simplification for this
         const isEmailValid1 = isEmailValid()
         const isNameValid1 = isNameValid()
         const isUsernameValid1 = isUsernameValid()
         const isPasswordValid1 = isPasswordValid()
         const isBirthdayValid1 = isBirthdayValid()
 
-// show the list of channels with css
         if (isEmailValid1 && isNameValid1 && isUsernameValid1 && isPasswordValid1 && isBirthdayValid1) {
             const toRegisterUser: User = {
-                // _id: utilService.makeId(),
                 email: inputValueEmail,
                 name: inputValueName?.trim() ? inputValueName : inputValueUsername,
                 username: inputValueUsername,
@@ -155,17 +141,10 @@ export const Register = () => {
                 birthday: inputValueBirthday,
             } as User
 
-            const isSignedup:any = await signup(toRegisterUser)
-            if(isSignedup) {
+            const isSignedup: any = await signup(toRegisterUser)
+            if (isSignedup) {
                 navigate('/channels')
             }
-            else {
-
-            }
-            console.log('Form is valid. Submitting...')
-        } else {
-
-            console.log('Form is invalid. Please check the fields.');
         }
     }
 

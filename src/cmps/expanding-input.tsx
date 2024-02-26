@@ -2,10 +2,9 @@ import { ForwardedRef } from "react";
 
 interface Props {
     inputRef: ForwardedRef<HTMLDivElement>;
-    // handKeyPress:(value:KeyboardEvent)=> void
     submitKey: string;
     placeholder: string;
-    submitFunc: () => void
+    submitFunc: () => void;
 }
 
 export const ExpandingInput = ({ inputRef, submitKey, placeholder, submitFunc }: Props) => {

@@ -18,8 +18,7 @@ export const Channels = () => {
     const { setIsAddChatModalOpen, addChat } = bindActionCreators(chatActions, dispatch)
     const { setIsAddFriendModalOpen } = bindActionCreators(userActions, dispatch)
     const loggedinUser = useSelector((state: State) => state.user.loggedinUser)
-    const channels = useSelector((state: State) => state.channel.channels).sort((a,b)=>a.isDirectMessages === true ? -1 : 1)
-    console.log('loaded channels on cmp start',channels);
+    const channels = useSelector((state: State) => state.channel.channels).sort((a)=>a.isDirectMessages === true ? -1 : 1)
     const isAddChatModalOpen = useSelector((state: State) => state.chat.isAddChatModalOpen)
     const isAddFriendModalOpen = useSelector((state: State) => state.user.isAddFriendModalOpen)
     const [isAddChannelModalOpen, setIsAddChannelModalOpen] = useState(false)
@@ -27,13 +26,9 @@ export const Channels = () => {
 
     useEffect(() => {
         if (loggedinUser?._id) {
-            console.log('loading channels from pages channels');
-            
             loadChannels({ userId: loggedinUser?._id })
         }
         if (params.channelId) {
-            console.log('checking paramas', params.channelId);
-
             loadChannel(params?.channelId)
         }
     }, [loggedinUser?._id, params.channelId])
@@ -53,12 +48,9 @@ export const Channels = () => {
         {isAddChatModalOpen && <AddChatModal
             setIsAddChatModalOpen={setIsAddChatModalOpen}
             addChat={addChat}
-        // setSelected={setSelected}
         />}
         {isAddFriendModalOpen && <AddFriendModal
             setIsAddFriendModalOpen={setIsAddFriendModalOpen}
-            // chat={chat}
-        // setSelected={setSelected}
         />}
         <Outlet />
     </section>

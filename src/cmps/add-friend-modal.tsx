@@ -1,27 +1,20 @@
-import { FormEvent, useEffect, useMemo, useRef } from "react"
-import useInputValidation from "../hooks/useInputValidation"
-import useOutsideClick from "../hooks/useOutsideClick"
-import { bindActionCreators } from "redux"
-import * as userActions from "../store/user/user.action"
-import * as channelActions from "../store/channel/channel.action"
-import { useNavigate, useParams } from "react-router-dom"
-import { useDispatch, useSelector } from "react-redux"
-import { State } from "../store/store"
-import { channelService } from "../services/channel.service"
+import { useEffect, useMemo, useRef } from "react";
+import useInputValidation from "../hooks/useInputValidation";
+import useOutsideClick from "../hooks/useOutsideClick";
+import { bindActionCreators } from "redux";
+import * as userActions from "../store/user/user.action";
+import { useDispatch, useSelector } from "react-redux";
+import { State } from "../store/store";
+import { channelService } from "../services/channel.service";
 
 interface Props {
     setIsAddFriendModalOpen: (value: boolean) => void;
-    // chat: Chat;
-    // addChat: (chat: Chat) => (dispatch: Dispatch<ChatActions>) => Promise<boolean>;
 }
+
 export const AddFriendModal = ({ setIsAddFriendModalOpen }: Props) => {
-    const params = useParams()
     const dispatch = useDispatch()
     const { loadUsers } = bindActionCreators(userActions, dispatch)
-    const { updateChannel } = bindActionCreators(channelActions, dispatch)
     const modalRef = useRef(null)
-    const navigate = useNavigate()
-    // const chat = useSelector((state:State)=>state.chat.chat)
     const { loggedinUser, users } = useSelector((state: State) => state.user)
     const { channel } = useSelector((state: State) => state.channel)
 
@@ -37,7 +30,6 @@ export const AddFriendModal = ({ setIsAddFriendModalOpen }: Props) => {
         inputValue: inputValueName,
         error: errorName,
         handleChange: handleChangeName,
-        isInputValid: isNameValid
     } = useInputValidation('', 'name', validationRules.name)
 
 
@@ -51,13 +43,9 @@ export const AddFriendModal = ({ setIsAddFriendModalOpen }: Props) => {
     const handleInvite = async (ev: any, userId: string) => {
         ev.preventDefault()
         if (channel) {
-            console.log('inside and has channel');
-            
             const toUpdateChannel = { ...channel, participantsIds: [...channel?.participantsIds, userId] }
-            // const updatedChannel = await updateChannel(toUpdateChannel)
             const updatedChannel = await channelService.update(toUpdateChannel)
             if(updatedChannel) {
-                console.log('closing mmodal ');
                 setIsAddFriendModalOpen(false)
             }
         }
@@ -89,7 +77,6 @@ export const AddFriendModal = ({ setIsAddFriendModalOpen }: Props) => {
                     </li>
                 })}
             </ul>
-            {/* <button className="btn1">Create</button> */}
         </form>
     </section>
 }

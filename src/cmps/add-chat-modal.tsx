@@ -1,10 +1,10 @@
-import { FormEvent, useMemo, useRef } from "react"
-import useInputValidation from "../hooks/useInputValidation"
-import useOutsideClick from "../hooks/useOutsideClick"
-import { Dispatch } from "redux"
-import { ChatActions } from "../interfaces/chat.store"
-import { Chat } from "../interfaces/chat"
-import { useNavigate, useParams } from "react-router-dom"
+import { FormEvent, useMemo, useRef } from "react";
+import useInputValidation from "../hooks/useInputValidation";
+import useOutsideClick from "../hooks/useOutsideClick";
+import { Dispatch } from "redux";
+import { ChatActions } from "../interfaces/chat.store";
+import { Chat } from "../interfaces/chat";
+import { useNavigate, useParams } from "react-router-dom";
 
 interface Props {
     setIsAddChatModalOpen: (value: boolean) => void
@@ -38,9 +38,6 @@ export const AddChatModal = ({ setIsAddChatModalOpen, addChat }: Props) => {
         if (isNameValid1) {
             const chatAdded: any = await addChat({ channelId: params.channelId, name: inputValueName, isDirectMessages: false } as Chat)
             if (chatAdded) {
-                console.log(chatAdded);
-                
-                // setSelected(chatAdded._id)
                 navigate(`/channels/${params.channelId}/${chatAdded._id}`)
                 setIsAddChatModalOpen(false)
             }

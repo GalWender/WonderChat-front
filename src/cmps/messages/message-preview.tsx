@@ -1,10 +1,10 @@
-import { useEffect, useMemo, useState } from "react"
-import { Message } from "../../interfaces/message"
-import { utilService } from "../../services/util.service"
-import { User } from "../../interfaces/user"
-import * as userActions from "../../store/user/user.action"
-import { useDispatch } from "react-redux"
-import { bindActionCreators } from "redux"
+import { useEffect, useState } from "react";
+import { Message } from "../../interfaces/message";
+import { utilService } from "../../services/util.service";
+import { User } from "../../interfaces/user";
+import * as userActions from "../../store/user/user.action";
+import { useDispatch } from "react-redux";
+import { bindActionCreators } from "redux";
 
 interface Props {
     message: Message;
@@ -14,11 +14,6 @@ export const MessagePreview = ({ message, stillUser }: Props) => {
     const dispatch = useDispatch()
     const { getById } = bindActionCreators(userActions, dispatch)
     const [userOfMessage, setUserOfMessage] = useState<User>()
-    // const userOfMessage: any = useMemo(async () => {
-    //     return await getById(message.messageBy)
-    //     // const res = await getById(message.messageBy)
-    //     // console.log(res.name[0].toLocaleUpperCase());
-    // }, [])
 
     useEffect(() => {
         (async () => {
@@ -27,7 +22,6 @@ export const MessagePreview = ({ message, stillUser }: Props) => {
         })()
 
     }, [])
-    // console.log(await getById(message.messageBy));
 
     return <section className="message-preview">
 
@@ -36,7 +30,6 @@ export const MessagePreview = ({ message, stillUser }: Props) => {
                 <div className="left">
                     <h4 className="profile-pic">
                         {userOfMessage?.name[0].toUpperCase()}
-                        {/* {userOfMessage?.name} */}
                     </h4>
                 </div>
                 <div className="right">

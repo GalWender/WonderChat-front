@@ -1,8 +1,5 @@
 import Axios, { AxiosRequestConfig } from 'axios';
-import { userService } from './user.service';
 
-// const BASE_URL = 'https://back.hackersguard.com/api/'
-// const BASE_URL = 'http://localhost:3315/api/'
 const BASE_URL = 'http://localhost:3030/api/'
 
 const axios = Axios.create({
@@ -26,19 +23,11 @@ export const httpService = {
 
 async function ajax(endpoint: string, method: string = 'GET', data: any = null) {
   try {
-    // if (!await userService.checkLoggedinUser()) return 
-
-    // const token = await userService.getToken();
-    // const headers = {
-    //   Authorization: `${token}`,
-    // };
-
     const config: AxiosRequestConfig = {
       url: `${BASE_URL}${endpoint}`,
       method,
       data,
       params: method === 'GET' ? data : null,
-      // headers,
     };
 
     const res = await axios(config);

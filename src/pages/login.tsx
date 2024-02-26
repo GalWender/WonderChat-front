@@ -5,8 +5,6 @@ import { useDispatch } from "react-redux"
 import { bindActionCreators } from 'redux';
 import * as userActions from "../store/user/user.action"
 
-interface Props {
-}
 
 export const Login = () => {
     const dispatch = useDispatch()
@@ -36,14 +34,13 @@ export const Login = () => {
         isInputValid: isPasswordValid
     } = useInputValidation('', 'password', validationRules.password)
 
-    const handleSubmit = async (e: any) => { //blame typescript for not having this prebuilt in the FormEvent
+    const handleSubmit = async (e: any) => { 
         e.preventDefault()
 
         const isEmailValid1 = isEmailValid()
         const isPasswordValid1 = isPasswordValid()
 
         if (isEmailValid1 && isPasswordValid1) {
-            // console.log('Form is valid. Submitting...')
             const isLoggedIn: any = await login({ email: inputValueEmail, password: inputValuePassword })
             if(isLoggedIn) {
                 naviate('/channels')
