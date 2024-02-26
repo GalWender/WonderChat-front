@@ -1,21 +1,39 @@
-# agenda
-task management platform where anyone can create the tools they need to run every aspect of their work.
+# WonderChat
+This is a chat app influenced by the chat app Discord. Currently i am sunsetting this project 
+
+# Things i could have done but didn't
+- fix some registration bugs
+- implement direct messages
+- added voice notes
+- added an option to send images
+- added profile pictures
+- some socket.io fixes for live updates
+- interactive 3D homepage using three.js
+- Ui adjustments
+- added private routes and JWT token for security
 
 # Installation
-- Steps on how to install this project.
 - Make sure to do this for both the frontend and backend repositories.
 
-```
-npm i 
-npm start
-```
+1. Clone the repository:
 
-# Gallery
-<img src="src/assets/img/agenda1.png"/>
-<img src="src/assets/img/agenda2.png"/>
-<img src="src/assets/img/agenda3.png"/>
-<img src="src/assets/img/agenda4.png"/>
+    ```bash
+    git clone <repository-url>
+    ```
 
-# Credit/Acknowledgment
-Tal Ben Atiya
-Or Agami
+2. Install dependencies:
+
+    ```bash
+    npm install
+    ```
+
+3. Run the project:
+
+    ```bash
+    npm run dev
+    ``` 
+
+## Screenshots
+![WonderChat](./assets/screenshots/screenshot1.jpg)
+
+![WonderChat](./assets/screenshots/screenshot2.jpg)
