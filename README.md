@@ -11,6 +11,8 @@ This is a chat app influenced by the chat app Discord. Currently i am sunsetting
 - interactive 3D homepage using three.js
 - Ui adjustments
 - added private routes and JWT token for security
+- added useContext and createContext that i recently learned
+- added some little optimization with useCallback and useMemo (even more than what i already have)
 
 # Installation
 - Make sure to do this for both the frontend and backend repositories.
