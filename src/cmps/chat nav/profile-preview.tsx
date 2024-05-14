@@ -1,9 +1,6 @@
 import { useSelector } from "react-redux"
 import { State } from "../../store/store"
 
-interface Props {
-}
-
 const ProfilePreview = () => {
     const loggedinUser = useSelector((state: State) => state.user.loggedinUser)
 

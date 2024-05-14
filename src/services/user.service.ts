@@ -37,7 +37,6 @@ async function logout(): Promise<void> {
 
 async function signup(creds: User) {
   await httpService.post(URL_AUTH + 'signup', creds);
-  await login({ email: creds.email, password: creds.password })
 }
 
 async function getUsers(filterBy: Object): Promise<User[]> {

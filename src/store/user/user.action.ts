@@ -7,6 +7,8 @@ export const signup = (creds: User) => {
     return async () => {
         try {
             await userService.signup(creds)
+            console.log('ok');
+            
             return true
         }
         catch (err) {

@@ -10,7 +10,7 @@ import * as userActions from "../store/user/user.action"
 
 export const Register = () => {
     const dispatch = useDispatch()
-    const { signup } = bindActionCreators(userActions, dispatch)
+    const { signup, login } = bindActionCreators(userActions, dispatch)
     const navigate = useNavigate()
     const [selected1, setSelected1] = useState("")
     const [selected2, setSelected2] = useState("")
@@ -141,8 +141,9 @@ export const Register = () => {
                 birthday: inputValueBirthday,
             } as User
 
-            const isSignedup: any = await signup(toRegisterUser)
-            if (isSignedup) {
+            await signup(toRegisterUser)
+            const isLoggedIn: any = await login({ email: toRegisterUser.email, password: toRegisterUser.password })
+            if (isLoggedIn) {
                 navigate('/channels')
             }
         }
