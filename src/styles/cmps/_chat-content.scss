@@ -2,11 +2,11 @@
     width: 100%;
     display: flex;
     flex-direction: column;
+    position: relative;
 
 
     .header {
-        border-bottom: 1px solid rgb(44, 17, 20);
-
+        outline: 2px solid rgb(44, 17, 20);
         padding: 13px;
         padding-left: 20px;
         padding-right: 20px;
@@ -50,13 +50,18 @@
     .message-input-container {
         width: 100%;
         display: flex;
+        align-items: center;
+        justify-content: center;
+        position: absolute;
+        bottom: 0;
+        padding: 15px;
 
         [contentEditable=true]:empty:before {
             content: attr(datatext)
         }
 
         [contentEditable=true]:empty:before {
-            opacity: 0.8;
+            opacity: 0.3;
             font-family: 'Poppins';
             cursor: text;
         }
@@ -73,9 +78,9 @@
             max-width: calc(100vw - 350px);
             font-family: 'Poppins';
             color: var(--text);
-            margin-bottom: 20px;
-            margin-left: 20px;
-            margin-right: 20px;
+            // margin-bottom: 20px;
+            // margin-left: 20px;
+            // margin-right: 20px;
         }
     }
 }

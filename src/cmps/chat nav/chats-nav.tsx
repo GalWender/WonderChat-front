@@ -5,12 +5,15 @@ import { NavList } from './nav-list';
 import { useDispatch } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import * as chatActions from '../../store/chat/chat.action'
+import ProfilePreview from './profile-preview';
 
 interface Props {
     chats: Chat[];
+    selected: string | undefined;
+    setSelected: (value: string) => void;
 }
 
-export const ChatsNav = ({ chats }: Props) => { 
+export const ChatsNav = ({ chats, selected, setSelected }: Props) => {
     const dispatch = useDispatch()
     const { setIsAddChatModalOpen } = bindActionCreators(chatActions, dispatch)
 
@@ -23,8 +26,7 @@ export const ChatsNav = ({ chats }: Props) => {
             </div>
             <PlusIcon className='plus-icon' onClick={() => setIsAddChatModalOpen(true)} />
         </div>
-
-        <NavList chats={chats} />
-
+        <NavList chats={chats} selected={selected} setSelected={setSelected}/>
+        <ProfilePreview />
     </section>
 }

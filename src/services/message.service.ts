@@ -32,6 +32,6 @@ async function getById(messageId: string | undefined) {
 async function add(message: Message) {
     socketService.emit(SOCKET_EMIT_SEND_MESSAGE_CHANGES, message)
     const postedMessage = await httpService.post(BASE_URL, message)
-    console.log(postedMessage)
+    // console.log(postedMessage)
     return postedMessage
 }

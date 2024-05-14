@@ -4,9 +4,9 @@ import { NavPreview } from "./nav-preview"
 import { useNavigate, useParams } from "react-router-dom";
 import PlusIcon from '../../assets/svg/plus-icon.svg?react'
 import * as channelActions from "../../store/channel/channel.action"
-import { useDispatch, useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
 import { bindActionCreators } from "redux";
-import { State } from "../../store/store";
+// import { State } from "../../store/store";
 
 interface Props {
     channels: Channel[];
@@ -16,7 +16,7 @@ interface Props {
 }
 
 export const NavList = ({ channels, setIsAddChannelModalOpen, selected, setSelected }: Props) => {
-    const loggedinUser = useSelector((state: State) => state.user.loggedinUser)
+    // const loggedinUser = useSelector((state: State) => state.user.loggedinUser)
     const dispatch = useDispatch()
     const { setChannel } = bindActionCreators(channelActions, dispatch)
     const navigate = useNavigate()
@@ -65,11 +65,11 @@ export const NavList = ({ channels, setIsAddChannelModalOpen, selected, setSelec
             </button>
         </section>
 
-<section className="user-details">
+{/* <section className="user-details">
     <p>{loggedinUser?.username}</p>
     <p>{loggedinUser?.email}</p>
     <p>{loggedinUser?._id}</p>
-</section>
+</section> */}
 
     </section>
 }

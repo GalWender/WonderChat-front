@@ -49,7 +49,6 @@ export const Login = () => {
 
             }
         } else {
-
             console.log('Form is invalid. Please check the fields.');
         }
     }

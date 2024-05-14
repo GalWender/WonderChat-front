@@ -20,6 +20,6 @@ async function getById(chatId: string | undefined) {
 
 async function add(chat: Chat) {
     const postedChat = await httpService.post(BASE_URL, chat)
-    console.log(postedChat);
+    // console.log(postedChat);
     return postedChat
 }

@@ -24,8 +24,6 @@ export const ChatContent = () => {
 
 
     useEffect(() => {
-        console.log(params);
-
         if (params.chatId) {
             socketService.emit(SOCKET_EMIT_SET_MESSAGE_ID_CHANNEL, params.chatId)
             loadChat(params?.chatId)

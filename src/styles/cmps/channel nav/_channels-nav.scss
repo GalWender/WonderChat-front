@@ -1,27 +1,33 @@
 .channels-nav {
     width: 75px;
-    height: 100%;
     padding-top: 12px;
+    padding-bottom: 12px;
     background-color: var(--pop);
-
+    max-height: 100vh;
+    overflow: hidden;
+    overflow-y: scroll;
+    scrollbar-width: none;
+    
     .user-details {
         rotate: 90deg;
         margin-top: 100px;
     }
-
+    
     .nav-list {
         width: 100%;
         display: flex;
         flex-direction: column;
         align-items: center;
-
+        
+        
+        
         .channels-container {
             width: 100%;
             display: flex;
             flex-direction: column;
             gap: 10px;
-
             .nav-preview {
+                position: relative;
                 width: 100%;
                 height: 48px;
                 display: flex;

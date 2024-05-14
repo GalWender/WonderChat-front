@@ -1,10 +1,14 @@
 .chats-nav {
+    position: relative;
     min-width: 240px;
     height: 100%;
     padding-top: 12px;
     padding-left: 8px;
     padding-right: 8px;
     background-color: var(--pop1);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
 
     .friends-icon {
         fill: var(--text);
@@ -82,6 +86,7 @@
         width: 100%;
         display: flex;
         flex-direction: column;
+        gap: 10px;
 
         .nav-preview {
             display: flex;
@@ -139,8 +144,55 @@
 
             }
 
-            &.selected {}
+            &.selected {
+                filter: brightness(1);
+                background-color: rgba(221, 221, 221, 0.274);
+
+                & .right {
+                    opacity: 1;
+                }
+            }
         }
 
+    }
+
+    .profile-preview {
+        position: absolute;
+        left: 0;
+        bottom: 0;
+        width: 100%;
+        height: 53px;
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        background-color: var(--secondary-lighter);
+        padding: 8px;
+        
+
+        .left {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 50%;
+            width: 40px;
+            height: 40px;
+            background-color: var(--primary-lighter);
+
+
+            .profile-pic {}
+        }
+
+        .right {
+            display: flex;
+            flex-direction: column;
+            line-height: 20px;
+            small {
+                line-height: 5px;
+            }
+
+            .bottom {
+                opacity: 0.5;
+            }
+        }
     }
 }

@@ -22,7 +22,7 @@ export const userService = {
 
 async function login(creds: { email: string; password: string }) {
   const user = await httpService.post(URL_AUTH + 'login', creds);
-  console.log(user);
+  // console.log(user);
 
   if (user) {
     return saveLocalUser(user);
