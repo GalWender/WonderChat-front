@@ -1,7 +1,13 @@
+interface UserRef {
+    userId:string;
+    name: string;
+}
+
 export interface Message {
     _id: string;
     createdAt: Date;
     content: string;
-    messageBy: string;
+    messageBy: UserRef;
     chatId:string;
 }
+

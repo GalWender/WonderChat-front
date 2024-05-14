@@ -24,6 +24,8 @@ export const ChatContent = () => {
 
 
     useEffect(() => {
+        console.log(params);
+
         if (params.chatId) {
             socketService.emit(SOCKET_EMIT_SET_MESSAGE_ID_CHANNEL, params.chatId)
             loadChat(params?.chatId)
@@ -35,13 +37,11 @@ export const ChatContent = () => {
     const handleAddMessage = async () => {
         try {
             /*// @ts-ignore */
-            const toAddMessage = { content: inputRef.current.textContent.trim(), createdAt: new Date(), messageBy: loggedinUser?._id, chatId: chat?._id } as Message;
+            const toAddMessage = { content: inputRef.current.textContent.trim(), createdAt: new Date(), messageBy: { userId: loggedinUser?._id, name: loggedinUser?.name }, chatId: chat?._id } as Message;
             if (params.chatId) {
-                const res = await messageService.add(toAddMessage);
-                if (res) {
-                    /*// @ts-ignore */
-                    inputRef.current.textContent = ""
-                }
+                await messageService.add(toAddMessage);
+                /*// @ts-ignore */
+                inputRef.current.textContent = ""
             }
         } catch (error) {
             console.error('Error adding message:', error);

@@ -11,17 +11,17 @@ interface Props {
     stillUser: boolean;
 }
 export const MessagePreview = ({ message, stillUser }: Props) => {
-    const dispatch = useDispatch()
-    const { getById } = bindActionCreators(userActions, dispatch)
-    const [userOfMessage, setUserOfMessage] = useState<User>()
+    // const dispatch = useDispatch()
+    // const { getById } = bindActionCreators(userActions, dispatch)
+    // const [userOfMessage, setUserOfMessage] = useState<User>()
 
-    useEffect(() => {
-        (async () => {
-            const resMessage: any = await getById(message.messageBy)
-            setUserOfMessage(resMessage)
-        })()
+    // useEffect(() => {
+    //     (async () => {
+    //         const fetchedUser: any = await getById(message.messageBy)
+    //         setUserOfMessage(fetchedUser)
+    //     })()
 
-    }, [])
+    // }, [])
 
     return <section className="message-preview">
 
@@ -29,12 +29,12 @@ export const MessagePreview = ({ message, stillUser }: Props) => {
             <div className="first-preview">
                 <div className="left">
                     <h4 className="profile-pic">
-                        {userOfMessage?.name[0].toUpperCase()}
+                        {message.messageBy.name[0].toUpperCase()}
                     </h4>
                 </div>
                 <div className="right">
                     <div className="top">
-                        <p>{userOfMessage?.name}</p>
+                        <p>{message.messageBy.name}</p>
                         <small>{utilService.getStringFromDate(new Date(message.createdAt))}</small>
                     </div>
                     <p className="message-txt">{message.content}</p>
