@@ -34,7 +34,7 @@
 
     .messages-container {
         height: 100%;
-        max-height: calc(100vh - 150px);
+        max-height: calc(100vh - 110px);
         overflow-y: auto;
         
 
@@ -54,7 +54,9 @@
         justify-content: center;
         position: absolute;
         bottom: 0;
-        padding: 15px;
+        padding-left: 15px;
+        padding-right: 15px;
+        padding-bottom: 15px;
 
         [contentEditable=true]:empty:before {
             content: attr(datatext)
