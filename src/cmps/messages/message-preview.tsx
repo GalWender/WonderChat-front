@@ -1,30 +1,19 @@
-import { useEffect, useState } from "react";
+import { useEffect } from "react";
 import { Message } from "../../interfaces/message";
 import { utilService } from "../../services/util.service";
-import { User } from "../../interfaces/user";
-import * as userActions from "../../store/user/user.action";
-import { useDispatch } from "react-redux";
-import { bindActionCreators } from "redux";
 
 interface Props {
     message: Message;
     stillUser: boolean;
 }
 export const MessagePreview = ({ message, stillUser }: Props) => {
-    // const dispatch = useDispatch()
-    // const { getById } = bindActionCreators(userActions, dispatch)
-    // const [userOfMessage, setUserOfMessage] = useState<User>()
 
-    // useEffect(() => {
-    //     (async () => {
-    //         const fetchedUser: any = await getById(message.messageBy)
-    //         setUserOfMessage(fetchedUser)
-    //     })()
+    useEffect(() => {
+        console.log(new Date(message.createdAt).getHours());
 
-    // }, [])
+    })
 
     return <section className="message-preview">
-
         {!stillUser &&
             <div className="first-preview">
                 <div className="left">
@@ -35,7 +24,8 @@ export const MessagePreview = ({ message, stillUser }: Props) => {
                 <div className="right">
                     <div className="top">
                         <p>{message.messageBy.name}</p>
-                        <small>{utilService.getStringFromDate(new Date(message.createdAt))}</small>
+                        <small>{utilService.getDateAsString(new Date(message.createdAt))}</small>
+                        <small>{utilService.getTimeAsString(new Date(message.createdAt))}</small>
                     </div>
                     <p className="message-txt">{message.content}</p>
                 </div>
