@@ -1,4 +1,3 @@
-import { useEffect } from "react";
 import { Message } from "../../interfaces/message";
 import { utilService } from "../../services/util.service";
 
@@ -7,11 +6,6 @@ interface Props {
     stillUser: boolean;
 }
 export const MessagePreview = ({ message, stillUser }: Props) => {
-
-    useEffect(() => {
-        console.log(new Date(message.createdAt).getHours());
-
-    })
 
     return <section className="message-preview">
         {!stillUser &&
