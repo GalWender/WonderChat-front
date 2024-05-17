@@ -34,15 +34,17 @@
 
     .messages-container {
         height: 100%;
-        max-height: calc(100vh - 110px);
+        max-height: calc(100vh - 132.5px);
         overflow-y: auto;
-        
+
 
         .message {
             .message-list {
                 margin-top: 20px;
                 margin-bottom: 20px;
-                .message-preview {}
+
+                .message-preview {
+                }
             }
         }
     }
@@ -51,10 +53,10 @@
         width: 100%;
         display: flex;
         align-items: center;
-        justify-content: center;
+        // justify-content: center;
         position: absolute;
         bottom: 0;
-        padding-left: 15px;
+        padding-left: 17px;
         padding-right: 15px;
         padding-bottom: 15px;
 
@@ -68,8 +70,10 @@
             cursor: text;
         }
 
-
         .message-input {
+            min-width: 180px;
+            white-space: pre-wrap;
+            word-wrap: break-word;
             background-color: var(--pop-lighter);
             border-radius: 8px;
             padding: 10px;
@@ -80,6 +84,7 @@
             max-width: calc(100vw - 350px);
             font-family: 'Poppins';
             color: var(--text);
+
             // margin-bottom: 20px;
             // margin-left: 20px;
             // margin-right: 20px;

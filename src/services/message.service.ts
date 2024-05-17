@@ -6,6 +6,7 @@ import { MessageActionType } from "../interfaces/message.store";
 
 (() => {
     socketService.on(SOCKET_EVENT_ADD_MESSAGE_CHANGES, (message) => {
+        // console.log(message)
         store.dispatch({ type: MessageActionType.ADD_MESSAGE, payload: { ...message } })
     })
 })()

@@ -1,13 +1,24 @@
+import { useEffect, useRef } from "react";
 import { Message } from "../../interfaces/message";
 import { utilService } from "../../services/util.service";
 
 interface Props {
     message: Message;
     stillUser: boolean;
+    isLast: boolean;
 }
-export const MessagePreview = ({ message, stillUser }: Props) => {
+export const MessagePreview = ({ message, stillUser, isLast }: Props) => {
+    const messageRef = useRef<any>(null)
+    useEffect(() => {
+        if (isLast) {
+            messageRef.current.scrollIntoView({
+                behavior: "smooth",
+                block: "start"
+            })
+        }
+    })
 
-    return <section className="message-preview">
+    return <section ref={messageRef} className="message-preview">
         {!stillUser &&
             <div className="first-preview">
                 <div className="left">
@@ -21,14 +32,14 @@ export const MessagePreview = ({ message, stillUser }: Props) => {
                         <small>{utilService.getDateAsString(new Date(message.createdAt))}</small>
                         <small>{utilService.getTimeAsString(new Date(message.createdAt))}</small>
                     </div>
-                    <p className="message-txt">{message.content}</p>
+                    <pre className="message-txt">{message.content}</pre>
                 </div>
             </div>
         }
         {
             stillUser &&
             <div className="right-continue">
-                <p className="message-txt-continue">{message.content}</p>
+                <pre className="message-txt-continue">{message.content}</pre>
             </div>
         }
 

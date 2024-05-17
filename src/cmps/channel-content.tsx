@@ -12,10 +12,12 @@ export const ChannelContent = () => {
     const { loadChats } = bindActionCreators(chatActions, dispatch)
     const chats = useSelector((state: State) => state.chat.chats)
     const [selected, setSelected] = useState(params.chatId)
+    console.log(params);
+    
 
     useEffect(() => {
         loadChats({ channelId: params?.channelId })
-    }, [params.channelId,params.chatId])
+    }, [params.channelId, params.chatId])
 
 
     return <section className="channel-content">

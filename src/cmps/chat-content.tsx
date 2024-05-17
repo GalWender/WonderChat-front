@@ -15,7 +15,7 @@ import { SOCKET_EMIT_SET_MESSAGE_ID_CHANNEL, socketService } from "../services/s
 export const ChatContent = () => {
     const dispatch = useDispatch()
     const params = useParams()
-    const inputRef = useRef(null);
+    const inputRef = useRef<any>(null);
     const chat = useSelector((state: State) => state.chat.chat)
     const messages = useSelector((state: State) => state.message.messages)
     const loggedinUser = useSelector((state: State) => state.user.loggedinUser)
@@ -34,11 +34,11 @@ export const ChatContent = () => {
 
     const handleAddMessage = async () => {
         try {
-            /*// @ts-ignore */
-            const toAddMessage = { content: inputRef.current.textContent.trim(), createdAt: new Date(), messageBy: { userId: loggedinUser?._id, name: loggedinUser?.name }, chatId: chat?._id } as Message;
+            // console.log(inputRef.current.innerHTML.trim());
+
+            const toAddMessage = { content: inputRef.current.innerHTML.trim(), createdAt: new Date(), messageBy: { userId: loggedinUser?._id, name: loggedinUser?.name }, chatId: chat?._id } as Message;
             if (params.chatId) {
                 await messageService.add(toAddMessage);
-                /*// @ts-ignore */
                 inputRef.current.textContent = ""
             }
         } catch (error) {
