@@ -12,10 +12,9 @@ import * as chatActions from "../../store/chat/chat.action"
 interface Props {
     chat: Chat;
     selected: string | undefined;
-    setSelected: (value: string) => void;
 }
 
-export const NavPreview = ({ chat, selected, setSelected }: Props) => {
+export const NavPreview = ({ chat, selected }: Props) => {
     const dispatch = useDispatch()
     const navigate = useNavigate()
     const { setChat } = bindActionCreators(chatActions, dispatch)
@@ -23,11 +22,8 @@ export const NavPreview = ({ chat, selected, setSelected }: Props) => {
 
     const handleChatSelect = () => {
         setChat(chat)
-        setSelected(chat._id)
         navigate(chat._id)
     }
-
-
 
     return <section className={`nav-preview ${(selected === chat._id) ? "selected" : ""}`} onClick={handleChatSelect}>
         <div className="left">

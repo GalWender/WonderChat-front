@@ -10,10 +10,9 @@ import ProfilePreview from './profile-preview';
 interface Props {
     chats: Chat[];
     selected: string | undefined;
-    setSelected: (value: string) => void;
 }
 
-export const ChatsNav = ({ chats, selected, setSelected }: Props) => {
+export const ChatsNav = ({ chats, selected }: Props) => {
     const dispatch = useDispatch()
     const { setIsAddChatModalOpen } = bindActionCreators(chatActions, dispatch)
 
@@ -26,7 +25,7 @@ export const ChatsNav = ({ chats, selected, setSelected }: Props) => {
             </div>
             <PlusIcon className='plus-icon' onClick={() => setIsAddChatModalOpen(true)} />
         </div>
-        <NavList chats={chats} selected={selected} setSelected={setSelected}/>
+        <NavList chats={chats} selected={selected}/>
         <ProfilePreview />
     </section>
 }

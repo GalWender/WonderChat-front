@@ -34,8 +34,6 @@ export const ChatContent = () => {
 
     const handleAddMessage = async () => {
         try {
-            // console.log(inputRef.current.innerHTML.trim());
-
             const toAddMessage = { content: inputRef.current.innerHTML.trim(), createdAt: new Date(), messageBy: { userId: loggedinUser?._id, name: loggedinUser?.name }, chatId: chat?._id } as Message;
             if (params.chatId) {
                 await messageService.add(toAddMessage);
@@ -58,7 +56,7 @@ export const ChatContent = () => {
             <MessageCmp messages={messages} />
         </div>
         <div className="message-input-container">
-            <ExpandingInput placeholder={`Message ${chat?.name}`} inputRef={inputRef} submitKey="Enter" submitFunc={handleAddMessage} />
+            <ExpandingInput placeholder={`Type a message in ${chat?.name} chat...`} inputRef={inputRef} submitKey="Enter" submitFunc={handleAddMessage} />
         </div>
 
     </section>

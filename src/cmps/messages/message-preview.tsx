@@ -1,24 +1,13 @@
-import { useEffect, useRef } from "react";
 import { Message } from "../../interfaces/message";
 import { utilService } from "../../services/util.service";
 
 interface Props {
     message: Message;
     stillUser: boolean;
-    isLast: boolean;
 }
-export const MessagePreview = ({ message, stillUser, isLast }: Props) => {
-    const messageRef = useRef<any>(null)
-    useEffect(() => {
-        if (isLast) {
-            messageRef.current.scrollIntoView({
-                behavior: "smooth",
-                block: "start"
-            })
-        }
-    })
+export const MessagePreview = ({ message, stillUser }: Props) => {
 
-    return <section ref={messageRef} className="message-preview">
+    return <section className="message-preview">
         {!stillUser &&
             <div className="first-preview">
                 <div className="left">
