@@ -1,0 +1,54 @@
+.profile-modal {
+  position: absolute;
+  bottom: 60px;
+  left: -30px;
+  background-color: var(--accent-lighter);
+  //   height: 100px;
+  width: 150%;
+  padding: 15px;
+  border-radius: 8px;
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+
+  .profile-pic-container {
+    width: 70px;
+    height: 70px;
+    background-color: var(--secondary-lighter);
+    border-radius: 50%;
+
+    img {
+      width: 100%;
+      height: 100%;
+    }
+  }
+
+  .content {
+    background-color: var(--primary-darker);
+    padding: 25px 10px;
+    display: flex;
+    flex-direction: column;
+    border-radius: 8px;
+    gap: 10px;
+    span {
+      font-size: 16px;
+      color: var(--mood-darker);
+      font-weight: 200;
+    }
+
+    p {
+      font-weight: 600;
+    }
+
+    .btn-logout {
+      padding: 7px 10px;
+      border-radius: 6px;
+      background-color: var(--primary);
+
+      &:hover {
+        transition: 0.2s ease-in-out;
+        background-color: var(--outline-darker);
+      }
+    }
+  }
+}

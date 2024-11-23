@@ -1,26 +1,35 @@
-import { ForwardedRef } from "react";
+import { ForwardedRef } from 'react'
 
 interface Props {
-    inputRef: ForwardedRef<HTMLDivElement>;
-    submitKey: string;
-    placeholder: string;
-    submitFunc: () => void;
+  inputRef: ForwardedRef<HTMLDivElement>
+  submitKey: string
+  placeholder: string
+  submitFunc: () => void
 }
 
 export const ExpandingInput = ({ inputRef, submitKey, placeholder, submitFunc }: Props) => {
-    const handleKeyPress = (ev: KeyboardEvent) => {
-        if (ev.key === submitKey && !ev.shiftKey) {
-            ev.preventDefault()
-            submitFunc()
-        } else if (ev.key === submitKey && ev.shiftKey) { }
+  const handleKeyPress = (ev: KeyboardEvent) => {
+    if (ev.key === submitKey && !ev.shiftKey) {
+      ev.preventDefault()
+      submitFunc()
+    } else if (ev.key === submitKey && ev.shiftKey) {
     }
-    return <div
-        /*// @ts-ignore */
-        ref={inputRef} className="message-input" datatext={placeholder} contentEditable suppressContentEditableWarning onKeyDown={(ev) => handleKeyPress(ev)}
-        style={{
-            maxHeight: '45vh',
-            overflowY: 'auto',
-            width: '100%',
-        }}
+  }
+  return (
+    <div
+      ref={inputRef}
+      className="message-input"
+      /*// @ts-ignore */
+      datatext={placeholder}
+      contentEditable
+      suppressContentEditableWarning
+      /*// @ts-ignore */
+      onKeyDown={(ev) => handleKeyPress(ev)}
+      style={{
+        maxHeight: '45vh',
+        overflowY: 'auto',
+        width: '100%',
+      }}
     ></div>
+  )
 }

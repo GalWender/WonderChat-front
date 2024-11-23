@@ -1,76 +1,74 @@
 * {
-    box-sizing: border-box;
+  box-sizing: border-box;
 
-    /* Chrome, Edge, and Safari */
-    &::-webkit-scrollbar {
-        width: 6px;
-        cursor: pointer;
-    }
+  /* Chrome, Edge, and Safari */
+  &::-webkit-scrollbar {
+    width: 6px;
+    cursor: pointer;
+  }
 
-    &::-webkit-scrollbar-track {
-        // background: #d9d9d9;
+  &::-webkit-scrollbar-track {
+    // background: #d9d9d9;
+  }
 
-    }
-
-    &::-webkit-scrollbar-thumb {
-        border-radius: 25px;
-        background-color: var(--accent);
-        cursor: pointer;
-    }
+  &::-webkit-scrollbar-thumb {
+    border-radius: 25px;
+    background-color: var(--accent);
+    cursor: pointer;
+  }
 }
 
 html,
 body,
 .app,
 #root {
-    width: 100%;
-    min-height: 100vh;
-    // height: 100vh;
-    margin: 0;
-    padding: 0;
-    // user-select: none;
-    // scroll-behavior: none;
-    background-color: var(--background);
-    font-family: 'Poppins';
-    font-weight: 400;
-    // overflow: hidden;
+  width: 100%;
+  min-height: 100vh;
+  // height: 100vh;
+  margin: 0;
+  padding: 0;
+  // user-select: none;
+  // scroll-behavior: none;
+  background-color: var(--background);
+  font-family: 'Poppins';
+  font-weight: 400;
+  // overflow: hidden;
 }
 
-
 h1 {
-    font-size: 4.210rem;
-    /* 67.36px */
-    font-weight: 800;
+  font-size: 4.21rem;
+  /* 67.36px */
+  font-weight: 800;
 }
 
 h2 {
-    font-size: 3.158rem;
-    font-weight: 800;
-    /* 50.56px */
+  font-size: 3.158rem;
+  font-weight: 800;
+  /* 50.56px */
 }
 
 h3 {
-    font-size: 2.369rem;
-    font-weight: 800;
-    /* 37.92px */
+  font-size: 2.369rem;
+  font-weight: 800;
+  /* 37.92px */
 }
 
 h4 {
-    font-size: 1.777rem;
-    font-weight: 800;
-    /* 28.48px */
+  font-size: 1.777rem;
+  font-weight: 800;
+  /* 28.48px */
 }
 
 h5 {
-    font-size: 1.333rem;
-    font-weight: 800;
-    /* 21.28px */
+  font-size: 1.333rem;
+  font-weight: 800;
+  /* 21.28px */
 }
 
 small {
-    font-size: 0.750rem;
-    font-weight: 400;
-    /* 12px */
+  font-size: 0.75rem;
+  font-weight: 400;
+  /* 12px */
 }
 
 h1,
@@ -79,66 +77,66 @@ h3,
 h4,
 h5,
 h6 {
-    margin: 0;
-    padding: 0;
-    color: var(--text);
-    font-family: 'Poppins';
+  margin: 0;
+  padding: 0;
+  color: var(--text);
+  font-family: 'Poppins';
 }
 
 ul {
+  padding: 0;
+  margin: 0;
+
+  li {
     padding: 0;
     margin: 0;
-
-    li {
-        padding: 0;
-        margin: 0;
-        list-style-type: none;
-    }
+    list-style-type: none;
+  }
 }
 
 section {
-    color: var(--text);
+  color: var(--text);
 }
 
 p {
-    font-family: "Poppins";
-    color: var(--text);
-    margin: 0;
-    font-size: 1rem;
-    font-weight: 500;
+  font-family: 'Poppins';
+  color: var(--text);
+  margin: 0;
+  font-size: 1rem;
+  font-weight: 500;
 }
 
 button {
-    cursor: pointer;
-    background-color: transparent;
-    border: none;
-    padding: 0;
-    border: none;
-    outline: none;
-    font-family: "Poppins";
-  }
+  cursor: pointer;
+  background-color: transparent;
+  border: none;
+  padding: 0;
+  border: none;
+  outline: none;
+  font-family: 'Poppins';
+}
 
 input {
-    outline: none;
-    font-family: "Poppins";
-    color: var(--text);
-    background-color: var(--pop);
-    border: none;
-    filter: opacity(0.5);
-    border-radius: 4px;
-    padding: 10px;
+  outline: none;
+  font-family: 'Poppins';
+  color: var(--text);
+  background-color: var(--pop);
+  border: none;
+  filter: opacity(0.5);
+  border-radius: 4px;
+  padding: 10px;
 }
 
 textarea {
-    outline: none;
-    font-family: "Poppins";
-    color: var(--text);
-    background-color: var(--pop);
-    border: none;
-    filter: opacity(0.5);
-    border-radius: 4px;
-    padding: 10px;
-    resize: none;
+  outline: none;
+  font-family: 'Poppins';
+  color: var(--text);
+  background-color: var(--pop);
+  border: none;
+  filter: opacity(0.5);
+  border-radius: 4px;
+  padding: 10px;
+  resize: none;
 }
 
 // select {
@@ -158,62 +156,61 @@ textarea {
 // }
 
 a {
-    text-decoration: none;
+  text-decoration: none;
 }
 
 .custom-select {
-    position: relative;
-    height: 40px;
-    background-color: #b06371;
-    border-radius: 4px;
-    display: flex;
-    align-items: center;
+  position: relative;
+  height: 40px;
+  background-color: #b06371;
+  border-radius: 4px;
+  display: flex;
+  align-items: center;
 
-    p {
-        margin-left: 10px;
-        width: 100%;
+  p {
+    margin-left: 10px;
+    width: 100%;
+  }
+
+  .arrow-down {
+    margin-right: 10px;
+    fill: var(--text);
+    width: 25px;
+    height: 25px;
+
+    &:hover {
+      transition: 0.2s ease-in-out;
+      filter: opacity(0.5);
+      cursor: pointer;
     }
+  }
 
-    .arrow-down {
-        margin-right: 10px;
-        fill: var(--text);
-        width: 25px;
-        height: 25px;
-        
-        &:hover {
-            transition: 0.2s ease-in-out;
-            filter: opacity(0.5);
-            cursor: pointer;
-        }
+  .text-container {
+    width: 100%;
+  }
+
+  .options-container {
+    position: absolute;
+    bottom: calc(0px + 39px);
+    z-index: 100;
+    background-color: var(--secondary);
+    width: inherit;
+    max-width: inherit;
+    max-height: 200px;
+    overflow-y: auto;
+    border-top-right-radius: 4px;
+    border-top-left-radius: 4px;
+
+    .option {
+      display: flex;
+      align-items: center;
+      padding: 10px;
+      // margin: 1px;
+
+      &:hover {
+        cursor: pointer;
+        background-color: #562c34;
+      }
     }
-
-    .text-container {
-        width: 100%;
-
-    }
-
-    .options-container {
-        position: absolute;
-        bottom: calc(0px + 39px);
-        z-index: 100;
-        background-color: var(--secondary);
-        width: inherit;
-        max-width: inherit;
-        max-height: 200px;
-        overflow-y: auto;
-        border-top-right-radius: 4px;
-        border-top-left-radius: 4px;
-
-        .option {
-            display: flex;
-            align-items: center;
-            padding: 10px;
-            // margin: 1px;
-
-            &:hover {
-                cursor: pointer;
-                background-color: #562c34;
-            }
-        }
-    }
+  }
 }

@@ -4,10 +4,11 @@ interface UserRef {
 }
 
 export interface Message {
-    _id: string;
+    _id?: string;
+    tempId?: string;
     createdAt: Date;
     content: string;
     messageBy: UserRef;
     chatId:string;
+    hasError?: boolean;
 }
-

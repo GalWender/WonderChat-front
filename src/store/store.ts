@@ -1,25 +1,21 @@
-import { applyMiddleware, combineReducers, createStore, Store } from 'redux';
-import thunk from 'redux-thunk';
-import userReducer from "./user/user.reducer"
-import channelReducer from "./channel/channel.reducer"
-import chatReducer from "./chat/chat.reducer"
-import messageReducer from "./message/message.reducer"
+import { applyMiddleware, combineReducers, createStore, Store } from 'redux'
+import thunk from 'redux-thunk'
+import userReducer from './user/user.reducer'
+import channelReducer from './channel/channel.reducer'
+import chatReducer from './chat/chat.reducer'
+import messageReducer from './message/message.reducer'
 
 const reducers = combineReducers({
   user: userReducer,
-  channel:channelReducer,
-  chat:chatReducer,
-  message:messageReducer,
+  channel: channelReducer,
+  chat: chatReducer,
+  message: messageReducer,
 })
-//export the reducers types for useSelector useage 
+//export the reducers types for useSelector useage
 export type State = ReturnType<typeof reducers>
 
 // Create the Redux store
-const store: Store = createStore(
-  reducers,
-  {},
-  applyMiddleware(thunk)
-)
+const store: Store = createStore(reducers, {}, applyMiddleware(thunk))
 
 // Export the store
-export default store;
+export default store

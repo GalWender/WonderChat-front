@@ -1,21 +1,22 @@
 import io,{Socket} from 'socket.io-client'
 import { userService } from './user.service'
 
-export const SOCKET_EMIT_SET_TEST_ID_CHANNEL = 'test-set-channel'
-export const SOCKET_EMIT_SEND_TEST_CHANGES = 'test-send-changes'
-export const SOCKET_EVENT_ADD_TEST_CHANGES = 'test-add-changes'
-
+// Message events
 export const SOCKET_EMIT_SET_MESSAGE_ID_CHANNEL = 'message-set-channel'
-export const SOCKET_EMIT_SEND_MESSAGE_CHANGES = 'message-send-changes'
-export const SOCKET_EVENT_ADD_MESSAGE_CHANGES = 'message-add-changes'
+export const SOCKET_EMIT_SEND_MESSAGE = 'message-send'
+export const SOCKET_EVENT_ADD_MESSAGE = 'message-add'
+export const SOCKET_EVENT_UPDATE_MESSAGE = 'message-update'
+export const SOCKET_EVENT_DELETE_MESSAGE = 'message-remove'
+export const SOCKET_EVENT_MESSAGE_ERROR = 'message-error'
 
+// Channel events
 export const SOCKET_EMIT_SET_CHANNEL_ID_CHANNEL = 'channel-set-channel'
 export const SOCKET_EMIT_SEND_CHANNEL_CHANGES = 'channel-send-changes'
 export const SOCKET_EVENT_UPDATE_CHANNEL_CHANGES = 'channel-update-changes'
 
-const SOCKET_EMIT_LOGIN = 'set-user-socket'
-const SOCKET_EMIT_LOGOUT = 'unset-user-socket'
-
+// User socket events
+export const SOCKET_EMIT_LOGIN = 'set-user-socket'
+export const SOCKET_EMIT_LOGOUT = 'unset-user-socket'
 
 const baseUrl = (process.env.NODE_ENV === 'production') ? '' : '//localhost:3030'
 export const socketService = createSocketService()

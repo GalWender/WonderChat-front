@@ -8,6 +8,8 @@ interface Props {
     setSelected: (value: string) => void;
 }
 export const ChannelsNav = ({ channels, setIsAddChannelModalOpen, selected, setSelected }: Props) => {
+    console.log(channels);
+    
 
     return <section className="channels-nav">
         {channels.length > 0 && <NavList

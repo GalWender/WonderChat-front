@@ -29,10 +29,17 @@ function makeId(length = 36) {
     return txt
 }
 
+const generateId = () => {
+    const timestamp = Date.now().toString(36);
+    const randomStr = Math.random().toString(36).substring(2, 8);
+    return `${timestamp}-${randomStr}`;
+}
+
 export const utilService = {
     getDateAsString,
     makeId,
-    getTimeAsString
+    getTimeAsString,
+    generateId
 }
 
 
