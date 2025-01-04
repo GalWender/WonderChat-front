@@ -20,7 +20,10 @@ interface AddMessagesAction {
 }
 interface UpdateMessageAction {
     type: MessageActionType.UPDATE_MESSAGE,
-    payload: Message
+    payload: {
+        message: Message,
+        tempId?: string
+    }
 }
 interface RemoveMessageAction {
     type: MessageActionType.REMOVE_MESSAGE,

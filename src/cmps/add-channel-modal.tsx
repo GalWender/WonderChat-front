@@ -10,9 +10,10 @@ import { useNavigate } from 'react-router-dom'
 
 interface Props {
   setIsAddChannelModalOpen: (value: boolean) => void
-  addChannel: (channel: Channel) => (dispatch: Dispatch<ChannelActions>) => Promise<boolean>
+  addChannel: (channel: Channel) => (dispatch: Dispatch) => Promise<boolean>
   setSelected: (value: string) => void
 }
+
 export const AddChannelModal = ({ setIsAddChannelModalOpen, addChannel, setSelected }: Props) => {
   const modalRef = useRef(null)
   const navigate = useNavigate()
@@ -39,12 +40,15 @@ export const AddChannelModal = ({ setIsAddChannelModalOpen, addChannel, setSelec
     e.preventDefault()
     const isNameValid1 = isNameValid()
     if (isNameValid1 && loggedinUser) {
-      const channelAdded: any = await addChannel({
+      const channelToAdd = {
         logoSrc: 'idk  right now',
         name: inputValueName,
         participantsIds: [loggedinUser._id],
         isDirectMessages: false,
-      } as Channel)
+      } as Channel
+      console.log('channelToAdd', channelToAdd)
+
+      const channelAdded: any = await addChannel(channelToAdd)
       if (channelAdded) {
         setSelected(channelAdded._id)
         navigate(`/channels/${channelAdded._id}`)

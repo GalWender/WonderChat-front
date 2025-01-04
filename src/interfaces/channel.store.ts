@@ -9,14 +9,17 @@ interface SetChannelsAction {
     type: ChannelActionType.SET_CHANNELS,
     payload: Channel[]
 }
+
 interface SetChannelAction {
     type: ChannelActionType.SET_CHANNEL,
-    payload: Channel 
+    payload: Channel | null
 }
+
 interface AddChannelsAction {
     type: ChannelActionType.ADD_CHANNEL,
     payload: Channel
 }
+
 interface UpdateChannelsAction {
     type: ChannelActionType.UPDATE_CHANNEL,
     payload: Channel

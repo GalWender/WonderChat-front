@@ -7,7 +7,7 @@ import { useDispatch, useSelector } from 'react-redux'
 import { bindActionCreators } from 'redux'
 import { State } from '../store/store'
 import { AddChannelModal } from '../cmps/add-channel-modal'
-import { Outlet, useParams } from 'react-router-dom'
+import { Outlet, useParams, useNavigate } from 'react-router-dom'
 import { AddChatModal } from '../cmps/add-chat-modal'
 import { AddFriendModal } from '../cmps/add-friend-modal'
 import { socketService, SOCKET_EVENT_UPDATE_CHANNEL_CHANGES } from '../services/socket.service'
@@ -16,6 +16,7 @@ import { Channel } from '../interfaces/channel'
 
 export const Channels = () => {
   const dispatch = useDispatch()
+  const navigate = useNavigate()
   const params = useParams()
   const { loadChannels, loadChannel, addChannel } = bindActionCreators(channelActions, dispatch)
   const { setIsAddChatModalOpen, addChat } = bindActionCreators(chatActions, dispatch)
@@ -29,9 +30,14 @@ export const Channels = () => {
   const [selected, setSelected] = useState(params.channelId)
 
   useEffect(() => {
-    loadChannels({ userId: loggedinUser?._id })
+    if (!loggedinUser?._id) {
+      navigate('/login')
+      return
+    }
+
+    loadChannels({ userId: loggedinUser._id })
     if (params.channelId) {
-      loadChannel(params?.channelId)
+      loadChannel(params.channelId)
     }
 
     // Set up socket listener for channel updates

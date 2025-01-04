@@ -19,16 +19,15 @@ const reducer = (state: ReducerInitialState = initialState, action: MessageActio
       return { 
         ...state, 
         messages: state.messages.map(msg => {
-          // If we have a tempId in the payload, match by tempId
-          if (action.payload.tempId && msg.tempId === action.payload.tempId) {
-            delete action.payload.tempId
-            return action.payload;
+          // Match by tempId if provided
+          if (action.payload?.tempId && msg._id === action.payload?.tempId) {
+            return action.payload.message
           }
           // Otherwise match by _id
-          if (msg._id === action.payload._id) {
-            return action.payload;
+          if (msg._id === action.payload.message._id) {
+            return action.payload.message
           }
-          return msg;
+          return msg
         })
       };
     case MessageActionType.REMOVE_MESSAGE:

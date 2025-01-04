@@ -149,10 +149,10 @@ export const Register = () => {
       } as User
 
       await signup(toRegisterUser)
-      // const isLoggedIn: any = await login({ email: toRegisterUser.email, password: toRegisterUser.password })
-      // if (isLoggedIn) {
-      //     navigate('/channels')
-      // }
+      const isLoggedIn: any = await login({ email: toRegisterUser.email, password: toRegisterUser.password })
+      if (isLoggedIn) {
+        navigate('/channels')
+      }
     }
   }
 

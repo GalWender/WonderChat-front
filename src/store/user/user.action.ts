@@ -2,6 +2,7 @@ import { User } from '../../interfaces/user'
 import { Dispatch } from 'redux'
 import { UserActions, UserActionType } from '../../interfaces/user.store'
 import { userService } from '../../services/user.service'
+import { setChannels } from '../channel/channel.action'
 
 export const signup = (creds: User) => {
   return async () => {
@@ -67,6 +68,22 @@ export const loadUsers = (filterBy: Object) => {
       dispatch({ type: UserActionType.SET_USERS, payload: [...users] })
     } catch (err) {
       console.log('there was an error when loading models', err)
+    }
+  }
+}
+
+export const logout = () => {
+  return async (dispatch: Dispatch<UserActions | any>) => {
+    try {
+      await userService.logout()
+      // Clear user state
+      dispatch({ type: UserActionType.SET_USER, payload: null })
+      // Clear channel state
+      dispatch(setChannels(null))
+      return true
+    } catch (err) {
+      console.log('Failed to logout:', err)
+      return false
     }
   }
 }
